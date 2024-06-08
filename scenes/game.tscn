@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dtt8jop5a1fdf"]
+[gd_scene load_steps=11 format=3 uid="uid://dtt8jop5a1fdf"]
 
 [ext_resource type="Script" path="res://scripts/system/game_manager.gd" id="1_6sytv"]
 [ext_resource type="Script" path="res://scripts/system/cultist_spawner.gd" id="2_espvc"]
@@ -8,14 +8,19 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_b20wh"]
 size = Vector2(2000, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fvaif"]
-size = Vector2(2000, 20)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1r277"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_181mj"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ppplv"]
 size = Vector2(20, 1160)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrubm"]
-size = Vector2(20, 1160)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0wjqd"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_86jtt"]
+normal = Vector2(-1, 0)
 
 [node name="Game" type="Node2D"]
 
@@ -45,7 +50,7 @@ metadata/_edit_group_ = true
 texture = SubResource("PlaceholderTexture2D_b20wh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall_TOP"]
-shape = SubResource("RectangleShape2D_fvaif")
+shape = SubResource("WorldBoundaryShape2D_1r277")
 
 [node name="Wall_BOTTOM" type="StaticBody2D" parent="Environment"]
 position = Vector2(960, 1090)
@@ -55,7 +60,7 @@ metadata/_edit_group_ = true
 texture = SubResource("PlaceholderTexture2D_b20wh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall_BOTTOM"]
-shape = SubResource("RectangleShape2D_fvaif")
+shape = SubResource("WorldBoundaryShape2D_181mj")
 
 [node name="Wall_LEFT" type="StaticBody2D" parent="Environment"]
 position = Vector2(-10, 540)
@@ -65,7 +70,7 @@ metadata/_edit_group_ = true
 texture = SubResource("PlaceholderTexture2D_ppplv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall_LEFT"]
-shape = SubResource("RectangleShape2D_wrubm")
+shape = SubResource("WorldBoundaryShape2D_0wjqd")
 
 [node name="Wall_RIGHT" type="StaticBody2D" parent="Environment"]
 position = Vector2(1930, 540)
@@ -75,4 +80,4 @@ metadata/_edit_group_ = true
 texture = SubResource("PlaceholderTexture2D_ppplv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall_RIGHT"]
-shape = SubResource("RectangleShape2D_wrubm")
+shape = SubResource("WorldBoundaryShape2D_86jtt")
