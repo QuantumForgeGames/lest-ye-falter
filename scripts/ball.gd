@@ -8,7 +8,6 @@ var WIDE_BOUNCE = (Vector2.UP + Vector2.RIGHT * 3).normalized()
 
 @export var speed :float = 800
 
-
 func _ready () -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 
@@ -34,3 +33,5 @@ func _bounce (collision_ :KinematicCollision2D) -> void:
 		trajectory.x *= sign(velocity.x)
 		velocity = trajectory * velocity.length() + collider.velocity 
 		velocity = velocity.normalized() * clampf(400, 1000, velocity.length())
+	
+	$HitHandlerSystem.on_collision(collider)

@@ -19,9 +19,8 @@ texture = SubResource("PlaceholderTexture2D_dbxgv")
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_hpjuv")
 
-[node name="HitHandlerSystem" type="Node" parent="." node_paths=PackedStringArray("hit_handler")]
+[node name="HitHandlerSystem" type="Node" parent="."]
 script = ExtResource("2_q62i5")
-hit_handler = NodePath("All")
 
 [node name="All" type="Node" parent="HitHandlerSystem" node_paths=PackedStringArray("ball")]
 script = ExtResource("2_0heqb")
