@@ -1,6 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtt8jop5a1fdf"]
+[gd_scene load_steps=7 format=3 uid="uid://dtt8jop5a1fdf"]
 
+[ext_resource type="PackedScene" uid="uid://cye2n4fdkf6ou" path="res://scenes/ball.tscn" id="2_l2pls"]
 [ext_resource type="PackedScene" uid="uid://cmif6nw1snsxa" path="res://scenes/paddle.tscn" id="2_qrfol"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_b20wh"]
+size = Vector2(2000, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fvaif"]
+size = Vector2(2000, 20)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ppplv"]
+size = Vector2(20, 1160)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrubm"]
+size = Vector2(20, 1160)
 
 [node name="Game" type="Node2D"]
 
@@ -10,3 +23,48 @@ position = Vector2(960, 540)
 [node name="Paddle" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_qrfol")]
 position = Vector2(960, 1000)
 camera = NodePath("../Camera2D")
+
+[node name="Ball" parent="." instance=ExtResource("2_l2pls")]
+position = Vector2(967, 694)
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="Wall_TOP" type="StaticBody2D" parent="Environment"]
+position = Vector2(960, -10)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Wall_TOP"]
+texture = SubResource("PlaceholderTexture2D_b20wh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall_TOP"]
+shape = SubResource("RectangleShape2D_fvaif")
+
+[node name="Wall_BOTTOM" type="StaticBody2D" parent="Environment"]
+position = Vector2(960, 1090)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Wall_BOTTOM"]
+texture = SubResource("PlaceholderTexture2D_b20wh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall_BOTTOM"]
+shape = SubResource("RectangleShape2D_fvaif")
+
+[node name="Wall_LEFT" type="StaticBody2D" parent="Environment"]
+position = Vector2(-10, 540)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Wall_LEFT"]
+texture = SubResource("PlaceholderTexture2D_ppplv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall_LEFT"]
+shape = SubResource("RectangleShape2D_wrubm")
+
+[node name="Wall_RIGHT" type="StaticBody2D" parent="Environment"]
+position = Vector2(1930, 540)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Wall_RIGHT"]
+texture = SubResource("PlaceholderTexture2D_ppplv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall_RIGHT"]
+shape = SubResource("RectangleShape2D_wrubm")
