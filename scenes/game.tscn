@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtt8jop5a1fdf"]
+[gd_scene load_steps=8 format=3 uid="uid://dtt8jop5a1fdf"]
 
+[ext_resource type="PackedScene" uid="uid://c4fkk0ysr51ub" path="res://scenes/ui.tscn" id="1_ytm1b"]
 [ext_resource type="PackedScene" uid="uid://cye2n4fdkf6ou" path="res://scenes/ball.tscn" id="2_l2pls"]
 [ext_resource type="PackedScene" uid="uid://cmif6nw1snsxa" path="res://scenes/paddle.tscn" id="2_qrfol"]
 
@@ -16,6 +17,8 @@ size = Vector2(20, 1160)
 size = Vector2(20, 1160)
 
 [node name="Game" type="Node2D"]
+
+[node name="UI" parent="." instance=ExtResource("1_ytm1b")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
