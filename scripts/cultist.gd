@@ -2,16 +2,10 @@ extends CharacterBody2D
 class_name Cultist
 
 @export var speed: float = 400.
-@onready var doubt_timer := $DoubtTimer
-@onready var dissent_timer := $DissentTimer
-@onready var area_of_influence := $AreaOfInfluence
 
-enum STATES {BASE, DOUBT, DISSENT}
+var infected: bool = false
 
 func on_hit():
-	$StateMachine.on_hit()
-
-func exit_scene():
 	$CollisionShape2D.set_deferred("disabled", true)
 	
 	var ytarget := 600.
@@ -24,16 +18,3 @@ func exit_scene():
 	tween.tween_property(self, "position:y", ytarget, abs(global_position.y - ytarget)/speed)
 	tween.tween_property(self, "position:x", xtarget, abs(global_position.x - xtarget)/speed)
 	tween.tween_callback(func(): queue_free())
-
-func change_sprite(state: STATES):
-	var sprites = $Sprites.get_children()
-	sprites[state].visible = true
-	sprites[(state + 1) % 3].visible = false
-	sprites[(state + 2) % 3].visible = false
-
-func set_state(state: STATES):
-	$StateMachine.on_child_transitioned($StateMachine.get_child(state).name)
-
-func on_captured():
-	velocity = Vector2.ZERO
-	set_collision_layer_value(3, false)
