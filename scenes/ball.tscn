@@ -23,7 +23,7 @@ shape = SubResource("CircleShape2D_hpjuv")
 
 [node name="HitHandlerSystem" type="Node" parent="." node_paths=PackedStringArray("hit_handler")]
 script = ExtResource("2_q62i5")
-hit_handler = NodePath("OnInput")
+hit_handler = NodePath("First")
 
 [node name="All" type="Node" parent="HitHandlerSystem" node_paths=PackedStringArray("ball")]
 script = ExtResource("2_0heqb")

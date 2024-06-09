@@ -14,9 +14,6 @@ var half_paddle_width: float
 
 
 func _ready () -> void:
-	EventManager.cultist_converted.connect(_on_minigame_ended)
-	EventManager.cultist_killed.connect(_on_minigame_ended)
-
 	camera_rect = camera.get_viewport_rect()
 	# Calculate half the width of the paddle for boundary checks
 	half_paddle_width = _Collision.shape.get_rect().size.x / 2 * scale.x
@@ -41,15 +38,9 @@ func _process (delta :float) -> void:
 
 
 func _get_input () -> void:
-	direction = Input.get_axis("move_left", "move_right") * Vector2(1, 0)
-
-func _on_capture_area_body_entered(body: Node2D) -> void:
-	if process_mode != Node.PROCESS_MODE_DISABLED: # if mini game is not already active
-		set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
-		$CaptureArea.set_deferred("monitoring", false)
-		body.on_captured()
-		EventManager.cultist_captured.emit(body)
-
-func _on_minigame_ended(cultist: Cultist) -> void:
-	set_deferred("process_mode", Node.PROCESS_MODE_ALWAYS)
-	$CaptureArea.set_deferred("monitoring", true)
+	if Input.is_action_pressed("move_left"):
+		direction = Vector2.LEFT
+	elif Input.is_action_pressed("move_right"):
+		direction = Vector2.RIGHT
+	else:
+		direction = Vector2.ZERO
