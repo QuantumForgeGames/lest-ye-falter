@@ -21,11 +21,11 @@ script = ExtResource("1_ko1t5")
 [node name="Sprites" type="Node2D" parent="."]
 
 [node name="Base" type="Sprite2D" parent="Sprites"]
-visible = false
 scale = Vector2(0.281, 0.281)
 texture = ExtResource("2_ta6qx")
 
 [node name="Doubt" type="Sprite2D" parent="Sprites"]
+visible = false
 modulate = Color(0.662745, 0, 0.831373, 1)
 scale = Vector2(0.281, 0.281)
 texture = ExtResource("2_ta6qx")

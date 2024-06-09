@@ -9,7 +9,7 @@ size = Vector2(160, 20)
 size = Vector2(160, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xi7lx"]
-size = Vector2(178, 96.5)
+size = Vector2(178, 136)
 
 [node name="Paddle" type="CharacterBody2D"]
 script = ExtResource("1_bel6m")
@@ -26,3 +26,5 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CaptureArea"]
 shape = SubResource("RectangleShape2D_xi7lx")
+
+[connection signal="body_entered" from="CaptureArea" to="." method="_on_capture_area_body_entered"]

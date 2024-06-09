@@ -33,3 +33,7 @@ func change_sprite(state: STATES):
 
 func set_state(state: STATES):
 	$StateMachine.on_child_transitioned($StateMachine.get_child(state).name)
+
+func on_captured():
+	velocity = Vector2.ZERO
+	set_collision_layer_value(3, false)
