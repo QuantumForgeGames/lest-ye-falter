@@ -46,6 +46,11 @@ serve_punch={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="BallCollide"
+2d_physics/layer_2="CultistAOI"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

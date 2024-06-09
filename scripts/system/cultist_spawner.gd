@@ -15,3 +15,5 @@ func _ready() -> void:
 			var cultist := cultist_scene.instantiate()
 			add_child(cultist)
 			cultist.global_position = Vector2(x, y)
+
+	get_child(5).set_state(Cultist.STATES.DISSENT)

@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" path="res://scripts/cultist/cultist.gd" id="1_ko1t5"]
 [ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="2_fjpe2"]
-[ext_resource type="Texture2D" uid="uid://blic4x42ckk3h" path="res://icon.svg" id="2_ta6qx"]
 [ext_resource type="Script" path="res://scripts/cultist/base_state.gd" id="3_njmjg"]
 [ext_resource type="Script" path="res://scripts/cultist/doubt_state.gd" id="4_aud5r"]
 [ext_resource type="Script" path="res://scripts/cultist/dissent_state.gd" id="5_1s5op"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vbqsa"]
+size = Vector2(36, 36)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_apl2j"]
 size = Vector2(36, 36)
@@ -14,33 +16,27 @@ size = Vector2(36, 36)
 radius = 147.014
 
 [node name="Cultist" type="CharacterBody2D"]
-collision_layer = 3
 script = ExtResource("1_ko1t5")
 
 [node name="Sprites" type="Node2D" parent="."]
 
 [node name="Base" type="Sprite2D" parent="Sprites"]
-visible = false
-scale = Vector2(0.281, 0.281)
-texture = ExtResource("2_ta6qx")
+texture = SubResource("PlaceholderTexture2D_vbqsa")
 
 [node name="Doubt" type="Sprite2D" parent="Sprites"]
+visible = false
 modulate = Color(0.662745, 0, 0.831373, 1)
-scale = Vector2(0.281, 0.281)
-texture = ExtResource("2_ta6qx")
+texture = SubResource("PlaceholderTexture2D_vbqsa")
 
 [node name="Dissent" type="Sprite2D" parent="Sprites"]
 visible = false
 modulate = Color(0.196078, 0, 0.254902, 1)
-scale = Vector2(0.281, 0.281)
-texture = ExtResource("2_ta6qx")
+texture = SubResource("PlaceholderTexture2D_vbqsa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_apl2j")
 
 [node name="AreaOfInfluence" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaOfInfluence"]
 shape = SubResource("CircleShape2D_ji2x6")
@@ -60,9 +56,3 @@ entity = NodePath("../..")
 [node name="Dissent" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("5_1s5op")
 entity = NodePath("../..")
-
-[node name="DoubtTimer" type="Timer" parent="."]
-
-[node name="DissentTimer" type="Timer" parent="."]
-
-[connection signal="timeout" from="DoubtTimer" to="StateMachine/Dissent" method="_on_doubt_timer_timeout"]
