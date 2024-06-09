@@ -1,6 +1,7 @@
 extends State
 
-@export var CONVERSION_CHANCE: float = 0.1
+@export var DISSENT_CONVERSION_CHANCE: float = 0.1
+@export var SERVER_CONVERSION_CHANCE: float = 0.5
 
 func enter() -> void:
 	var tween := get_tree().create_tween()
@@ -19,10 +20,13 @@ func process(_delta: float) -> void:
 	pass
  
 func on_hit() -> void:
-	entity.exit_scene()
+	if randf() < SERVER_CONVERSION_CHANCE:
+		transitioned.emit("Server")
+	else:
+		entity.exit_scene()
 
 func _on_doubt_timer_timeout() -> void:
-	if randf() < CONVERSION_CHANCE:
+	if randf() < DISSENT_CONVERSION_CHANCE:
 		transitioned.emit("Dissent")
 	else:
 		entity.doubt_timer.start()

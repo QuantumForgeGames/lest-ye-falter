@@ -16,4 +16,4 @@ func _ready() -> void:
 			add_child(cultist)
 			cultist.global_position = Vector2(x, y)
 
-	get_child(5).set_state(Cultist.STATES.DISSENT)
+	get_child(15).set_state(Cultist.STATES.DISSENT)

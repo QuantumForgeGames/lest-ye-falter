@@ -50,6 +50,7 @@ serve_punch={
 
 2d_physics/layer_1="BallCollide"
 2d_physics/layer_2="CultistAOI"
+2d_physics/layer_3="Paddle"
 
 [rendering]
 
