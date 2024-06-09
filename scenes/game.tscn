@@ -28,7 +28,7 @@ normal = Vector2(-1, 0)
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_6sytv")
 
-[node name="MinigameManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("paddle")]
+[node name="MinigameManager" type="Node2D" parent="." node_paths=PackedStringArray("paddle")]
 script = ExtResource("2_l32rt")
 paddle = NodePath("../Paddle")
 

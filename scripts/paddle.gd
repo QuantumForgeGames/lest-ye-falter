@@ -44,11 +44,12 @@ func _get_input () -> void:
 	direction = Input.get_axis("move_left", "move_right") * Vector2(1, 0)
 
 func _on_capture_area_body_entered(body: Node2D) -> void:
-	set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
-	$CaptureArea.set_deferred("monitoring", false)
-	body.on_captured()
-	EventManager.cultist_captured.emit(body)
+	if process_mode != Node.PROCESS_MODE_DISABLED: # if mini game is not already active
+		set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
+		$CaptureArea.set_deferred("monitoring", false)
+		body.on_captured()
+		EventManager.cultist_captured.emit(body)
 
-func _on_minigame_ended() -> void:
+func _on_minigame_ended(cultist: Cultist) -> void:
 	set_deferred("process_mode", Node.PROCESS_MODE_ALWAYS)
 	$CaptureArea.set_deferred("monitoring", true)

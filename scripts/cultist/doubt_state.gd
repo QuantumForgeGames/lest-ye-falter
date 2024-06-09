@@ -21,8 +21,8 @@ func process(_delta: float) -> void:
  
 func on_hit() -> void:
 	if randf() < SERVER_CONVERSION_CHANCE:
-		#transitioned.emit("Server")
-	#else:
+		transitioned.emit("Server")
+	else:
 		entity.exit_scene()
 
 func _on_doubt_timer_timeout() -> void:

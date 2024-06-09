@@ -18,3 +18,4 @@ func _ready() -> void:
 			#cultist.set_state(Cultist.STATES.DOUBT)
 
 	get_child(5).set_state(Cultist.STATES.DISSENT)
+	get_child(37).set_state(Cultist.STATES.DISSENT)

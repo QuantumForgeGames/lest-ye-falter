@@ -3,56 +3,34 @@
 [ext_resource type="Texture2D" uid="uid://d0rgmekahc1jd" path="res://assets/art/minigame/background.png" id="1_q4ukp"]
 [ext_resource type="Texture2D" uid="uid://ce6fttthx2jg5" path="res://assets/art/minigame/arrowUp.png" id="2_e1oxj"]
 
-[node name="MinigameUI" type="Control"]
-layout_mode = 3
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -105.0
-offset_top = -39.0
-offset_right = -1816.0
-offset_bottom = -1039.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MinigameUI" type="Node2D"]
+modulate = Color(1, 1, 1, 0)
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
-layout_mode = 0
-offset_right = 211.0
-offset_bottom = 82.0
+[node name="NinePatchRect" type="Sprite2D" parent="."]
 texture = ExtResource("1_q4ukp")
 
-[node name="Glyphs" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Glyphs" type="Node2D" parent="."]
 
-[node name="Glyph1" type="TextureRect" parent="Glyphs"]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
+[node name="Glyph1" type="Sprite2D" parent="Glyphs"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-66, 0)
+scale = Vector2(0.34, 0.34)
 texture = ExtResource("2_e1oxj")
-expand_mode = 1
-stretch_mode = 5
 
-[node name="Glyph2" type="TextureRect" parent="Glyphs"]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
+[node name="Glyph2" type="Sprite2D" parent="Glyphs"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-22, 0)
+scale = Vector2(0.34, 0.34)
 texture = ExtResource("2_e1oxj")
-expand_mode = 1
-stretch_mode = 5
 
-[node name="Glyph3" type="TextureRect" parent="Glyphs"]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
+[node name="Glyph3" type="Sprite2D" parent="Glyphs"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(24, -1.19209e-07)
+scale = Vector2(0.34, 0.34)
 texture = ExtResource("2_e1oxj")
-expand_mode = 1
-stretch_mode = 5
 
-[node name="Glyph4" type="TextureRect" parent="Glyphs"]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
+[node name="Glyph4" type="Sprite2D" parent="Glyphs"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(71, -2.38419e-07)
+scale = Vector2(0.34, 0.34)
 texture = ExtResource("2_e1oxj")
-expand_mode = 1
-stretch_mode = 5

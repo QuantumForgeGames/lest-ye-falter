@@ -56,7 +56,6 @@ entity = NodePath("../..")
 
 [node name="Doubt" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("4_aud5r")
-SERVER_CONVERSION_CHANCE = 1.0
 entity = NodePath("../..")
 
 [node name="Dissent" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
