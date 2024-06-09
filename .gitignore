@@ -11,3 +11,5 @@ large_assets/*
 
 # Mono-specific ignores
 .mono/
+
+*.tmp
