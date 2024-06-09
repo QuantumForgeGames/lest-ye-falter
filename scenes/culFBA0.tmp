@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://inxvkfe6rcj7"]
+[gd_scene load_steps=9 format=3 uid="uid://inxvkfe6rcj7"]
 
 [ext_resource type="Script" path="res://scripts/cultist/cultist.gd" id="1_ko1t5"]
 [ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="2_fjpe2"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://scripts/cultist/base_state.gd" id="3_njmjg"]
 [ext_resource type="Script" path="res://scripts/cultist/doubt_state.gd" id="4_aud5r"]
 [ext_resource type="Script" path="res://scripts/cultist/dissent_state.gd" id="5_1s5op"]
-[ext_resource type="Script" path="res://scripts/cultist/server_state.gd" id="7_n3ab1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_apl2j"]
 size = Vector2(36, 36)
@@ -15,17 +14,17 @@ size = Vector2(36, 36)
 radius = 147.014
 
 [node name="Cultist" type="CharacterBody2D"]
-collision_layer = 7
+collision_layer = 3
 script = ExtResource("1_ko1t5")
 
 [node name="Sprites" type="Node2D" parent="."]
 
 [node name="Base" type="Sprite2D" parent="Sprites"]
+visible = false
 scale = Vector2(0.281, 0.281)
 texture = ExtResource("2_ta6qx")
 
 [node name="Doubt" type="Sprite2D" parent="Sprites"]
-visible = false
 modulate = Color(0.662745, 0, 0.831373, 1)
 scale = Vector2(0.281, 0.281)
 texture = ExtResource("2_ta6qx")
@@ -62,12 +61,8 @@ entity = NodePath("../..")
 script = ExtResource("5_1s5op")
 entity = NodePath("../..")
 
-[node name="Server" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
-script = ExtResource("7_n3ab1")
-entity = NodePath("../..")
-
 [node name="DoubtTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 5.0
 one_shot = true
 
 [node name="DissentTimer" type="Timer" parent="."]
