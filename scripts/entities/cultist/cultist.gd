@@ -51,4 +51,7 @@ func on_captured():
 	set_collision_layer_value(3, false)
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	if velocity.y > 0: # escapes through lower wall
+		EventManager.cultist_escaped.emit(self)
+	
 	get_tree().create_timer(3).timeout.connect(queue_free)
