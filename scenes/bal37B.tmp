@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cye2n4fdkf6ou"]
+[gd_scene load_steps=6 format=3 uid="uid://cye2n4fdkf6ou"]
 
 [ext_resource type="Script" path="res://scripts/ball.gd" id="1_u8675"]
 [ext_resource type="Script" path="res://scripts/hit_handlers/all.gd" id="2_0heqb"]
 [ext_resource type="Script" path="res://scripts/hit_handlers/hit_handler_system.gd" id="2_q62i5"]
-[ext_resource type="Script" path="res://scripts/hit_handlers/first.gd" id="4_sbhf6"]
-[ext_resource type="Script" path="res://scripts/hit_handlers/on_input.gd" id="5_a4o5q"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dbxgv"]
 size = Vector2(36, 36)
@@ -21,17 +19,13 @@ texture = SubResource("PlaceholderTexture2D_dbxgv")
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_hpjuv")
 
-[node name="HitHandlerSystem" type="Node" parent="." node_paths=PackedStringArray("hit_handler")]
+[node name="HitHandlerSystem" type="Node" parent="."]
 script = ExtResource("2_q62i5")
-hit_handler = NodePath("OnInput")
 
 [node name="All" type="Node" parent="HitHandlerSystem" node_paths=PackedStringArray("ball")]
 script = ExtResource("2_0heqb")
 ball = NodePath("../..")
 
 [node name="First" type="Node" parent="HitHandlerSystem"]
-script = ExtResource("4_sbhf6")
-MAX_HIT_COUNT = null
 
 [node name="OnInput" type="Node" parent="HitHandlerSystem"]
-script = ExtResource("5_a4o5q")
