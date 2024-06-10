@@ -23,7 +23,7 @@ func exit_scene():
 	var dir := int(global_position.x > get_viewport_rect().size.x / 2)
 	var xtarget := dir * get_viewport_rect().size.x + (2 * dir - 1) * 50.
 	
-	move_to_position(xtarget, ytarget, queue_free)
+	move_to_position(xtarget, ytarget, func(): pass)
 
 func return_to_spawn():
 	var callback := func (): $StateMachine.on_child_transitioned("Base")
@@ -49,3 +49,6 @@ func set_state(state: STATES):
 func on_captured():
 	velocity = Vector2.ZERO
 	set_collision_layer_value(3, false)
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	get_tree().create_timer(3).timeout.connect(queue_free)

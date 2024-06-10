@@ -73,5 +73,8 @@ one_shot = true
 [node name="DissentTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
 [connection signal="timeout" from="DoubtTimer" to="StateMachine/Doubt" method="_on_doubt_timer_timeout"]
 [connection signal="timeout" from="DissentTimer" to="StateMachine/Dissent" method="_on_dissent_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
