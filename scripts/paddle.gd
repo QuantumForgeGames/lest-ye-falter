@@ -22,7 +22,7 @@ func _ready () -> void:
 	half_paddle_width = _Collision.shape.get_rect().size.x / 2 * scale.x
 
 
-func _process (delta :float) -> void:
+func _process (_delta :float) -> void:
 	_get_input()
 
 	# Calculate the left and right bounds of the camera view
@@ -50,6 +50,6 @@ func _on_capture_area_body_entered(body: Node2D) -> void:
 		body.on_captured()
 		EventManager.cultist_captured.emit(body)
 
-func _on_minigame_ended(cultist: Cultist) -> void:
+func _on_minigame_ended(_cultist: Cultist) -> void:
 	set_deferred("process_mode", Node.PROCESS_MODE_ALWAYS)
 	$CaptureArea.set_deferred("monitoring", true)

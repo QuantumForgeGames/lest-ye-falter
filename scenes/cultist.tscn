@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://inxvkfe6rcj7"]
+[gd_scene load_steps=12 format=3 uid="uid://daniimopijcej"]
 
 [ext_resource type="Script" path="res://scripts/cultist/cultist.gd" id="1_ko1t5"]
+[ext_resource type="Texture2D" uid="uid://ccqejg6vrcl0d" path="res://assets/art/Cultist_Innocent.png" id="2_ebhbw"]
 [ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="2_fjpe2"]
-[ext_resource type="Texture2D" uid="uid://blic4x42ckk3h" path="res://icon.svg" id="2_ta6qx"]
 [ext_resource type="Script" path="res://scripts/cultist/base_state.gd" id="3_njmjg"]
+[ext_resource type="Texture2D" uid="uid://cx7gtlpke7avu" path="res://assets/art/Cultist_Doubter.png" id="3_nxded"]
 [ext_resource type="Script" path="res://scripts/cultist/doubt_state.gd" id="4_aud5r"]
+[ext_resource type="Texture2D" uid="uid://hktq0kpgfjyw" path="res://assets/art/Cultist_Dissenter.png" id="4_d6enj"]
 [ext_resource type="Script" path="res://scripts/cultist/dissent_state.gd" id="5_1s5op"]
 [ext_resource type="Script" path="res://scripts/cultist/server_state.gd" id="7_n3ab1"]
 
@@ -21,20 +23,18 @@ script = ExtResource("1_ko1t5")
 [node name="Sprites" type="Node2D" parent="."]
 
 [node name="Base" type="Sprite2D" parent="Sprites"]
-scale = Vector2(0.281, 0.281)
-texture = ExtResource("2_ta6qx")
+position = Vector2(0, -45)
+texture = ExtResource("2_ebhbw")
 
 [node name="Doubt" type="Sprite2D" parent="Sprites"]
 visible = false
-modulate = Color(0.662745, 0, 0.831373, 1)
-scale = Vector2(0.281, 0.281)
-texture = ExtResource("2_ta6qx")
+position = Vector2(0, -45)
+texture = ExtResource("3_nxded")
 
 [node name="Dissent" type="Sprite2D" parent="Sprites"]
 visible = false
-modulate = Color(0.196078, 0, 0.254902, 1)
-scale = Vector2(0.281, 0.281)
-texture = ExtResource("2_ta6qx")
+position = Vector2(0, -45)
+texture = ExtResource("4_d6enj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_apl2j")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dtt8jop5a1fdf"]
+[gd_scene load_steps=14 format=3 uid="uid://dtt8jop5a1fdf"]
 
-[ext_resource type="PackedScene" uid="uid://c4fkk0ysr51ub" path="res://scenes/ui.tscn" id="1_ytm1b"]
 [ext_resource type="Script" path="res://scripts/system/game_manager.gd" id="1_6sytv"]
+[ext_resource type="Texture2D" uid="uid://chxleulb8lpla" path="res://assets/art/Background.png" id="1_eens2"]
+[ext_resource type="PackedScene" uid="uid://c4fkk0ysr51ub" path="res://scenes/ui.tscn" id="1_ytm1b"]
 [ext_resource type="Script" path="res://scripts/system/cultist_spawner.gd" id="2_espvc"]
 [ext_resource type="PackedScene" uid="uid://cye2n4fdkf6ou" path="res://scenes/ball.tscn" id="2_l2pls"]
 [ext_resource type="Script" path="res://scripts/system/minigame_manager.gd" id="2_l32rt"]
@@ -25,6 +26,10 @@ normal = Vector2(1, 0)
 normal = Vector2(-1, 0)
 
 [node name="Game" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_eens2")
 
 [node name="UI" parent="." instance=ExtResource("1_ytm1b")]
 

@@ -4,18 +4,8 @@ extends CanvasLayer
 class_name UI
 
 
-@onready var lives_label: Label = %LivesLabel
-@onready var score_label: Label = %ScoreLabel
 @onready var game_over_container = %GameOverContainer
 @onready var level_complete_container = %LevelCompleteContainer
-
-# TO DELETE
-func set_lives(lives: int):
-	lives_label.text = "Lives: %d" % lives
-
-# TO DELETE
-func set_score(score: int):
-	score_label.text = "Score: %d" % score
 
 
 func game_over():
