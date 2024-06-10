@@ -11,6 +11,10 @@ func enter() -> void:
 	entity.velocity = 0.8 * entity.speed * Vector2(0, 1)
 
 func exit() -> void:
+	entity.set_collision_layer_value(1, true) # can be hit by ball
+	entity.set_collision_mask_value(1, true) # can hit ball
+	entity.set_collision_layer_value(2, true) # include in AoI
+	entity.set_collision_layer_value(3, true) # include in Paddle
 	entity.doubt_timer.stop()
 
 func process(_delta: float) -> void:

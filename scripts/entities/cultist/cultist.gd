@@ -6,7 +6,12 @@ class_name Cultist
 @onready var dissent_timer := $DissentTimer
 @onready var area_of_influence := $AreaOfInfluence
 
+var spawn_position: Vector2
+
 enum STATES {BASE, DOUBT, DISSENT}
+
+func _ready() -> void:
+	spawn_position = position
 
 func on_hit():
 	$StateMachine.on_hit()
@@ -18,12 +23,19 @@ func exit_scene():
 	var dir := int(global_position.x > get_viewport_rect().size.x / 2)
 	var xtarget := dir * get_viewport_rect().size.x + (2 * dir - 1) * 50.
 	
+	move_to_position(xtarget, ytarget, queue_free)
+
+func return_to_spawn():
+	var callback := func (): $StateMachine.on_child_transitioned("Base")
+	move_to_position(spawn_position.x, spawn_position.y, callback)
+	
+func move_to_position(xtarget: float, ytarget: float, callback):
 	var tween := get_tree().create_tween()
 	tween.tween_property(self, "scale", Vector2(1.5, 1.5), 0.25)
 	tween.tween_property(self, "scale", Vector2(1., 1.), 0.25)
 	tween.tween_property(self, "position:y", ytarget, abs(global_position.y - ytarget)/speed)
 	tween.tween_property(self, "position:x", xtarget, abs(global_position.x - xtarget)/speed)
-	tween.tween_callback(func(): queue_free())
+	tween.tween_callback(callback)
 
 func change_sprite(state: STATES):
 	var sprites = $Sprites.get_children()

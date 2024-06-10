@@ -20,7 +20,6 @@ func _ready () -> void:
 
 func _process (_delta :float) -> void:
 	_bounce(move_and_collide(velocity * _delta))
-	print(velocity.length())
 
 
 func _bounce (collision_ :KinematicCollision2D) -> void:
