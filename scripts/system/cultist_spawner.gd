@@ -15,7 +15,7 @@ func _ready() -> void:
 			var cultist := cultist_scene.instantiate()
 			cultist.global_position = Vector2(x, y)
 			add_child(cultist)
-			cultist.set_state(Cultist.STATES.DOUBT)
+			#cultist.set_state(Cultist.STATES.DOUBT)
 
 	get_child(5).set_state(Cultist.STATES.DISSENT)
 	get_child(37).set_state(Cultist.STATES.DISSENT)

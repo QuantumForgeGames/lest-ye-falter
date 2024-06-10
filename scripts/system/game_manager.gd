@@ -13,9 +13,6 @@ func _ready() -> void:
 	EventManager.cultist_killed.connect(_on_cultist_killed)
 	EventManager.cultist_escaped.connect(_on_cultist_escaped)
 
-func _process(_delta: float) -> void:
-	print(num_escaped)
-	
 func _on_cultist_converted(cultist: Cultist):
 	cultist.return_to_spawn()
 	num_converted += 1
@@ -33,5 +30,5 @@ func _on_cultist_killed(cultist: Cultist):
 			
 	cultist.exit_scene()
 
-func _on_cultist_escaped(cultist: Cultist):
+func _on_cultist_escaped(_cultist: Cultist):
 	num_escaped += 1
