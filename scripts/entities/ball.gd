@@ -7,6 +7,8 @@ var NARROW_BOUNCE = (Vector2.UP * 8 + Vector2.RIGHT).normalized()
 var WIDE_BOUNCE = (Vector2.UP + Vector2.RIGHT * 5).normalized()
 
 @export var speed :float = 800
+@export var MAX_SPEED :float = 600
+@export var MIN_SPEED :float = 800
 
 func _ready () -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
@@ -18,6 +20,7 @@ func _ready () -> void:
 
 func _process (_delta :float) -> void:
 	_bounce(move_and_collide(velocity * _delta))
+	print(velocity.length())
 
 
 func _bounce (collision_ :KinematicCollision2D) -> void:
@@ -33,6 +36,6 @@ func _bounce (collision_ :KinematicCollision2D) -> void:
 		trajectory = lerp(trajectory, velocity.normalized(), 0.2).normalized()
 		trajectory.x *= sign(velocity.x)
 		velocity = trajectory * velocity.length() + collider.velocity 
-		velocity = velocity.normalized() * clampf(400, 1000, velocity.length())
+		velocity = velocity.normalized() * clampf(MIN_SPEED, MAX_SPEED, velocity.length())
 
 	$HitHandlerSystem.on_collision(collider)
