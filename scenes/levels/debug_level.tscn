@@ -1,12 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://dtt8jop5a1fdf"]
+[gd_scene load_steps=15 format=3 uid="uid://dtt8jop5a1fdf"]
 
-[ext_resource type="Script" path="res://scripts/system/game_manager.gd" id="1_6sytv"]
-[ext_resource type="Texture2D" uid="uid://chxleulb8lpla" path="res://assets/art/Background.png" id="1_eens2"]
-[ext_resource type="PackedScene" uid="uid://c4fkk0ysr51ub" path="res://scenes/ui.tscn" id="1_ytm1b"]
-[ext_resource type="Script" path="res://scripts/system/cultist_spawner.gd" id="2_espvc"]
-[ext_resource type="PackedScene" uid="uid://cye2n4fdkf6ou" path="res://scenes/ball.tscn" id="2_l2pls"]
-[ext_resource type="Script" path="res://scripts/system/minigame_manager.gd" id="2_l32rt"]
-[ext_resource type="PackedScene" uid="uid://cmif6nw1snsxa" path="res://scenes/paddle.tscn" id="2_qrfol"]
+[ext_resource type="Texture2D" uid="uid://0w6sbt5t2j5a" path="res://assets/art/levels/Background.png" id="1_c0m6i"]
+[ext_resource type="PackedScene" uid="uid://c4fkk0ysr51ub" path="res://scenes/ui/ui.tscn" id="2_otv3v"]
+[ext_resource type="Script" path="res://scripts/system/game_manager.gd" id="3_qy7pi"]
+[ext_resource type="Script" path="res://scripts/system/minigame_manager.gd" id="4_2nuuq"]
+[ext_resource type="Script" path="res://scripts/system/cultist_spawner.gd" id="5_p8a2f"]
+[ext_resource type="PackedScene" uid="uid://daniimopijcej" path="res://scenes/entities/cultist.tscn" id="6_55x1u"]
+[ext_resource type="PackedScene" uid="uid://cmif6nw1snsxa" path="res://scenes/entities/paddle.tscn" id="6_f38x2"]
+[ext_resource type="PackedScene" uid="uid://cye2n4fdkf6ou" path="res://scenes/entities/ball.tscn" id="7_efuho"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_b20wh"]
 size = Vector2(2000, 20)
@@ -25,32 +26,33 @@ normal = Vector2(1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_86jtt"]
 normal = Vector2(-1, 0)
 
-[node name="Game" type="Node2D"]
+[node name="DebugLevel" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
-texture = ExtResource("1_eens2")
+texture = ExtResource("1_c0m6i")
 
-[node name="UI" parent="." instance=ExtResource("1_ytm1b")]
+[node name="UI" parent="." instance=ExtResource("2_otv3v")]
 
 [node name="GameManager" type="Node" parent="."]
-script = ExtResource("1_6sytv")
+script = ExtResource("3_qy7pi")
 
 [node name="MinigameManager" type="Node2D" parent="." node_paths=PackedStringArray("paddle")]
-script = ExtResource("2_l32rt")
+script = ExtResource("4_2nuuq")
 paddle = NodePath("../Paddle")
 
 [node name="CultistSpawner" type="Node2D" parent="."]
-script = ExtResource("2_espvc")
+script = ExtResource("5_p8a2f")
+cultist_scene = ExtResource("6_55x1u")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
 
-[node name="Paddle" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_qrfol")]
+[node name="Paddle" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("6_f38x2")]
 position = Vector2(960, 1000)
 camera = NodePath("../Camera2D")
 
-[node name="Ball" parent="." instance=ExtResource("2_l2pls")]
+[node name="Ball" parent="." instance=ExtResource("7_efuho")]
 position = Vector2(967, 694)
 
 [node name="Environment" type="Node2D" parent="."]

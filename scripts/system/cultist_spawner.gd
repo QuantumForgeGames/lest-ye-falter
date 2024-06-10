@@ -1,7 +1,7 @@
 extends Node2D
 class_name CultistSpawner
 
-var cultist_scene: PackedScene = preload("res://scenes/cultist.tscn")
+@export var cultist_scene: PackedScene
 
 func _ready() -> void:
 	# debug stuff

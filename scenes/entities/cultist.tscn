@@ -1,14 +1,14 @@
 [gd_scene load_steps=12 format=3 uid="uid://daniimopijcej"]
 
-[ext_resource type="Script" path="res://scripts/cultist/cultist.gd" id="1_ko1t5"]
-[ext_resource type="Texture2D" uid="uid://ccqejg6vrcl0d" path="res://assets/art/Cultist_Innocent.png" id="2_ebhbw"]
-[ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="2_fjpe2"]
-[ext_resource type="Script" path="res://scripts/cultist/base_state.gd" id="3_njmjg"]
-[ext_resource type="Texture2D" uid="uid://cx7gtlpke7avu" path="res://assets/art/Cultist_Doubter.png" id="3_nxded"]
-[ext_resource type="Script" path="res://scripts/cultist/doubt_state.gd" id="4_aud5r"]
-[ext_resource type="Texture2D" uid="uid://hktq0kpgfjyw" path="res://assets/art/Cultist_Dissenter.png" id="4_d6enj"]
-[ext_resource type="Script" path="res://scripts/cultist/dissent_state.gd" id="5_1s5op"]
-[ext_resource type="Script" path="res://scripts/cultist/server_state.gd" id="7_n3ab1"]
+[ext_resource type="Script" path="res://scripts/entities/cultist/cultist.gd" id="1_tynvq"]
+[ext_resource type="Texture2D" uid="uid://belh2e67my04e" path="res://assets/art/cultist/Base.png" id="2_c7eqh"]
+[ext_resource type="Texture2D" uid="uid://d3mdskuw1gjfe" path="res://assets/art/cultist/Doubt.png" id="3_dbwxu"]
+[ext_resource type="Texture2D" uid="uid://doxydy55cycfg" path="res://assets/art/cultist/Dissent.png" id="4_2fl15"]
+[ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="5_bn1j0"]
+[ext_resource type="Script" path="res://scripts/entities/cultist/base_state.gd" id="6_na3dj"]
+[ext_resource type="Script" path="res://scripts/entities/cultist/doubt_state.gd" id="7_v7rqq"]
+[ext_resource type="Script" path="res://scripts/entities/cultist/dissent_state.gd" id="8_hqr6k"]
+[ext_resource type="Script" path="res://scripts/entities/cultist/server_state.gd" id="9_1m7wo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_apl2j"]
 size = Vector2(36, 36)
@@ -18,23 +18,23 @@ radius = 147.014
 
 [node name="Cultist" type="CharacterBody2D"]
 collision_layer = 7
-script = ExtResource("1_ko1t5")
+script = ExtResource("1_tynvq")
 
 [node name="Sprites" type="Node2D" parent="."]
 
 [node name="Base" type="Sprite2D" parent="Sprites"]
 position = Vector2(0, -45)
-texture = ExtResource("2_ebhbw")
+texture = ExtResource("2_c7eqh")
 
 [node name="Doubt" type="Sprite2D" parent="Sprites"]
 visible = false
 position = Vector2(0, -45)
-texture = ExtResource("3_nxded")
+texture = ExtResource("3_dbwxu")
 
 [node name="Dissent" type="Sprite2D" parent="Sprites"]
 visible = false
 position = Vector2(0, -45)
-texture = ExtResource("4_d6enj")
+texture = ExtResource("4_2fl15")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_apl2j")
@@ -47,23 +47,23 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_ji2x6")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
-script = ExtResource("2_fjpe2")
+script = ExtResource("5_bn1j0")
 current_state = NodePath("Base")
 
 [node name="Base" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
-script = ExtResource("3_njmjg")
+script = ExtResource("6_na3dj")
 entity = NodePath("../..")
 
 [node name="Doubt" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
-script = ExtResource("4_aud5r")
+script = ExtResource("7_v7rqq")
 entity = NodePath("../..")
 
 [node name="Dissent" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
-script = ExtResource("5_1s5op")
+script = ExtResource("8_hqr6k")
 entity = NodePath("../..")
 
 [node name="Server" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
-script = ExtResource("7_n3ab1")
+script = ExtResource("9_1m7wo")
 entity = NodePath("../..")
 
 [node name="DoubtTimer" type="Timer" parent="."]

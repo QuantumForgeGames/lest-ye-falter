@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cmif6nw1snsxa"]
 
-[ext_resource type="Script" path="res://scripts/paddle.gd" id="1_bel6m"]
-[ext_resource type="Texture2D" uid="uid://47c1jyu37hfb" path="res://assets/art/Cult_Leader.png" id="2_mrlnf"]
+[ext_resource type="Script" path="res://scripts/entities/paddle.gd" id="1_bel6m"]
+[ext_resource type="Texture2D" uid="uid://cpmnhsps16vsh" path="res://assets/art/cultist/Leader.png" id="2_bnyew"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3e2np"]
 size = Vector2(160, 80)
@@ -13,7 +13,7 @@ size = Vector2(178, 68)
 script = ExtResource("1_bel6m")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_mrlnf")
+texture = ExtResource("2_bnyew")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 30)
