@@ -16,7 +16,7 @@ func _ready() -> void:
 	EventManager.cultist_captured.connect(_on_cultist_captured)
 	process_mode = Node.PROCESS_MODE_DISABLED
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if combination.size() == 0:
 		EventManager.cultist_converted.emit(target_cultist)
 		_terminate_minigame()
