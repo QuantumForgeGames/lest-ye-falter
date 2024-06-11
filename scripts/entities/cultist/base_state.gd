@@ -11,4 +11,4 @@ func process(_delta: float) -> void:
 	pass
  
 func on_hit() -> void:
-	entity.exit_scene()
+	EventManager.cultist_killed.emit(entity)

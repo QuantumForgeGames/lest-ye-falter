@@ -23,7 +23,7 @@ func on_hit() -> void:
 	if randf() < SERVER_CONVERSION_CHANCE:
 		transitioned.emit("Server")
 	else:
-		entity.exit_scene()
+		EventManager.cultist_killed.emit(entity)
 
 func _on_doubt_timer_timeout() -> void:
 	if randf() < DISSENT_CONVERSION_CHANCE:

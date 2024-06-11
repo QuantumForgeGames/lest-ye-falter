@@ -13,8 +13,8 @@ func _ready() -> void:
 	for x in range(xbuffer, xmax - xbuffer, spacing):
 		for y in range(xbuffer, ymax - 6 * xbuffer, spacing):
 			var cultist := cultist_scene.instantiate()
-			add_child(cultist)
 			cultist.global_position = Vector2(x, y)
+			add_child(cultist)
 			#cultist.set_state(Cultist.STATES.DOUBT)
 
 	get_child(5).set_state(Cultist.STATES.DISSENT)
