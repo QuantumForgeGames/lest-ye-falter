@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://dtt8jop5a1fdf"]
 
-[ext_resource type="Texture2D" uid="uid://0w6sbt5t2j5a" path="res://assets/art/levels/Background.png" id="1_c0m6i"]
+[ext_resource type="Texture2D" uid="uid://e37ckt6x80ls" path="res://assets/art/levels/RoomBackground.png" id="1_7kwun"]
 [ext_resource type="PackedScene" uid="uid://c4fkk0ysr51ub" path="res://scenes/ui/ui.tscn" id="2_otv3v"]
 [ext_resource type="Script" path="res://scripts/system/game_manager.gd" id="3_qy7pi"]
 [ext_resource type="Script" path="res://scripts/system/minigame_manager.gd" id="4_2nuuq"]
@@ -8,17 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://daniimopijcej" path="res://scenes/entities/cultist.tscn" id="6_55x1u"]
 [ext_resource type="PackedScene" uid="uid://cmif6nw1snsxa" path="res://scenes/entities/paddle.tscn" id="6_f38x2"]
 [ext_resource type="PackedScene" uid="uid://cye2n4fdkf6ou" path="res://scenes/entities/ball.tscn" id="7_efuho"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_b20wh"]
-size = Vector2(2000, 20)
+[ext_resource type="Texture2D" uid="uid://cx7wt1771l6r3" path="res://assets/art/levels/DoorEntrance.png" id="9_u7aay"]
+[ext_resource type="Texture2D" uid="uid://q7nej7b2ut37" path="res://assets/art/levels/DoorFrame.png" id="10_x4uos"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1r277"]
 normal = Vector2(0, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_181mj"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ppplv"]
-size = Vector2(20, 1160)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0wjqd"]
 normal = Vector2(1, 0)
@@ -27,10 +23,6 @@ normal = Vector2(1, 0)
 normal = Vector2(-1, 0)
 
 [node name="DebugLevel" type="Node2D"]
-
-[node name="Background" type="Sprite2D" parent="."]
-position = Vector2(960, 540)
-texture = ExtResource("1_c0m6i")
 
 [node name="UI" parent="." instance=ExtResource("2_otv3v")]
 
@@ -57,42 +49,43 @@ position = Vector2(967, 694)
 
 [node name="Environment" type="Node2D" parent="."]
 
-[node name="Wall_TOP" type="StaticBody2D" parent="Environment"]
-position = Vector2(960, -10)
-metadata/_edit_group_ = true
+[node name="Background" type="Sprite2D" parent="Environment"]
+position = Vector2(960, 540)
+texture = ExtResource("1_7kwun")
 
-[node name="Sprite2D" type="Sprite2D" parent="Environment/Wall_TOP"]
-texture = SubResource("PlaceholderTexture2D_b20wh")
+[node name="DoorEntrance" type="Sprite2D" parent="Environment"]
+position = Vector2(960, 540)
+texture = ExtResource("9_u7aay")
+
+[node name="DoorFrame" type="Sprite2D" parent="Environment"]
+z_index = 4
+position = Vector2(960, 540)
+texture = ExtResource("10_x4uos")
+
+[node name="Wall_TOP" type="StaticBody2D" parent="Environment"]
+position = Vector2(960, 182)
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall_TOP"]
 shape = SubResource("WorldBoundaryShape2D_1r277")
 
 [node name="Wall_BOTTOM" type="StaticBody2D" parent="Environment"]
-position = Vector2(960, 1090)
+position = Vector2(961, 1085)
 metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Environment/Wall_BOTTOM"]
-texture = SubResource("PlaceholderTexture2D_b20wh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall_BOTTOM"]
 shape = SubResource("WorldBoundaryShape2D_181mj")
 
 [node name="Wall_LEFT" type="StaticBody2D" parent="Environment"]
-position = Vector2(-10, 540)
+position = Vector2(148, 540)
 metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Environment/Wall_LEFT"]
-texture = SubResource("PlaceholderTexture2D_ppplv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall_LEFT"]
 shape = SubResource("WorldBoundaryShape2D_0wjqd")
 
 [node name="Wall_RIGHT" type="StaticBody2D" parent="Environment"]
-position = Vector2(1930, 540)
+position = Vector2(1772, 540)
 metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Environment/Wall_RIGHT"]
-texture = SubResource("PlaceholderTexture2D_ppplv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall_RIGHT"]
 shape = SubResource("WorldBoundaryShape2D_86jtt")

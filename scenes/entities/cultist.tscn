@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://daniimopijcej"]
 
 [ext_resource type="Script" path="res://scripts/entities/cultist/cultist.gd" id="1_tynvq"]
-[ext_resource type="Texture2D" uid="uid://belh2e67my04e" path="res://assets/art/cultist/Base.png" id="2_c7eqh"]
-[ext_resource type="Texture2D" uid="uid://d3mdskuw1gjfe" path="res://assets/art/cultist/Doubt.png" id="3_dbwxu"]
-[ext_resource type="Texture2D" uid="uid://doxydy55cycfg" path="res://assets/art/cultist/Dissent.png" id="4_2fl15"]
+[ext_resource type="Texture2D" uid="uid://bjcn50dddn4s6" path="res://assets/art/cultist/Base.png" id="2_c7eqh"]
+[ext_resource type="Texture2D" uid="uid://bqub7vvu576ua" path="res://assets/art/cultist/Doubt.png" id="3_dbwxu"]
+[ext_resource type="Texture2D" uid="uid://8nnmbgl6fd0p" path="res://assets/art/cultist/Dissent.png" id="4_2fl15"]
 [ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="5_bn1j0"]
 [ext_resource type="Script" path="res://scripts/entities/cultist/base_state.gd" id="6_na3dj"]
 [ext_resource type="Script" path="res://scripts/entities/cultist/doubt_state.gd" id="7_v7rqq"]
@@ -17,10 +17,12 @@ size = Vector2(36, 36)
 radius = 147.014
 
 [node name="Cultist" type="CharacterBody2D"]
+z_index = 1
 collision_layer = 7
 script = ExtResource("1_tynvq")
 
 [node name="Sprites" type="Node2D" parent="."]
+scale = Vector2(0.8, 0.8)
 
 [node name="Base" type="Sprite2D" parent="Sprites"]
 position = Vector2(0, -45)

@@ -19,7 +19,7 @@ func on_hit():
 func exit_scene():
 	$CollisionShape2D.set_deferred("disabled", true)
 	
-	var ytarget := 600.
+	var ytarget := 550.
 	var dir := int(global_position.x > get_viewport_rect().size.x / 2)
 	var xtarget := dir * get_viewport_rect().size.x + (2 * dir - 1) * 50.
 	
