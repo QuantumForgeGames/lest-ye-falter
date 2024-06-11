@@ -30,12 +30,16 @@ func return_to_spawn():
 	move_to_position(spawn_position.x, spawn_position.y, callback)
 	
 func move_to_position(xtarget: float, ytarget: float, callback):
+	$AnimationPlayer.play("wobble")
 	var tween := get_tree().create_tween()
 	tween.tween_property(self, "scale", Vector2(1.5, 1.5), 0.25)
 	tween.tween_property(self, "scale", Vector2(1., 1.), 0.25)
 	tween.tween_property(self, "position:y", ytarget, abs(global_position.y - ytarget)/speed)
 	tween.tween_property(self, "position:x", xtarget, abs(global_position.x - xtarget)/speed)
 	tween.tween_callback(callback)
+	
+	await tween.finished 
+	$AnimationPlayer.stop()
 
 func change_sprite(state: STATES):
 	var sprites = $Sprites.get_children()
