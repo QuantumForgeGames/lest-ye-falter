@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 EventManager="*res://scripts/globals/event_manager.gd"
 LevelManager="*res://scenes/globals/level_manager.tscn"
+LevelPrompt="*res://scenes/ui/level_prompt_ui.tscn"
 
 [display]
 
