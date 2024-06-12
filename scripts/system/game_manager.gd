@@ -9,11 +9,11 @@ var num_escaped: int = 0
 var num_converted: int = 0
 
 func _ready() -> void:
-	EventManager.cultist_converted.connect(_on_cultist_converted)
+	EventManager.cultist_convinced.connect(_on_cultist_convinced)
 	EventManager.cultist_killed.connect(_on_cultist_killed)
 	EventManager.cultist_escaped.connect(_on_cultist_escaped)
 
-func _on_cultist_converted(cultist: Cultist):
+func _on_cultist_convinced(cultist: Cultist):
 	cultist.return_to_spawn()
 	num_converted += 1
 

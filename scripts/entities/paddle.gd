@@ -14,7 +14,7 @@ var half_paddle_width: float
 
 
 func _ready () -> void:
-	EventManager.cultist_converted.connect(_on_minigame_ended)
+	EventManager.cultist_convinced.connect(_on_minigame_ended)
 	EventManager.cultist_killed.connect(_on_minigame_ended)
 
 	camera_rect = camera.get_viewport_rect()
