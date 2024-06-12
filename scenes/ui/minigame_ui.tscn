@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://3k871n56u0us"]
 
-[ext_resource type="Texture2D" uid="uid://d0rgmekahc1jd" path="res://assets/art/minigame/background.png" id="1_q4ukp"]
-[ext_resource type="Texture2D" uid="uid://ce6fttthx2jg5" path="res://assets/art/minigame/arrowUp.png" id="2_e1oxj"]
+[ext_resource type="Texture2D" uid="uid://cfivgjmy13oyt" path="res://assets/art/minigame/background.png" id="1_q4ukp"]
+[ext_resource type="Texture2D" uid="uid://dwuc01w180sm7" path="res://assets/art/minigame/arrowUp.png" id="2_e1oxj"]
 
 [node name="MinigameUI" type="Node2D"]
 modulate = Color(1, 1, 1, 0)

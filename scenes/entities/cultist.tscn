@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://daniimopijcej"]
 
 [ext_resource type="Script" path="res://scripts/entities/cultist/cultist.gd" id="1_tynvq"]
-[ext_resource type="Texture2D" uid="uid://belh2e67my04e" path="res://assets/art/cultist/Base.png" id="2_c7eqh"]
-[ext_resource type="Texture2D" uid="uid://d3mdskuw1gjfe" path="res://assets/art/cultist/Doubt.png" id="3_dbwxu"]
-[ext_resource type="Texture2D" uid="uid://doxydy55cycfg" path="res://assets/art/cultist/Dissent.png" id="4_2fl15"]
+[ext_resource type="Texture2D" uid="uid://dns1vct4r7083" path="res://assets/art/cultist/Base.png" id="2_c7eqh"]
+[ext_resource type="Texture2D" uid="uid://d0bohoeyuh0mj" path="res://assets/art/cultist/Doubt.png" id="3_dbwxu"]
+[ext_resource type="Texture2D" uid="uid://b0yslf8oegw8e" path="res://assets/art/cultist/Dissent.png" id="4_2fl15"]
 [ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="5_bn1j0"]
 [ext_resource type="Script" path="res://scripts/entities/cultist/base_state.gd" id="6_na3dj"]
 [ext_resource type="Script" path="res://scripts/entities/cultist/doubt_state.gd" id="7_v7rqq"]
