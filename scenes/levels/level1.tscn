@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dtt8jop5a1fdf"]
+[gd_scene load_steps=18 format=3 uid="uid://dtt8jop5a1fdf"]
 
 [ext_resource type="Script" path="res://scripts/system/game_manager.gd" id="2_lv4t2"]
 [ext_resource type="Script" path="res://scripts/system/minigame_manager.gd" id="3_5foru"]
@@ -7,9 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://daniimopijcej" path="res://scenes/entities/cultist.tscn" id="6_afek4"]
 [ext_resource type="PackedScene" uid="uid://cmif6nw1snsxa" path="res://scenes/entities/paddle.tscn" id="7_e1ckr"]
 [ext_resource type="PackedScene" uid="uid://cye2n4fdkf6ou" path="res://scenes/entities/ball.tscn" id="8_8c7nx"]
-[ext_resource type="Texture2D" uid="uid://e37ckt6x80ls" path="res://assets/art/levels/RoomBackground.png" id="9_5w6b1"]
-[ext_resource type="Texture2D" uid="uid://cx7wt1771l6r3" path="res://assets/art/levels/DoorEntrance.png" id="10_8kboq"]
-[ext_resource type="Texture2D" uid="uid://q7nej7b2ut37" path="res://assets/art/levels/DoorFrame.png" id="11_vd6tw"]
+[ext_resource type="Texture2D" uid="uid://c4nb31wevqlq6" path="res://assets/art/levels/RoomBackground.png" id="9_5w6b1"]
+[ext_resource type="Texture2D" uid="uid://beh6hujmh8t0a" path="res://assets/art/levels/DoorEntrance.png" id="10_8kboq"]
+[ext_resource type="Shader" path="res://assets/shaders/doubt.gdshader" id="11_swfgk"]
+[ext_resource type="Texture2D" uid="uid://cwlwrv0wd5yaa" path="res://assets/art/levels/DoorFrame.png" id="11_vd6tw"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1r277"]
 normal = Vector2(0, 1)
@@ -21,6 +22,24 @@ normal = Vector2(1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_86jtt"]
 normal = Vector2(-1, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j0vaq"]
+shader = ExtResource("11_swfgk")
+shader_parameter/transparency = 1.0
+shader_parameter/color0 = Color(0.0117647, 0, 1, 0.207843)
+shader_parameter/color1 = Color(0.321569, 0.2, 1, 0.247059)
+shader_parameter/color2 = Color(0.341176, 0.411765, 1, 0.2)
+shader_parameter/color3 = Color(0.388235, 0.521569, 1, 0.262745)
+shader_parameter/Direction = Vector2(1, 1)
+shader_parameter/Speed = 1.0
+shader_parameter/thresholds = PackedFloat32Array(0.605, 0.67, 0.75)
+shader_parameter/OCTAVE = 6
+shader_parameter/pixel_size = 1200
+shader_parameter/dithering = 1.95
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5n221"]
+width = 1920
+height = 1080
 
 [node name="Level1" type="Node2D"]
 
@@ -89,3 +108,14 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall_RIGHT"]
 shape = SubResource("WorldBoundaryShape2D_86jtt")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_j0vaq")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_5n221")
