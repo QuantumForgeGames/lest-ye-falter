@@ -46,7 +46,7 @@ height = 1080
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("cultist_spawner", "doubt_shader")]
 script = ExtResource("2_lv4t2")
 cultist_spawner = NodePath("../CultistSpawner")
-doubt_shader = NodePath("../CanvasLayer/TextureRect")
+doubt_shader = NodePath("../ParanoiaEffectLayer/TextureRect")
 
 [node name="MinigameManager" type="Node2D" parent="." node_paths=PackedStringArray("paddle")]
 script = ExtResource("3_5foru")
@@ -110,9 +110,9 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall_RIGHT"]
 shape = SubResource("WorldBoundaryShape2D_86jtt")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="ParanoiaEffectLayer" type="CanvasLayer" parent="."]
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="ParanoiaEffectLayer"]
 material = SubResource("ShaderMaterial_j0vaq")
 anchors_preset = 15
 anchor_right = 1.0
