@@ -22,7 +22,6 @@ func _ready () -> void:
 
 
 func _process (_delta :float) -> void:
-	print(can_kick)
 	if Input.is_action_just_pressed("random_kick") and can_kick:
 		_on_kick()
 	else:

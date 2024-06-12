@@ -16,6 +16,8 @@ var num_base: int = 0
 var num_doubt: int = 0
 var num_dissent: int = 0
 
+var level_active: bool = false
+
 func _ready() -> void:
 	EventManager.cultist_convinced.connect(_on_cultist_convinced)
 	EventManager.cultist_killed.connect(_on_cultist_killed)
@@ -24,6 +26,7 @@ func _ready() -> void:
 	EventManager.cultist_state_changed.connect(_recompute_stats)
 	EventManager.cultist_killed.connect(_recompute_stats)
 	EventManager.cultist_escaped.connect(_recompute_stats)
+	get_tree().create_timer(5).timeout.connect(func(): level_active = true)
 	
 func _on_cultist_convinced(cultist: Cultist) -> void:
 	cultist.return_to_spawn()
@@ -62,5 +65,11 @@ func _recompute_stats(_cultist: Cultist) -> void:
 				num_dissent += 1
 			"Server":
 				num_doubt += 1
-				
-	print(num_base, " ", num_doubt, " ", num_dissent)
+	
+	if level_active: _check_game_status()
+
+func _check_game_status():
+	if float(num_base)/(num_base + num_doubt + num_dissent) < 0.25:
+		EventManager.level_lost.emit()
+	if num_dissent == 0:
+		EventManager.level_won.emit()

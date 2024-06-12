@@ -1,16 +1,16 @@
 [gd_scene load_steps=16 format=3 uid="uid://dtt8jop5a1fdf"]
 
-[ext_resource type="Texture2D" uid="uid://e37ckt6x80ls" path="res://assets/art/levels/RoomBackground.png" id="1_7kwun"]
-[ext_resource type="PackedScene" uid="uid://c4fkk0ysr51ub" path="res://scenes/ui/ui.tscn" id="2_otv3v"]
-[ext_resource type="Script" path="res://scripts/system/game_manager.gd" id="3_qy7pi"]
-[ext_resource type="PackedScene" uid="uid://3k871n56u0us" path="res://scenes/ui/minigame_ui.tscn" id="4_01bvd"]
-[ext_resource type="Script" path="res://scripts/system/minigame_manager.gd" id="4_2nuuq"]
-[ext_resource type="Script" path="res://scripts/system/cultist_spawner.gd" id="5_p8a2f"]
-[ext_resource type="PackedScene" uid="uid://daniimopijcej" path="res://scenes/entities/cultist.tscn" id="6_55x1u"]
-[ext_resource type="PackedScene" uid="uid://cmif6nw1snsxa" path="res://scenes/entities/paddle.tscn" id="6_f38x2"]
-[ext_resource type="PackedScene" uid="uid://cye2n4fdkf6ou" path="res://scenes/entities/ball.tscn" id="7_efuho"]
-[ext_resource type="Texture2D" uid="uid://cx7wt1771l6r3" path="res://assets/art/levels/DoorEntrance.png" id="9_u7aay"]
-[ext_resource type="Texture2D" uid="uid://q7nej7b2ut37" path="res://assets/art/levels/DoorFrame.png" id="10_x4uos"]
+[ext_resource type="PackedScene" uid="uid://c4fkk0ysr51ub" path="res://scenes/ui/ui.tscn" id="1_122b3"]
+[ext_resource type="Script" path="res://scripts/system/game_manager.gd" id="2_lv4t2"]
+[ext_resource type="Script" path="res://scripts/system/minigame_manager.gd" id="3_5foru"]
+[ext_resource type="PackedScene" uid="uid://3k871n56u0us" path="res://scenes/ui/minigame_ui.tscn" id="4_uq46g"]
+[ext_resource type="Script" path="res://scripts/system/cultist_spawner.gd" id="5_540rp"]
+[ext_resource type="PackedScene" uid="uid://daniimopijcej" path="res://scenes/entities/cultist.tscn" id="6_afek4"]
+[ext_resource type="PackedScene" uid="uid://cmif6nw1snsxa" path="res://scenes/entities/paddle.tscn" id="7_e1ckr"]
+[ext_resource type="PackedScene" uid="uid://cye2n4fdkf6ou" path="res://scenes/entities/ball.tscn" id="8_8c7nx"]
+[ext_resource type="Texture2D" uid="uid://e37ckt6x80ls" path="res://assets/art/levels/RoomBackground.png" id="9_5w6b1"]
+[ext_resource type="Texture2D" uid="uid://cx7wt1771l6r3" path="res://assets/art/levels/DoorEntrance.png" id="10_8kboq"]
+[ext_resource type="Texture2D" uid="uid://q7nej7b2ut37" path="res://assets/art/levels/DoorFrame.png" id="11_vd6tw"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1r277"]
 normal = Vector2(0, 1)
@@ -23,47 +23,47 @@ normal = Vector2(1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_86jtt"]
 normal = Vector2(-1, 0)
 
-[node name="DebugLevel" type="Node2D"]
+[node name="Level1" type="Node2D"]
 
-[node name="UI" parent="." instance=ExtResource("2_otv3v")]
+[node name="UI" parent="." instance=ExtResource("1_122b3")]
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("cultist_spawner")]
-script = ExtResource("3_qy7pi")
+script = ExtResource("2_lv4t2")
 cultist_spawner = NodePath("../CultistSpawner")
 
 [node name="MinigameManager" type="Node2D" parent="." node_paths=PackedStringArray("paddle")]
-script = ExtResource("4_2nuuq")
-minigame_ui_scene = ExtResource("4_01bvd")
+script = ExtResource("3_5foru")
+minigame_ui_scene = ExtResource("4_uq46g")
 paddle = NodePath("../Paddle")
 
 [node name="CultistSpawner" type="Node2D" parent="."]
-script = ExtResource("5_p8a2f")
-cultist_scene = ExtResource("6_55x1u")
+script = ExtResource("5_540rp")
+cultist_scene = ExtResource("6_afek4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
 
-[node name="Paddle" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("6_f38x2")]
+[node name="Paddle" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("7_e1ckr")]
 position = Vector2(960, 1000)
 camera = NodePath("../Camera2D")
 
-[node name="Ball" parent="." instance=ExtResource("7_efuho")]
+[node name="Ball" parent="." instance=ExtResource("8_8c7nx")]
 position = Vector2(967, 694)
 
 [node name="Environment" type="Node2D" parent="."]
 
 [node name="Background" type="Sprite2D" parent="Environment"]
 position = Vector2(960, 540)
-texture = ExtResource("1_7kwun")
+texture = ExtResource("9_5w6b1")
 
 [node name="DoorEntrance" type="Sprite2D" parent="Environment"]
 position = Vector2(960, 540)
-texture = ExtResource("9_u7aay")
+texture = ExtResource("10_8kboq")
 
 [node name="DoorFrame" type="Sprite2D" parent="Environment"]
 z_index = 4
 position = Vector2(960, 540)
-texture = ExtResource("10_x4uos")
+texture = ExtResource("11_vd6tw")
 
 [node name="Wall_TOP" type="StaticBody2D" parent="Environment"]
 position = Vector2(960, 182)
