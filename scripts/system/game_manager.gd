@@ -2,6 +2,7 @@ extends Node
 class_name GameManager
 
 @export var cultist_spawner: CultistSpawner
+@export var doubt_shader :TextureRect
 
 # stats for computing score at the end
 var num_base_killed: int = 0
@@ -71,7 +72,19 @@ func _recompute_stats(_cultist: Cultist) -> void:
 	if level_active: _check_game_status()
 
 func _check_game_status():
-	if float(num_base)/(num_base + num_doubt + num_dissent) < 0.35:
+	var doubt = float(num_base)/(num_base + num_doubt + num_dissent)
+	_tween_doubt_shader(doubt)
+	if doubt < 0.15:
 		EventManager.level_lost.emit()
 	if num_dissent == 0:
 		EventManager.level_won.emit()
+
+func _tween_doubt_shader (doubt :float) -> void:
+	var cur_doubt = doubt_shader.material.get_shader_parameter("transparency")
+	var tween = self.create_tween()
+	tween.tween_method(func(d):
+		doubt_shader.material.set_shader_parameter("transparency", d)
+		doubt_shader.material.set_shader_parameter("thresholds", PackedFloat32Array(
+			[0.6, 0.67, 0.75].map(func(x): return clampf(0.0, x, x *d *2))
+		))
+	, cur_doubt, 1. -doubt, 0.25)

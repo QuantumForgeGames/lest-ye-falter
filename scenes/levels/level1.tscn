@@ -25,14 +25,14 @@ normal = Vector2(-1, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j0vaq"]
 shader = ExtResource("11_swfgk")
-shader_parameter/transparency = 1.0
+shader_parameter/transparency = 0.0
 shader_parameter/color0 = Color(0.0117647, 0, 1, 0.207843)
 shader_parameter/color1 = Color(0.321569, 0.2, 1, 0.247059)
 shader_parameter/color2 = Color(0.341176, 0.411765, 1, 0.2)
 shader_parameter/color3 = Color(0.388235, 0.521569, 1, 0.262745)
 shader_parameter/Direction = Vector2(1, 1)
 shader_parameter/Speed = 1.0
-shader_parameter/thresholds = PackedFloat32Array(0.605, 0.67, 0.75)
+shader_parameter/thresholds = PackedFloat32Array(0, 0, 0)
 shader_parameter/OCTAVE = 6
 shader_parameter/pixel_size = 1200
 shader_parameter/dithering = 1.95
@@ -43,9 +43,10 @@ height = 1080
 
 [node name="Level1" type="Node2D"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("cultist_spawner")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("cultist_spawner", "doubt_shader")]
 script = ExtResource("2_lv4t2")
 cultist_spawner = NodePath("../CultistSpawner")
+doubt_shader = NodePath("../CanvasLayer/TextureRect")
 
 [node name="MinigameManager" type="Node2D" parent="." node_paths=PackedStringArray("paddle")]
 script = ExtResource("3_5foru")
