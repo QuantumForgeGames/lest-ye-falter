@@ -27,8 +27,9 @@ normal = Vector2(-1, 0)
 
 [node name="UI" parent="." instance=ExtResource("2_otv3v")]
 
-[node name="GameManager" type="Node" parent="."]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("cultist_spawner")]
 script = ExtResource("3_qy7pi")
+cultist_spawner = NodePath("../CultistSpawner")
 
 [node name="MinigameManager" type="Node2D" parent="." node_paths=PackedStringArray("paddle")]
 script = ExtResource("4_2nuuq")
