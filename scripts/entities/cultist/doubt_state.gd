@@ -1,7 +1,9 @@
 extends State
 
-@export var DISSENT_CONVERSION_CHANCE: float = 0.1
-@export var SERVER_CONVERSION_CHANCE: float = 0.5
+@export var DISSENT_CONVERSION_CHANCE: float = 0.05
+@export var SERVER_CONVERSION_CHANCE: float = 0.2
+
+@export var SERVER_CONVERSION_CHANCE_ON_HIT: float = 0.5
 
 func enter() -> void:
 	var tween := get_tree().create_tween()
@@ -20,13 +22,16 @@ func process(_delta: float) -> void:
 	pass
  
 func on_hit() -> void:
-	if randf() < SERVER_CONVERSION_CHANCE:
+	if randf() < SERVER_CONVERSION_CHANCE_ON_HIT:
 		transitioned.emit("Server")
 	else:
 		EventManager.cultist_killed.emit(entity)
 
 func _on_doubt_timer_timeout() -> void:
-	if randf() < DISSENT_CONVERSION_CHANCE:
+	var prob :=  randf()
+	if prob < DISSENT_CONVERSION_CHANCE:
 		transitioned.emit("Dissent")
+	elif prob < DISSENT_CONVERSION_CHANCE + SERVER_CONVERSION_CHANCE:
+		transitioned.emit("Server")
 	else:
 		entity.doubt_timer.start()
