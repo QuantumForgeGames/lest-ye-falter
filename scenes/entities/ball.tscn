@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cye2n4fdkf6ou"]
+[gd_scene load_steps=12 format=3 uid="uid://cye2n4fdkf6ou"]
 
 [ext_resource type="Script" path="res://scripts/entities/ball.gd" id="1_u8675"]
 [ext_resource type="Script" path="res://scripts/hit_handlers/all.gd" id="2_0heqb"]
@@ -10,6 +10,44 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hpjuv"]
 radius = 24.0208
+
+[sub_resource type="Animation" id="Animation_n8n76"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5tmtq"]
+resource_name = "wobble"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, -0.0872665, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tuhb0"]
+_data = {
+"RESET": SubResource("Animation_n8n76"),
+"wobble": SubResource("Animation_5tmtq")
+}
 
 [node name="Ball" type="CharacterBody2D"]
 z_index = 2
@@ -46,3 +84,9 @@ MAX_HIT_COUNT = null
 script = ExtResource("5_a4o5q")
 entity = NodePath("../..")
 MAX_HIT_COUNT = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tuhb0")
+}
+autoplay = "wobble"
