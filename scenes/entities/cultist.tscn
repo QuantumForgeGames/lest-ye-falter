@@ -115,6 +115,8 @@ one_shot = true
 one_shot = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-2, -38)
+scale = Vector2(3.2, 6.6)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

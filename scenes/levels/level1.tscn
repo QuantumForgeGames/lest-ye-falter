@@ -7,10 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://daniimopijcej" path="res://scenes/entities/cultist.tscn" id="6_afek4"]
 [ext_resource type="PackedScene" uid="uid://cmif6nw1snsxa" path="res://scenes/entities/paddle.tscn" id="7_e1ckr"]
 [ext_resource type="PackedScene" uid="uid://cye2n4fdkf6ou" path="res://scenes/entities/ball.tscn" id="8_8c7nx"]
-[ext_resource type="Texture2D" uid="uid://c4nb31wevqlq6" path="res://assets/art/levels/RoomBackground.png" id="9_5w6b1"]
-[ext_resource type="Texture2D" uid="uid://beh6hujmh8t0a" path="res://assets/art/levels/DoorEntrance.png" id="10_8kboq"]
+[ext_resource type="Texture2D" uid="uid://e37ckt6x80ls" path="res://assets/art/levels/RoomBackground.png" id="9_5w6b1"]
+[ext_resource type="Texture2D" uid="uid://cx7wt1771l6r3" path="res://assets/art/levels/DoorEntrance.png" id="10_8kboq"]
 [ext_resource type="Shader" path="res://assets/shaders/doubt.gdshader" id="11_swfgk"]
-[ext_resource type="Texture2D" uid="uid://cwlwrv0wd5yaa" path="res://assets/art/levels/DoorFrame.png" id="11_vd6tw"]
+[ext_resource type="Texture2D" uid="uid://q7nej7b2ut37" path="res://assets/art/levels/DoorFrame.png" id="11_vd6tw"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1r277"]
 normal = Vector2(0, 1)
@@ -46,7 +46,7 @@ height = 1080
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("cultist_spawner", "doubt_shader")]
 script = ExtResource("2_lv4t2")
 cultist_spawner = NodePath("../CultistSpawner")
-doubt_shader = NodePath("../CanvasLayer/TextureRect")
+doubt_shader = NodePath("../ParanoiaEffectLayer/TextureRect")
 
 [node name="MinigameManager" type="Node2D" parent="." node_paths=PackedStringArray("paddle")]
 script = ExtResource("3_5foru")
@@ -110,9 +110,9 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall_RIGHT"]
 shape = SubResource("WorldBoundaryShape2D_86jtt")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="ParanoiaEffectLayer" type="CanvasLayer" parent="."]
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="ParanoiaEffectLayer"]
 material = SubResource("ShaderMaterial_j0vaq")
 anchors_preset = 15
 anchor_right = 1.0
