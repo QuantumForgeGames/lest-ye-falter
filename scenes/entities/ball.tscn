@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cye2n4fdkf6ou"]
+[gd_scene load_steps=9 format=3 uid="uid://cye2n4fdkf6ou"]
 
 [ext_resource type="Script" path="res://scripts/entities/ball.gd" id="1_u8675"]
 [ext_resource type="Script" path="res://scripts/hit_handlers/all.gd" id="2_0heqb"]
 [ext_resource type="Texture2D" uid="uid://dtnnueww8uhr4" path="res://assets/art/cultist/Server.png" id="2_l0p8q"]
 [ext_resource type="Script" path="res://scripts/hit_handlers/hit_handler_system.gd" id="2_q62i5"]
+[ext_resource type="Texture2D" uid="uid://6iw7dmibh1r3" path="res://assets/art/cultist/ServerEmpty.png" id="3_4fqmd"]
 [ext_resource type="Script" path="res://scripts/hit_handlers/first.gd" id="4_sbhf6"]
 [ext_resource type="Script" path="res://scripts/hit_handlers/on_input.gd" id="5_a4o5q"]
 
@@ -14,9 +15,16 @@ radius = 24.0208
 z_index = 2
 script = ExtResource("1_u8675")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Filled" type="Sprite2D" parent="Sprites"]
 position = Vector2(-7, -45)
 texture = ExtResource("2_l0p8q")
+
+[node name="Empty" type="Sprite2D" parent="Sprites"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-7, -45)
+texture = ExtResource("3_4fqmd")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)
@@ -34,5 +42,7 @@ ball = NodePath("../..")
 script = ExtResource("4_sbhf6")
 MAX_HIT_COUNT = null
 
-[node name="OnInput" type="Node" parent="HitHandlerSystem"]
+[node name="OnInput" type="Node" parent="HitHandlerSystem" node_paths=PackedStringArray("entity")]
 script = ExtResource("5_a4o5q")
+entity = NodePath("../..")
+MAX_HIT_COUNT = 2

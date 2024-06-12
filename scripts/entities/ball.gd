@@ -45,3 +45,10 @@ func _bounce (collision_ :KinematicCollision2D) -> void:
 			velocity.normalized()
 
 	$HitHandlerSystem.on_collision(collider)
+
+func change_sprite() -> void:
+	var duration := 0.5
+	var tween := get_tree().create_tween()
+	tween.set_parallel()
+	tween.tween_property($Sprites/Filled, "modulate:a", 1 - $Sprites/Filled.modulate.a, duration)
+	tween.tween_property($Sprites/Empty, "modulate:a", 1 - $Sprites/Empty.modulate.a, duration)
