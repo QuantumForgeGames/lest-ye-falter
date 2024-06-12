@@ -1,6 +1,6 @@
 extends Node
 
-var minigame_ui_scene := preload("res://scenes/ui/minigame_ui.tscn")
+@export var minigame_ui_scene: PackedScene
 var minigame_ui = null
 
 enum GLYPHS {UP, DOWN, LEFT, RIGHT}
@@ -18,7 +18,7 @@ func _ready() -> void:
 	
 func _process(_delta: float) -> void:
 	if combination.size() == 0:
-		EventManager.cultist_converted.emit(target_cultist)
+		EventManager.cultist_convinced.emit(target_cultist)
 		_terminate_minigame()
 		
 	if Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right") or Input.is_action_just_pressed("move_up") or Input.is_action_just_pressed("move_down"):

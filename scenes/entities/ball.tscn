@@ -1,22 +1,68 @@
-[gd_scene load_steps=8 format=3 uid="uid://cye2n4fdkf6ou"]
+[gd_scene load_steps=12 format=3 uid="uid://cye2n4fdkf6ou"]
 
 [ext_resource type="Script" path="res://scripts/entities/ball.gd" id="1_u8675"]
 [ext_resource type="Script" path="res://scripts/hit_handlers/all.gd" id="2_0heqb"]
 [ext_resource type="Texture2D" uid="uid://dtnnueww8uhr4" path="res://assets/art/cultist/Server.png" id="2_l0p8q"]
 [ext_resource type="Script" path="res://scripts/hit_handlers/hit_handler_system.gd" id="2_q62i5"]
+[ext_resource type="Texture2D" uid="uid://6iw7dmibh1r3" path="res://assets/art/cultist/ServerEmpty.png" id="3_4fqmd"]
 [ext_resource type="Script" path="res://scripts/hit_handlers/first.gd" id="4_sbhf6"]
 [ext_resource type="Script" path="res://scripts/hit_handlers/on_input.gd" id="5_a4o5q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hpjuv"]
 radius = 24.0208
 
+[sub_resource type="Animation" id="Animation_n8n76"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5tmtq"]
+resource_name = "wobble"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, -0.0872665, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tuhb0"]
+_data = {
+"RESET": SubResource("Animation_n8n76"),
+"wobble": SubResource("Animation_5tmtq")
+}
+
 [node name="Ball" type="CharacterBody2D"]
 z_index = 2
 script = ExtResource("1_u8675")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Filled" type="Sprite2D" parent="Sprites"]
 position = Vector2(-7, -45)
 texture = ExtResource("2_l0p8q")
+
+[node name="Empty" type="Sprite2D" parent="Sprites"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-7, -45)
+texture = ExtResource("3_4fqmd")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)
@@ -34,5 +80,13 @@ ball = NodePath("../..")
 script = ExtResource("4_sbhf6")
 MAX_HIT_COUNT = null
 
-[node name="OnInput" type="Node" parent="HitHandlerSystem"]
+[node name="OnInput" type="Node" parent="HitHandlerSystem" node_paths=PackedStringArray("entity")]
 script = ExtResource("5_a4o5q")
+entity = NodePath("../..")
+MAX_HIT_COUNT = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tuhb0")
+}
+autoplay = "wobble"
