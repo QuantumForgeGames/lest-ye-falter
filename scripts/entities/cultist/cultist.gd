@@ -61,4 +61,4 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	if velocity.y > 0: # escapes through lower wall
 		EventManager.cultist_escaped.emit(self)
 	
-	get_tree().create_timer(1).timeout.connect(queue_free)
+	queue_free()
