@@ -31,7 +31,6 @@ func _process (_delta :float) -> void:
 func _bounce (collision_ :KinematicCollision2D) -> void:
 	if collision_ == null: return
 	velocity = velocity.bounce(collision_.get_normal())
-	if collision_.get_normal() == Vector2.LEFT or collision_.get_normal() == Vector2.RIGHT: return
 	var collider = collision_.get_collider()
 	if collider is Paddle:
 		var dist = global_position - collider.global_position

@@ -2,13 +2,14 @@
 
 [ext_resource type="Script" path="res://scripts/entities/ball.gd" id="1_u8675"]
 [ext_resource type="Script" path="res://scripts/hit_handlers/all.gd" id="2_0heqb"]
-[ext_resource type="Texture2D" uid="uid://dtnnueww8uhr4" path="res://assets/art/cultist/Server.png" id="2_l0p8q"]
+[ext_resource type="Texture2D" uid="uid://defomjeswwrsc" path="res://assets/art/cultist/Server.png" id="2_l0p8q"]
 [ext_resource type="Script" path="res://scripts/hit_handlers/hit_handler_system.gd" id="2_q62i5"]
-[ext_resource type="Texture2D" uid="uid://6iw7dmibh1r3" path="res://assets/art/cultist/ServerEmpty.png" id="3_4fqmd"]
+[ext_resource type="Texture2D" uid="uid://cp7nsn5nvuwqd" path="res://assets/art/cultist/ServerEmpty.png" id="3_4fqmd"]
 [ext_resource type="Script" path="res://scripts/hit_handlers/first.gd" id="4_sbhf6"]
 [ext_resource type="Script" path="res://scripts/hit_handlers/on_input.gd" id="5_a4o5q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hpjuv"]
+custom_solver_bias = 1.0
 radius = 24.0208
 
 [sub_resource type="Animation" id="Animation_n8n76"]
