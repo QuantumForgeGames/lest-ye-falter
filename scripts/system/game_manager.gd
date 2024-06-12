@@ -19,6 +19,8 @@ var num_dissent: int = 0
 var level_active: bool = false
 
 func _ready() -> void:
+	LevelPrompt._hide_panels()
+	
 	EventManager.cultist_convinced.connect(_on_cultist_convinced)
 	EventManager.cultist_killed.connect(_on_cultist_killed)
 	EventManager.cultist_escaped.connect(_on_cultist_escaped)
@@ -69,7 +71,7 @@ func _recompute_stats(_cultist: Cultist) -> void:
 	if level_active: _check_game_status()
 
 func _check_game_status():
-	if float(num_base)/(num_base + num_doubt + num_dissent) < 0.25:
+	if float(num_base)/(num_base + num_doubt + num_dissent) < 0.35:
 		EventManager.level_lost.emit()
 	if num_dissent == 0:
 		EventManager.level_won.emit()

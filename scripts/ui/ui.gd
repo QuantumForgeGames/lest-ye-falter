@@ -22,13 +22,27 @@ func _on_level_won():
 # BUTTONS
 func _on_restart_button_pressed():
 	LevelManager.reload_scene()
-
+	_fade_panels()
+	
 func _on_menu_button_pressed():
+	_fade_panels()
 	pass
 	
 func _on_retry_button_pressed():
 	LevelManager.reload_scene()
+	_fade_panels()
 
 func _on_next_button_pressed():
 	LevelManager.reload_scene()
+	_fade_panels()
 	#	LevelManager.change_level(2)
+
+func _fade_panels() -> void:
+	var tween := get_tree().create_tween()
+	tween.set_parallel()
+	tween.tween_property(level_complete_container, "modulate:a", 0., 1.)
+	tween.tween_property(game_over_container, "modulate:a", 0., 1.)
+
+func _hide_panels() -> void:
+	game_over_container.hide()
+	level_complete_container.hide()	
