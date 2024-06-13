@@ -14,7 +14,7 @@ var half_paddle_width: float
 
 
 func _ready () -> void:
-	EventManager.cultist_converted.connect(_on_minigame_ended)
+	EventManager.cultist_convinced.connect(_on_minigame_ended)
 	EventManager.cultist_killed.connect(_on_minigame_ended)
 
 	camera_rect = camera.get_viewport_rect()
@@ -46,7 +46,7 @@ func _get_input () -> void:
 func _on_capture_area_body_entered(body: Node2D) -> void:
 	if process_mode != Node.PROCESS_MODE_DISABLED: # if mini game is not already active
 		set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
-		$CaptureArea.set_deferred("monitoring", false)
+		$CaptureArea.set_deferred("monitoring", false)	
 		body.on_captured()
 		EventManager.cultist_captured.emit(body)
 

@@ -18,7 +18,7 @@ func exit() -> void:
 	entity.dissent_timer.stop()
 
 func on_hit() -> void:
-	entity.exit_scene()
+	EventManager.cultist_killed.emit(entity)
 
 func _on_dissent_timer_timeout() -> void:
 	entity.dissent_timer.start(randf_range(DELAY_MIN, DELAY_MAX))

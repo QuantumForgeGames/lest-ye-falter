@@ -5,8 +5,13 @@ extends CharacterBody2D
 
 var NARROW_BOUNCE = (Vector2.UP * 8 + Vector2.RIGHT).normalized()
 var WIDE_BOUNCE = (Vector2.UP + Vector2.RIGHT * 5).normalized()
+var KICK_TIMEOUT_DURATION := 10.
 
-@export var speed :float = 800
+@export var speed :float = 500
+@export var MAX_SPEED :float = 600
+@export var MIN_SPEED :float = 400
+
+var can_kick: bool = true
 
 func _ready () -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
@@ -17,13 +22,15 @@ func _ready () -> void:
 
 
 func _process (_delta :float) -> void:
-	_bounce(move_and_collide(velocity * _delta))
+	if Input.is_action_just_pressed("random_kick") and can_kick:
+		_on_kick()
+	else:
+		_bounce(move_and_collide(velocity * _delta))
 
 
 func _bounce (collision_ :KinematicCollision2D) -> void:
 	if collision_ == null: return
 	velocity = velocity.bounce(collision_.get_normal())
-	if collision_.get_normal() == Vector2.LEFT or collision_.get_normal() == Vector2.RIGHT: return
 	var collider = collision_.get_collider()
 	if collider is Paddle:
 		var dist = global_position - collider.global_position
@@ -33,6 +40,31 @@ func _bounce (collision_ :KinematicCollision2D) -> void:
 		trajectory = lerp(trajectory, velocity.normalized(), 0.2).normalized()
 		trajectory.x *= sign(velocity.x)
 		velocity = trajectory * velocity.length() + collider.velocity 
-		velocity = velocity.normalized() * clampf(400, 1000, velocity.length())
+		velocity = velocity.normalized() * clampf(MIN_SPEED, MAX_SPEED, velocity.length())
+	else:
+		var dir := int(signf(velocity.y))
+		if abs(velocity.y) < 0.1:
+			match dir:
+				0, 1: velocity.y += 0.1
+				-1: velocity.y -= 0.1
+			velocity.normalized()
 
 	$HitHandlerSystem.on_collision(collider)
+		
+func change_sprite() -> void:
+	var duration := 0.5
+	var tween := get_tree().create_tween()
+	tween.set_parallel()
+	tween.tween_property($Sprites/Filled, "modulate:a", 1 - $Sprites/Filled.modulate.a, duration)
+	tween.tween_property($Sprites/Empty, "modulate:a", 1 - $Sprites/Empty.modulate.a, duration)
+
+func _on_kick() -> void:
+	can_kick = false
+	get_tree().create_timer(KICK_TIMEOUT_DURATION).timeout.connect(func(): can_kick = true)
+	
+	var tween := get_tree().create_tween()
+	tween.tween_property(self, "scale", Vector2(1.2, 1.2), 0.25)
+	tween.tween_property(self, "scale", Vector2(1., 1.), 0.25)
+	
+	var angle: float = randf_range(PI/2, 3 * PI/2) + velocity.angle()
+	velocity = 1.25 * speed * Vector2(cos(angle), sin(angle))
