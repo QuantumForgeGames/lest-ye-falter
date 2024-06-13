@@ -7,10 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://daniimopijcej" path="res://scenes/entities/cultist.tscn" id="6_afek4"]
 [ext_resource type="PackedScene" uid="uid://cmif6nw1snsxa" path="res://scenes/entities/paddle.tscn" id="7_e1ckr"]
 [ext_resource type="PackedScene" uid="uid://cye2n4fdkf6ou" path="res://scenes/entities/ball.tscn" id="8_8c7nx"]
-[ext_resource type="Texture2D" uid="uid://e37ckt6x80ls" path="res://assets/art/levels/RoomBackground.png" id="9_5w6b1"]
-[ext_resource type="Texture2D" uid="uid://cx7wt1771l6r3" path="res://assets/art/levels/DoorEntrance.png" id="10_8kboq"]
+[ext_resource type="Texture2D" uid="uid://d3ggkrmp4qq65" path="res://assets/art/levels/RoomBackground.png" id="9_5w6b1"]
+[ext_resource type="Texture2D" uid="uid://bjrd5nw4gr305" path="res://assets/art/levels/DoorEntrance.png" id="10_8kboq"]
 [ext_resource type="Shader" path="res://assets/shaders/doubt.gdshader" id="11_swfgk"]
-[ext_resource type="Texture2D" uid="uid://q7nej7b2ut37" path="res://assets/art/levels/DoorFrame.png" id="11_vd6tw"]
+[ext_resource type="Texture2D" uid="uid://d0jq5ffcehn2b" path="res://assets/art/levels/DoorFrame.png" id="11_vd6tw"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1r277"]
 normal = Vector2(0, 1)

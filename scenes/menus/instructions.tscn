@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://fwqppsiqy6er"]
+
+[ext_resource type="Texture2D" uid="uid://bq8oh1s1p6g0w" path="res://assets/art/menus/instructions.png" id="1_7o804"]
+[ext_resource type="Script" path="res://scripts/menus/instructions.gd" id="1_d4jgh"]
+
+[sub_resource type="Animation" id="Animation_2urrg"]
+resource_name = "fade"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_d8by4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1vwha"]
+_data = {
+"RESET": SubResource("Animation_d8by4"),
+"fade": SubResource("Animation_2urrg")
+}
+
+[node name="Instructions" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d4jgh")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7o804")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 163.0
+offset_top = 1002.0
+offset_right = 534.0
+offset_bottom = 1047.0
+theme_override_font_sizes/font_size = 32
+text = "Press Any Key To Start..."
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1vwha")
+}
