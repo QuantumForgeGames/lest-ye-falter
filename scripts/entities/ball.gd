@@ -60,7 +60,7 @@ func change_sprite() -> void:
 
 func _on_kick() -> void:
 	can_kick = false
-	get_tree().create_timer(KICK_TIMEOUT_DURATION).timeout.connect(func(): can_kick = true)
+	#get_tree().create_timer(KICK_TIMEOUT_DURATION).timeout.connect(func(): can_kick = true)
 	
 	var tween := get_tree().create_tween()
 	tween.tween_property(self, "scale", Vector2(1.2, 1.2), 0.25)
