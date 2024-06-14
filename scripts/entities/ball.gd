@@ -17,7 +17,7 @@ func _ready () -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 
 	randomize()
-	var trajectory := Vector2(randf_range(-1., 1.), randf_range(-1., 1.)).normalized()
+	var trajectory := Vector2(randf_range(-1., 1.), [randf_range(-1., -0.25), randf_range(0.25, 1.)].pick_random()).normalized()
 	velocity = trajectory * speed
 
 
@@ -66,5 +66,12 @@ func _on_kick() -> void:
 	tween.tween_property(self, "scale", Vector2(1.2, 1.2), 0.25)
 	tween.tween_property(self, "scale", Vector2(1., 1.), 0.25)
 	
-	var angle: float = randf_range(PI/2, 3 * PI/2) + velocity.angle()
-	velocity = 1.25 * speed * Vector2(cos(angle), sin(angle))
+	# var angle: float = randf_range(PI/2, 3 * PI/2) + velocity.angle()
+	# velocity = 1.25 * speed * Vector2(cos(angle), sin(angle))
+	match int(signf(velocity.x)):
+		0, 1: 
+			print("right")
+			velocity = velocity.orthogonal()
+		-1: 
+			print("left")
+			velocity = velocity.orthogonal() * -1
