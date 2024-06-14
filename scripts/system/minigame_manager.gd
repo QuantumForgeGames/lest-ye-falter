@@ -65,6 +65,7 @@ func _terminate_minigame():
 	tween = get_tree().create_tween()
 	tween.tween_property(minigame_ui, "modulate:a", 0., 0.5)
 	tween.tween_callback(minigame_ui.queue_free)
+	EventManager.on_minigame_completed()
 
 func _highlight_glyph(idx: int, code: int):
 	if is_instance_valid(minigame_ui):
