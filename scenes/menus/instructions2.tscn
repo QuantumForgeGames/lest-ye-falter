@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgf7ran0xmqim"]
+
+[ext_resource type="Script" path="res://scripts/menus/instructions2.gd" id="1_br7iq"]
+[ext_resource type="Texture2D" uid="uid://dh4s0viviyn5q" path="res://assets/art/menus/InstructionsPageTwo.png" id="2_kpdks"]
+[ext_resource type="Texture2D" uid="uid://b1rqjbum1j6hm" path="res://assets/art/ui/Arrow.png" id="3_12oaa"]
+
+[node name="InstructionsPageTwo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_br7iq")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kpdks")
+
+[node name="PageOneButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.013
+anchor_top = 0.884
+anchor_right = 0.065
+anchor_bottom = 0.966
+offset_left = 0.039999
+offset_top = 88.2799
+offset_right = -11.7999
+offset_bottom = 99.72
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5708
+texture_normal = ExtResource("3_12oaa")
+
+[node name="StartButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.932
+anchor_top = 0.888
+anchor_right = 0.984
+anchor_bottom = 0.969
+offset_left = 99.5598
+offset_top = -0.0401611
+offset_right = 87.72
+offset_bottom = 12.48
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+texture_normal = ExtResource("3_12oaa")
+
+[connection signal="mouse_entered" from="PageOneButton" to="." method="_on_page_one_button_mouse_entered"]
+[connection signal="mouse_exited" from="PageOneButton" to="." method="_on_page_one_button_mouse_exited"]
+[connection signal="pressed" from="PageOneButton" to="." method="_on_page_one_button_pressed"]
+[connection signal="mouse_entered" from="StartButton" to="." method="_on_start_button_mouse_entered"]
+[connection signal="mouse_exited" from="StartButton" to="." method="_on_start_button_mouse_exited"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
