@@ -22,8 +22,8 @@ func process(_delta: float) -> void:
 	pass
  
 func on_hit() -> void:
-	if randf() < SERVER_CONVERSION_CHANCE_ON_HIT:
-		#EventManager.on_minigame_started()
+	if randf() < SERVER_CONVERSION_CHANCE_ON_HIT and not EventManager.minigame_active:
+		EventManager.on_minigame_started(3.)
 		transitioned.emit("Server")
 	else:
 		EventManager.cultist_killed.emit(entity)
@@ -34,7 +34,7 @@ func _on_doubt_timer_timeout() -> void:
 		transitioned.emit("Dissent")
 	elif prob < DISSENT_CONVERSION_CHANCE + SERVER_CONVERSION_CHANCE:
 		if not EventManager.minigame_active:
-			EventManager.on_minigame_started()
+			EventManager.on_minigame_started(6.)
 			transitioned.emit("Server")
 	else:
 		entity.doubt_timer.start()
