@@ -8,4 +8,4 @@ func _ready():
 func _input(event):
 	if event is InputEventKey:
 		if event.pressed:
-			SceneTransition.change_scene("res://scenes/levels/level1.tscn")
+			LevelManager.change_scene("res://scenes/levels/level1.tscn")
