@@ -23,9 +23,8 @@ func process(_delta: float) -> void:
  
 func on_hit() -> void:
 	if randf() < SERVER_CONVERSION_CHANCE_ON_HIT:
-		if not EventManager.minigame_active:
-			EventManager.on_minigame_started()
-			transitioned.emit("Server")
+		#EventManager.on_minigame_started()
+		transitioned.emit("Server")
 	else:
 		EventManager.cultist_killed.emit(entity)
 
