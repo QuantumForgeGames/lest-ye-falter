@@ -26,7 +26,7 @@ func _on_restart_button_pressed():
 	
 func _on_menu_button_pressed():
 	_fade_panels()
-	pass
+	get_tree().change_scene_to_file("res://scenes/levels/level1.tscn")
 	
 func _on_retry_button_pressed():
 	LevelManager.reload_scene()
