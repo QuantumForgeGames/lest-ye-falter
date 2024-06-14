@@ -48,10 +48,10 @@ func _on_cultist_captured(cultist: Cultist):
 	
 	# visuals
 	tween = get_tree().create_tween()
-	tween.tween_property(minigame_ui, "modulate:a", 1., 0.5)
+	tween.tween_property(minigame_ui, "modulate:a", 1., 0.25)
 	
 	for glyph in minigame_ui.get_node("Glyphs").get_children():
-		tween.tween_property(glyph, "modulate:a", 1., 0.2)
+		tween.tween_property(glyph, "modulate:a", 1., 0.1)
 		
 	tween.tween_callback(_start_minigame)
 
@@ -65,6 +65,7 @@ func _terminate_minigame():
 	tween = get_tree().create_tween()
 	tween.tween_property(minigame_ui, "modulate:a", 0., 0.5)
 	tween.tween_callback(minigame_ui.queue_free)
+	EventManager.on_minigame_completed()
 
 func _highlight_glyph(idx: int, code: int):
 	if is_instance_valid(minigame_ui):

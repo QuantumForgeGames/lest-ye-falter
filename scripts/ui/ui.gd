@@ -26,7 +26,7 @@ func _on_restart_button_pressed():
 	
 func _on_menu_button_pressed():
 	_fade_panels()
-	get_tree().change_scene_to_file("res://scenes/levels/level1.tscn")
+	LevelManager.change_level("LVL1") # ??
 	
 func _on_retry_button_pressed():
 	LevelManager.reload_scene()
@@ -34,8 +34,8 @@ func _on_retry_button_pressed():
 
 func _on_next_button_pressed():
 	LevelManager.reload_scene()
+	#LevelManager.change_level(2)
 	_fade_panels()
-	#	LevelManager.change_level(2)
 
 func _fade_panels() -> void:
 	var tween := get_tree().create_tween()
