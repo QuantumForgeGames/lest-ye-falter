@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://0xahbw5xdljg"]
 
-[ext_resource type="Texture2D" uid="uid://bb1dytllj4id2" path="res://assets/art/menus/traditional-dark.png" id="1_i4w27"]
+[ext_resource type="Texture2D" uid="uid://tew2i2gvul38" path="res://assets/art/menus/traditional-dark.png" id="1_i4w27"]
 [ext_resource type="Script" path="res://scripts/menus/splash_screen.gd" id="1_y5kxa"]
 
 [node name="SplashScreen" type="Control"]
