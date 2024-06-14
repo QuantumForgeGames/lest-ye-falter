@@ -23,7 +23,6 @@ func _on_level_won():
 func _on_restart_button_pressed():
 	LevelManager.reload_scene()
 	_fade_panels()
-	get_tree().reload_current_scene()
 	
 func _on_menu_button_pressed():
 	_fade_panels()
@@ -32,7 +31,6 @@ func _on_menu_button_pressed():
 func _on_retry_button_pressed():
 	LevelManager.reload_scene()
 	_fade_panels()
-	get_tree().reload_current_scene()
 
 func _on_next_button_pressed():
 	LevelManager.reload_scene()
