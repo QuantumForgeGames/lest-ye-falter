@@ -11,10 +11,12 @@ signal level_lost()
 signal level_won()
 
 var minigame_active: bool = false
+var delay: float = 6.
 
-func on_minigame_started() -> void:
+func on_minigame_started(timeout_duration: float) -> void:
 	minigame_active = true
+	delay = timeout_duration
 
 func on_minigame_completed() -> void:
 	if minigame_active:
-		get_tree().create_timer(6.).timeout.connect(func(): minigame_active = false)
+		get_tree().create_timer(delay).timeout.connect(func(): minigame_active = false)
