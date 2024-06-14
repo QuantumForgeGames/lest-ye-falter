@@ -1,23 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://fwqppsiqy6er"]
 
-[ext_resource type="Texture2D" uid="uid://bq8oh1s1p6g0w" path="res://assets/art/menus/instructions.png" id="1_7o804"]
+[ext_resource type="Texture2D" uid="uid://bhmn8vdo6uvtj" path="res://assets/art/menus/instructions.png" id="1_7o804"]
 [ext_resource type="Script" path="res://scripts/menus/instructions.gd" id="1_d4jgh"]
-
-[sub_resource type="Animation" id="Animation_2urrg"]
-resource_name = "fade"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Label:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_d8by4"]
 length = 0.001
@@ -34,10 +18,26 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_2urrg"]
+resource_name = "blink"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1vwha"]
 _data = {
 "RESET": SubResource("Animation_d8by4"),
-"fade": SubResource("Animation_2urrg")
+"blink": SubResource("Animation_2urrg")
 }
 
 [node name="Instructions" type="Control"]
