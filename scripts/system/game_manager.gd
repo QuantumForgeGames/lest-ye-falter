@@ -25,6 +25,7 @@ var num_dissent: int = 0
 var level_active: bool = false
 
 func _ready() -> void:
+	print(get_parent().name)
 	ball.set_max_hits(MAX_HITS_PER_PADDLE_BOUNCE)
 	LevelPrompt._hide_panels()
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dtt8jop5a1fdf"]
+[gd_scene load_steps=18 format=3 uid="uid://df71qphydfpww"]
 
 [ext_resource type="Script" path="res://scripts/system/game_manager.gd" id="2_lv4t2"]
 [ext_resource type="Script" path="res://scripts/system/minigame_manager.gd" id="3_5foru"]
@@ -57,6 +57,77 @@ paddle = NodePath("../Paddle")
 [node name="CultistSpawner" type="Node2D" parent="."]
 script = ExtResource("5_540rp")
 cultist_scene = ExtResource("6_afek4")
+debug = false
+
+[node name="Cultist" parent="CultistSpawner" instance=ExtResource("6_afek4")]
+position = Vector2(307, 319)
+
+[node name="Cultist2" parent="CultistSpawner" instance=ExtResource("6_afek4")]
+position = Vector2(328, 439)
+initial_state = 2
+
+[node name="Cultist3" parent="CultistSpawner" instance=ExtResource("6_afek4")]
+position = Vector2(439, 337)
+
+[node name="Cultist6" parent="CultistSpawner" instance=ExtResource("6_afek4")]
+position = Vector2(449, 510)
+
+[node name="Cultist7" parent="CultistSpawner" instance=ExtResource("6_afek4")]
+position = Vector2(278, 550)
+
+[node name="Cultist8" parent="CultistSpawner" instance=ExtResource("6_afek4")]
+position = Vector2(203, 423)
+
+[node name="Cultist5" parent="CultistSpawner" instance=ExtResource("6_afek4")]
+position = Vector2(212, 1009)
+initial_state = 2
+
+[node name="Cultist9" parent="CultistSpawner" instance=ExtResource("6_afek4")]
+position = Vector2(205, 865)
+
+[node name="Cultist10" parent="CultistSpawner" instance=ExtResource("6_afek4")]
+position = Vector2(328, 913)
+
+[node name="Cultist11" parent="CultistSpawner" instance=ExtResource("6_afek4")]
+position = Vector2(380, 1029)
+
+[node name="Cultist4" parent="CultistSpawner" instance=ExtResource("6_afek4")]
+position = Vector2(1369, 330)
+
+[node name="Cultist12" parent="CultistSpawner" instance=ExtResource("6_afek4")]
+position = Vector2(1390, 450)
+initial_state = 2
+
+[node name="Cultist13" parent="CultistSpawner" instance=ExtResource("6_afek4")]
+position = Vector2(1501, 348)
+
+[node name="Cultist14" parent="CultistSpawner" instance=ExtResource("6_afek4")]
+position = Vector2(1511, 521)
+
+[node name="Cultist15" parent="CultistSpawner" instance=ExtResource("6_afek4")]
+position = Vector2(1340, 561)
+
+[node name="Cultist16" parent="CultistSpawner" instance=ExtResource("6_afek4")]
+position = Vector2(1265, 434)
+
+[node name="Cultist17" parent="CultistSpawner" instance=ExtResource("6_afek4")]
+position = Vector2(875, 432)
+
+[node name="Cultist18" parent="CultistSpawner" instance=ExtResource("6_afek4")]
+position = Vector2(896, 552)
+initial_state = 2
+
+[node name="Cultist19" parent="CultistSpawner" instance=ExtResource("6_afek4")]
+position = Vector2(1007, 450)
+
+[node name="Cultist20" parent="CultistSpawner" instance=ExtResource("6_afek4")]
+position = Vector2(1017, 623)
+
+[node name="Cultist21" parent="CultistSpawner" instance=ExtResource("6_afek4")]
+position = Vector2(846, 663)
+
+[node name="Cultist22" parent="CultistSpawner" instance=ExtResource("6_afek4")]
+position = Vector2(771, 536)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
@@ -69,6 +140,8 @@ camera = NodePath("../Camera2D")
 position = Vector2(967, 694)
 
 [node name="Environment" type="Node2D" parent="."]
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Background" type="Sprite2D" parent="Environment"]
 position = Vector2(960, 540)
@@ -114,6 +187,7 @@ shape = SubResource("WorldBoundaryShape2D_86jtt")
 [node name="Sprite2D" type="Sprite2D" parent="Environment"]
 
 [node name="ParanoiaEffectLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="TextureRect" type="TextureRect" parent="ParanoiaEffectLayer"]
 material = SubResource("ShaderMaterial_j0vaq")
