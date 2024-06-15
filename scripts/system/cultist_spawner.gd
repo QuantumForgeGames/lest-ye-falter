@@ -24,6 +24,9 @@ class_name CultistSpawner
 
 func _ready() -> void:
 	if debug:
+		for cultist in get_children():
+			cultist.queue_free()
+		
 		var xmax = get_viewport_rect().size.x
 		var ymax = get_viewport_rect().size.y
 		var xbuffer: float = 250.
@@ -36,9 +39,9 @@ func _ready() -> void:
 				cultist.set_infection_parameters(CONVERSION_DELAY, DISSENT_CONVERSION_CHANCE, SERVER_CONVERSION_CHANCE, SERVER_CONVERSION_CHANCE_ON_HIT, INFECTION_DELAY_MIN, INFECTION_DELAY_MAX, NEIGHBOUR_CONVERSION_CHANCE)
 				add_child(cultist)
 				#cultist.set_state(Cultist.STATES.DOUBT)
+				if randf() < 0.05:
+					cultist.set_state(Cultist.STATES.DISSENT)
 
-		get_child(5).set_state(Cultist.STATES.DISSENT)
-		get_child(21).set_state(Cultist.STATES.DISSENT)
 	else:
 		for cultist in get_children():
 			cultist.set_infection_parameters(CONVERSION_DELAY, DISSENT_CONVERSION_CHANCE, SERVER_CONVERSION_CHANCE, SERVER_CONVERSION_CHANCE_ON_HIT, INFECTION_DELAY_MIN, INFECTION_DELAY_MAX, NEIGHBOUR_CONVERSION_CHANCE)

@@ -4,6 +4,7 @@ class_name GameManager
 @export var cultist_spawner: CultistSpawner
 @export var doubt_shader :TextureRect
 @export var ball: Ball
+@export var paranoia_effect_layer: CanvasLayer
 
 @export_category("Ball properties")
 ## Maximum serves per paddle bounce
@@ -25,7 +26,7 @@ var num_dissent: int = 0
 var level_active: bool = false
 
 func _ready() -> void:
-	print(get_parent().name)
+	paranoia_effect_layer.show()
 	ball.set_max_hits(MAX_HITS_PER_PADDLE_BOUNCE)
 	LevelPrompt._hide_panels()
 	
