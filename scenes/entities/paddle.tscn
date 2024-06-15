@@ -1,10 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmif6nw1snsxa"]
+[gd_scene load_steps=6 format=3 uid="uid://cmif6nw1snsxa"]
 
 [ext_resource type="Script" path="res://scripts/entities/paddle.gd" id="1_bel6m"]
-[ext_resource type="Texture2D" uid="uid://bf4yo6t2v66d3" path="res://assets/art/cultist/Leader.png" id="2_bnyew"]
+[ext_resource type="Texture2D" uid="uid://b2ua2en3qbtig" path="res://assets/art/cultist/Leader.png" id="2_bnyew"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3e2np"]
-size = Vector2(160, 80)
+size = Vector2(123, 104)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ije1n"]
+radius = 16.0
+height = 196.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xi7lx"]
 size = Vector2(178, 68)
@@ -17,15 +21,20 @@ script = ExtResource("1_bel6m")
 texture = ExtResource("2_bnyew")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 30)
+position = Vector2(2.5, 43)
 shape = SubResource("RectangleShape2D_3e2np")
+
+[node name="Collision2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -25)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ije1n")
 
 [node name="CaptureArea" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CaptureArea"]
-position = Vector2(0, -34)
+position = Vector2(4, -53)
 shape = SubResource("RectangleShape2D_xi7lx")
 
 [connection signal="body_entered" from="CaptureArea" to="." method="_on_capture_area_body_entered"]
