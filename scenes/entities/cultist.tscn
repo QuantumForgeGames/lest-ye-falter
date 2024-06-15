@@ -1,14 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://daniimopijcej"]
+[gd_scene load_steps=17 format=3 uid="uid://daniimopijcej"]
 
 [ext_resource type="Script" path="res://scripts/entities/cultist/cultist.gd" id="1_tynvq"]
-[ext_resource type="Texture2D" uid="uid://caw7cthni0qwy" path="res://assets/art/cultist/Base.png" id="2_c7eqh"]
-[ext_resource type="Texture2D" uid="uid://bhl1bu4gnvktr" path="res://assets/art/cultist/Doubt.png" id="3_dbwxu"]
-[ext_resource type="Texture2D" uid="uid://btryouosrbdo5" path="res://assets/art/cultist/Dissent.png" id="4_2fl15"]
+[ext_resource type="Texture2D" uid="uid://d72277vo87bb" path="res://assets/art/ui/SickEmote.png" id="2_1ih6q"]
+[ext_resource type="Texture2D" uid="uid://bjcn50dddn4s6" path="res://assets/art/cultist/Base.png" id="2_c7eqh"]
+[ext_resource type="Texture2D" uid="uid://bqub7vvu576ua" path="res://assets/art/cultist/Doubt.png" id="3_dbwxu"]
+[ext_resource type="Texture2D" uid="uid://der6oixbai17c" path="res://assets/art/cultist/Dissent.png" id="4_2fl15"]
 [ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="5_bn1j0"]
 [ext_resource type="Script" path="res://scripts/entities/cultist/base_state.gd" id="6_na3dj"]
 [ext_resource type="Script" path="res://scripts/entities/cultist/doubt_state.gd" id="7_v7rqq"]
 [ext_resource type="Script" path="res://scripts/entities/cultist/dissent_state.gd" id="8_hqr6k"]
 [ext_resource type="Script" path="res://scripts/entities/cultist/server_state.gd" id="9_1m7wo"]
+[ext_resource type="Texture2D" uid="uid://doaijiqaig77a" path="res://assets/art/ui/speech_bubble.png" id="10_lbmd2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_apl2j"]
 size = Vector2(36, 36)
@@ -128,6 +130,17 @@ scale = Vector2(3.2, 6.6)
 libraries = {
 "": SubResource("AnimationLibrary_tuhb0")
 }
+
+[node name="SickEmote" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(52, -112)
+texture = ExtResource("10_lbmd2")
+
+[node name="SickSprite" type="Sprite2D" parent="SickEmote"]
+z_index = 1
+position = Vector2(1.5, 0.5)
+scale = Vector2(0.797619, 0.797619)
+texture = ExtResource("2_1ih6q")
 
 [connection signal="timeout" from="DoubtTimer" to="StateMachine/Doubt" method="_on_doubt_timer_timeout"]
 [connection signal="timeout" from="DissentTimer" to="StateMachine/Dissent" method="_on_dissent_timer_timeout"]

@@ -62,8 +62,8 @@ func _on_kick() -> void:
 	tween.tween_property(self, "scale", Vector2(1., 1.), 0.25)
 	
 	match int(signf(velocity.x)):
-		0, 1: velocity = 1.2 * velocity.orthogonal()
-		-1: velocity = 1.2 * velocity.orthogonal() * -1
+		0, 1: velocity = velocity.orthogonal()
+		-1: velocity = velocity.orthogonal() * -1
 
 func set_max_hits (val :int) -> void:
 	$HitHandlerSystem/OnInput.MAX_HIT_COUNT = val

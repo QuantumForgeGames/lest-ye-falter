@@ -12,3 +12,4 @@ func process(_delta: float) -> void:
  
 func on_hit() -> void:
 	EventManager.cultist_killed.emit(entity)
+	entity.show_sick_emote()

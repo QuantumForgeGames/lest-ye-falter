@@ -18,6 +18,10 @@ var camera_end_x :float
 @onready var _Collision: CollisionShape2D = $Collision
 @onready var _Collision2: CollisionShape2D = $Collision2
 
+@onready var kick_emote: Sprite2D = $KickEmote
+@onready var serve_emote: Sprite2D = $ServeEmote
+var kick_tween: Tween = null
+var serve_tween: Tween = null
 
 func _ready () -> void:
 	EventManager.cultist_convinced.connect(_on_minigame_ended)
@@ -37,7 +41,7 @@ func _ready () -> void:
 
 func _process (_delta :float) -> void:
 	_get_input()
-
+	
 	# Prevent the paddle from moving outside the camera bounds
 	if global_position.x - half_arm_width < camera_start_x:
 		global_position.x = camera_start_x + half_arm_width
@@ -47,7 +51,13 @@ func _process (_delta :float) -> void:
 	# Update the paddle's velocity based on the current direction
 	velocity = speed * direction
 	move_and_slide()
-
+	
+	if Input.is_action_just_pressed("serve_punch"):
+		show_serve_emote()
+	elif Input.is_action_just_released("serve_punch"):
+		hide_serve_emote()
+	if Input.is_action_just_pressed("random_kick"):
+		show_kick_emote()
 
 func _get_input () -> void:
 	direction = Input.get_axis("move_left", "move_right") * Vector2(1, 0)
@@ -64,3 +74,21 @@ func _on_capture_area_body_entered(body: Node2D) -> void:
 func _on_minigame_ended(_cultist: Cultist) -> void:
 	set_deferred("process_mode", Node.PROCESS_MODE_ALWAYS)
 	$CaptureArea.set_deferred("monitoring", true)
+
+
+func show_kick_emote():
+	if kick_tween: kick_tween.kill()
+	kick_tween = get_tree().create_tween()
+	kick_tween.tween_property(kick_emote, "modulate:a", 1., 0.25)
+	kick_tween.tween_property(kick_emote, "modulate:a", 0., 0.25).set_delay(0.25)
+
+func show_serve_emote():
+	if serve_tween: serve_tween.kill()
+	serve_tween = get_tree().create_tween()
+	serve_tween.tween_property(serve_emote, "modulate:a", 1., 0.25)
+
+func hide_serve_emote():
+	if serve_tween: serve_tween.kill()
+	serve_tween = get_tree().create_tween()
+	serve_tween.tween_property(serve_emote, "modulate:a", 0., 0.25)
+

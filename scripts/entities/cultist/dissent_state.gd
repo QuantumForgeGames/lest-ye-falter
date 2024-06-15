@@ -19,6 +19,7 @@ func exit() -> void:
 
 func on_hit() -> void:
 	EventManager.cultist_killed.emit(entity)
+	entity.show_sick_emote()
 
 func _on_dissent_timer_timeout() -> void:
 	entity.dissent_timer.start(randf_range(DELAY_MIN, DELAY_MAX))
