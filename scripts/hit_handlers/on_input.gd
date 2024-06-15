@@ -9,7 +9,7 @@ func on_collision(body: PhysicsBody2D) -> void:
 	if body is Paddle:
 		if hits_remaining == 0: entity.change_sprite()
 		hits_remaining = MAX_HIT_COUNT
-		entity.can_kick = true
+		entity.on_paddle_bounce()
 	elif body is Cultist and hits_remaining > 0 and can_serve:
 		hits_remaining -= 1
 		body.on_hit()

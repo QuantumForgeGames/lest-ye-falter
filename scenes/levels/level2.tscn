@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bav5h2uybb1lr"]
+[gd_scene load_steps=21 format=3 uid="uid://bav5h2uybb1lr"]
 
 [ext_resource type="Script" path="res://scripts/system/game_manager.gd" id="1_cdty0"]
 [ext_resource type="Script" path="res://scripts/system/minigame_manager.gd" id="2_t8fsk"]
@@ -7,10 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://daniimopijcej" path="res://scenes/entities/cultist.tscn" id="5_ut8ot"]
 [ext_resource type="PackedScene" uid="uid://cmif6nw1snsxa" path="res://scenes/entities/paddle.tscn" id="6_awwih"]
 [ext_resource type="PackedScene" uid="uid://cye2n4fdkf6ou" path="res://scenes/entities/ball.tscn" id="7_ls23a"]
-[ext_resource type="Texture2D" uid="uid://c4nb31wevqlq6" path="res://assets/art/levels/RoomBackground.png" id="8_j70fs"]
-[ext_resource type="Texture2D" uid="uid://beh6hujmh8t0a" path="res://assets/art/levels/DoorEntrance.png" id="9_4l374"]
-[ext_resource type="Texture2D" uid="uid://cwlwrv0wd5yaa" path="res://assets/art/levels/DoorFrame.png" id="10_anvao"]
+[ext_resource type="Texture2D" uid="uid://e37ckt6x80ls" path="res://assets/art/levels/RoomBackground.png" id="8_j70fs"]
+[ext_resource type="Texture2D" uid="uid://cx7wt1771l6r3" path="res://assets/art/levels/DoorEntrance.png" id="9_4l374"]
+[ext_resource type="Texture2D" uid="uid://q7nej7b2ut37" path="res://assets/art/levels/DoorFrame.png" id="10_anvao"]
 [ext_resource type="Shader" path="res://assets/shaders/doubt.gdshader" id="11_pipvk"]
+[ext_resource type="Script" path="res://scripts/ui/kick_ui.gd" id="12_ewkiv"]
+[ext_resource type="Texture2D" uid="uid://bacq46flfig26" path="res://assets/art/ui/bar_empty.png" id="13_r1om2"]
+[ext_resource type="Texture2D" uid="uid://bvss2w0see6q1" path="res://assets/art/ui/bar_filled.png" id="14_g25g7"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1r277"]
 normal = Vector2(0, 1)
@@ -41,7 +44,7 @@ shader_parameter/dithering = 1.95
 width = 1920
 height = 1080
 
-[node name="Level1" type="Node2D"]
+[node name="LVL2" type="Node2D"]
 y_sort_enabled = true
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("cultist_spawner", "doubt_shader", "ball", "paranoia_effect_layer")]
@@ -203,3 +206,25 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("NoiseTexture2D_5n221")
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("12_ewkiv")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1785.0
+offset_top = 945.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+max_value = 1.0
+step = 0.005
+value = 1.0
+fill_mode = 4
+texture_under = ExtResource("13_r1om2")
+texture_progress = ExtResource("14_g25g7")
+metadata/_edit_use_anchors_ = true
