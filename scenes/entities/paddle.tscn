@@ -14,7 +14,7 @@ radius = 11.0
 height = 196.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xi7lx"]
-size = Vector2(178, 68)
+size = Vector2(178, 126)
 
 [node name="Paddle" type="CharacterBody2D"]
 z_index = 3
@@ -37,7 +37,7 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CaptureArea"]
-position = Vector2(4, -53)
+position = Vector2(4, -24)
 shape = SubResource("RectangleShape2D_xi7lx")
 
 [node name="KickEmote" type="Sprite2D" parent="."]
