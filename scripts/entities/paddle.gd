@@ -50,14 +50,6 @@ func _process (_delta :float) -> void:
 	global_position.y = paddle_start_y
 
 
-func shift_paddle (direction :float) -> void:
-	if not (
-		(global_position.x - half_arm_width) < camera_start_x + (17* half_arm_width)
-		and
-		(global_position.x + half_arm_width) > camera_end_x - (17* half_arm_width)
-	): global_position.x += direction
-
-
 func _get_input () -> void:
 	direction = Input.get_axis("move_left", "move_right") * Vector2(1, 0)
 

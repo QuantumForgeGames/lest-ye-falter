@@ -41,7 +41,6 @@ func _bounce (collision_ :KinematicCollision2D) -> void:
 		trajectory.x *= sign(velocity.x)
 		velocity = trajectory * velocity.length() + collider.velocity 
 		velocity = velocity.normalized() * clampf(MIN_SPEED, MAX_SPEED, velocity.length())
-		collider.shift_paddle(signf(collision_.get_normal().x) *-5.)
 
 	$HitHandlerSystem.on_collision(collider)
 		
