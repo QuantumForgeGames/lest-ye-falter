@@ -43,11 +43,12 @@ height = 1080
 
 [node name="Level1" type="Node2D"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("cultist_spawner", "doubt_shader", "ball")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("cultist_spawner", "doubt_shader", "ball", "paranoia_effect_layer")]
 script = ExtResource("1_c0ay1")
 cultist_spawner = NodePath("../CultistSpawner")
 doubt_shader = NodePath("../ParanoiaEffectLayer/TextureRect")
 ball = NodePath("../Ball")
+paranoia_effect_layer = NodePath("../ParanoiaEffectLayer")
 
 [node name="MinigameManager" type="Node2D" parent="." node_paths=PackedStringArray("paddle")]
 script = ExtResource("2_ukg7s")
