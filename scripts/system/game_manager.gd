@@ -3,6 +3,11 @@ class_name GameManager
 
 @export var cultist_spawner: CultistSpawner
 @export var doubt_shader :TextureRect
+@export var ball: Ball
+
+@export_category("Ball properties")
+## Maximum serves per paddle bounce
+@export var MAX_HITS_PER_PADDLE_BOUNCE: int = 2
 
 # stats for computing score at the end
 var num_base_killed: int = 0
@@ -20,6 +25,7 @@ var num_dissent: int = 0
 var level_active: bool = false
 
 func _ready() -> void:
+	ball.set_max_hits(MAX_HITS_PER_PADDLE_BOUNCE)
 	LevelPrompt._hide_panels()
 	
 	EventManager.cultist_convinced.connect(_on_cultist_convinced)
