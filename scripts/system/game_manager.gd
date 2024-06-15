@@ -91,6 +91,7 @@ func _tween_doubt_shader (doubt :float) -> void:
 	var cur_doubt = doubt_shader.material.get_shader_parameter("transparency")
 	var tween = self.create_tween()
 	tween.tween_method(func(d):
+		AudioManager._BackgroundMusic.set_volume_db(remap(d, 0.0, 1.0, -40.0, 0.0))
 		doubt_shader.material.set_shader_parameter("transparency", d)
 		doubt_shader.material.set_shader_parameter("thresholds", PackedFloat32Array(
 			[0.6, 0.67, 0.75].map(func(x): return clampf(0.0, x, x *d *2))
