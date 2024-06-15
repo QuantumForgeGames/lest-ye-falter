@@ -47,7 +47,6 @@ func _process (_delta :float) -> void:
 	# Update the paddle's velocity based on the current direction
 	velocity = speed * direction
 	move_and_slide()
-	global_position.y = paddle_start_y
 
 
 func _get_input () -> void:
