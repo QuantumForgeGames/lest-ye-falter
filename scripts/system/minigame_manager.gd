@@ -76,6 +76,8 @@ func _highlight_glyph(idx: int, code: int):
 		tween.tween_property(glyph, "scale", Vector2(0.34, 0.34), 0.2)
 		
 		if code == 1: 
-			glyph.modulate = Color8(112, 180, 71)
+			#glyph.modulate = Color8(112, 180, 71)
+			glyph.modulate = Color8(85, 131, 0)
 		else:
-			glyph.modulate = Color8(232, 63, 54)
+			#glyph.modulate = Color8(232, 63, 54)
+			glyph.modulate = Color8(175, 0, 0)
