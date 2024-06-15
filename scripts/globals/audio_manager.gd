@@ -16,14 +16,15 @@ func _ready () -> void:
 
 
 func _spawn_cultist_state_change (cultist :Cultist) -> void:
+    match cultist.get_current_state():
+        "Doubt": play_stream_oneshot(audio_doubter_active.pick_random())
+        "Dissent": play_stream_oneshot(audio_dissenter_active.pick_random())
+        _: return
+
+
+func play_stream_oneshot (stream :AudioStream) -> void:
     var audio_player = AudioStreamPlayer.new()
     _AudioSpawner.add_child(audio_player)
-
-    match cultist.get_current_state():
-        "Doubt": audio_player.stream = audio_doubter_active.pick_random()
-        "Dissent": audio_player.stream = audio_dissenter_active.pick_random()
-        _: 
-            audio_player.queue_free()
-            return
+    audio_player.stream = stream
     audio_player.finished.connect(func(): audio_player.queue_free())
     audio_player.play()
