@@ -39,7 +39,7 @@ func _on_cultist_captured(cultist: Cultist):
 	
 	minigame_ui = minigame_ui_scene.instantiate()
 	minigame_ui.z_index = 2
-	minigame_ui.position = paddle.global_position + Vector2(0, -100)
+	minigame_ui.position = paddle.global_position + Vector2(160, -100)
 	
 	for idx in combination.size():
 		minigame_ui.get_node("Glyphs").get_child(idx).texture = glyph_textures[combination[idx]]
