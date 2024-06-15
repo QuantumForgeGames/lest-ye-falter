@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmif6nw1snsxa"]
+[gd_scene load_steps=9 format=3 uid="uid://cmif6nw1snsxa"]
 
 [ext_resource type="Script" path="res://scripts/entities/paddle.gd" id="1_bel6m"]
 [ext_resource type="Texture2D" uid="uid://bf4yo6t2v66d3" path="res://assets/art/cultist/Leader.png" id="2_bnyew"]
+[ext_resource type="Texture2D" uid="uid://doaijiqaig77a" path="res://assets/art/ui/speech_bubble.png" id="3_bmw5s"]
+[ext_resource type="Texture2D" uid="uid://cuvsv78140n3d" path="res://assets/art/ui/KickEmote.png" id="4_r34v8"]
+[ext_resource type="Texture2D" uid="uid://bdhdoueshj3g4" path="res://assets/art/ui/ServeEmote.png" id="5_nywmh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3e2np"]
 size = Vector2(123, 104)
@@ -36,5 +39,30 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CaptureArea"]
 position = Vector2(4, -53)
 shape = SubResource("RectangleShape2D_xi7lx")
+
+[node name="KickEmote" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-124, -91)
+scale = Vector2(2.42262, 1.65476)
+texture = ExtResource("3_bmw5s")
+flip_h = true
+
+[node name="Kick" type="Sprite2D" parent="KickEmote"]
+position = Vector2(-0.825558, 0)
+scale = Vector2(0.540541, 0.791367)
+texture = ExtResource("4_r34v8")
+
+[node name="ServeEmote" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(133, -93)
+scale = Vector2(2.42262, 1.65476)
+texture = ExtResource("3_bmw5s")
+
+[node name="Serve" type="Sprite2D" parent="ServeEmote"]
+position = Vector2(-0.412781, -3.6259)
+rotation = 0.434778
+scale = Vector2(0.557763, 0.757794)
+skew = -0.221402
+texture = ExtResource("5_nywmh")
 
 [connection signal="body_entered" from="CaptureArea" to="." method="_on_capture_area_body_entered"]
