@@ -7,6 +7,8 @@ class_name Cultist
 @onready var dissent_timer := $DissentTimer
 @onready var area_of_influence := $AreaOfInfluence
 
+var MINIGAME_TIMEOUT_DURATION_ON_ESCAPE: float = 2.
+
 var spawn_position: Vector2
 
 enum STATES {BASE, DOUBT, DISSENT}
@@ -62,7 +64,8 @@ func get_current_state() -> String:
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	if velocity.y > 0: # escapes through lower wall
 		EventManager.cultist_escaped.emit(self)
-	
+		EventManager.delay = MINIGAME_TIMEOUT_DURATION_ON_ESCAPE
+		EventManager.on_minigame_completed()
 	queue_free()
 
 func set_infection_parameters(
@@ -85,3 +88,11 @@ func set_infection_parameters(
 	dissent_state.DELAY_MAX = infection_delay_max
 	dissent_state.CONVERSION_CHANCE = neighbour_conversion_chance
 	
+func set_minigame_parameters(
+	minigame_timeout_duration_on_escape: float,
+	minigame_timeout_duration_on_random: float,
+	minigame_timeout_duration_on_hit: float):
+		
+	MINIGAME_TIMEOUT_DURATION_ON_ESCAPE = minigame_timeout_duration_on_escape
+	$StateMachine/Doubt.MINIGAME_TIMEOUT_DURATION_ON_HIT = minigame_timeout_duration_on_hit
+	$StateMachine/Doubt.MINIGAME_TIMEOUT_DURATION_ON_RANDOM = minigame_timeout_duration_on_random
