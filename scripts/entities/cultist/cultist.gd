@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Cultist
 
 @export var speed: float = 400.
+@export var initial_state: STATES
 @onready var doubt_timer := $DoubtTimer
 @onready var dissent_timer := $DissentTimer
 @onready var area_of_influence := $AreaOfInfluence
@@ -12,6 +13,7 @@ enum STATES {BASE, DOUBT, DISSENT}
 
 func _ready() -> void:
 	spawn_position = position
+	set_state(initial_state)
 
 func on_hit():
 	$StateMachine.on_hit()
@@ -62,3 +64,24 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 		EventManager.cultist_escaped.emit(self)
 	
 	queue_free()
+
+func set_infection_parameters(
+	conversion_delay: float, 
+	dissent_conversion_chance: float, 
+	server_conversion_chance: float, 
+	server_conversion_chance_on_hit: float, 
+	infection_delay_min: float, 
+	infection_delay_max: float, 
+	neighbour_conversion_chance: float):
+	
+	var doubt_state := $StateMachine/Doubt
+	doubt_state.DELAY = conversion_delay
+	doubt_state.DISSENT_CONVERSION_CHANCE = dissent_conversion_chance
+	doubt_state.SERVER_CONVERSION_CHANCE = server_conversion_chance
+	doubt_state.SERVER_CONVERSION_CHANCE_ON_HIT = server_conversion_chance_on_hit
+	
+	var dissent_state := $StateMachine/Dissent
+	dissent_state.DELAY_MIN = infection_delay_min
+	dissent_state.DELAY_MAX = infection_delay_max
+	dissent_state.CONVERSION_CHANCE = neighbour_conversion_chance
+	

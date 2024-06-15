@@ -1,8 +1,8 @@
 extends State
 
-@export var DELAY_MIN: float = 0.5
-@export var DELAY_MAX: float = 1.
-@export var CONVERSION_CHANCE: float = 0.1
+var DELAY_MIN: float = 0.5
+var DELAY_MAX: float = 1.
+var CONVERSION_CHANCE: float = 0.1
 
 func enter() -> void:
 	var tween := get_tree().create_tween()

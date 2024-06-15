@@ -60,14 +60,11 @@ func change_sprite() -> void:
 
 func _on_kick() -> void:
 	can_kick = false
-	#get_tree().create_timer(KICK_TIMEOUT_DURATION).timeout.connect(func(): can_kick = true)
 	
 	var tween := get_tree().create_tween()
 	tween.tween_property(self, "scale", Vector2(1.2, 1.2), 0.25)
 	tween.tween_property(self, "scale", Vector2(1., 1.), 0.25)
 	
-	# var angle: float = randf_range(PI/2, 3 * PI/2) + velocity.angle()
-	# velocity = 1.25 * speed * Vector2(cos(angle), sin(angle))
 	match int(signf(velocity.x)):
 		0, 1: 
 			print("right")
@@ -75,3 +72,7 @@ func _on_kick() -> void:
 		-1: 
 			print("left")
 			velocity = velocity.orthogonal() * -1
+
+func set_max_hits(val: int):
+	$HitHandlerSystem/OnInput.MAX_HIT_COUNT = val
+	$HitHandlerSystem/OnInput.hits_remaining = val

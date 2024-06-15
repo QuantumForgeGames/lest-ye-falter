@@ -1,9 +1,10 @@
 extends State
 
-@export var DISSENT_CONVERSION_CHANCE: float = 0.05
-@export var SERVER_CONVERSION_CHANCE: float = 0.2
+var DISSENT_CONVERSION_CHANCE: float = 0.05
+var SERVER_CONVERSION_CHANCE: float = 0.2
 
-@export var SERVER_CONVERSION_CHANCE_ON_HIT: float = 0.5
+var SERVER_CONVERSION_CHANCE_ON_HIT: float = 0.5
+var DELAY: float = 10.
 
 func enter() -> void:
 	var tween := get_tree().create_tween()
@@ -12,7 +13,7 @@ func enter() -> void:
 	
 	entity.change_sprite(Cultist.STATES.DOUBT)
 	entity.set_collision_layer_value(2, false) # exclude from AoI
-	entity.doubt_timer.start()
+	entity.doubt_timer.start(DELAY)
 
 func exit() -> void:
 	entity.set_collision_layer_value(2, true) # include in AoI
@@ -37,4 +38,4 @@ func _on_doubt_timer_timeout() -> void:
 			EventManager.on_minigame_started(6.)
 			transitioned.emit("Server")
 	else:
-		entity.doubt_timer.start()
+		entity.doubt_timer.start(DELAY)
