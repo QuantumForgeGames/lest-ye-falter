@@ -7,9 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://daniimopijcej" path="res://scenes/entities/cultist.tscn" id="5_ut8ot"]
 [ext_resource type="PackedScene" uid="uid://cmif6nw1snsxa" path="res://scenes/entities/paddle.tscn" id="6_awwih"]
 [ext_resource type="PackedScene" uid="uid://cye2n4fdkf6ou" path="res://scenes/entities/ball.tscn" id="7_ls23a"]
-[ext_resource type="Texture2D" uid="uid://e37ckt6x80ls" path="res://assets/art/levels/RoomBackground.png" id="8_j70fs"]
-[ext_resource type="Texture2D" uid="uid://cx7wt1771l6r3" path="res://assets/art/levels/DoorEntrance.png" id="9_4l374"]
-[ext_resource type="Texture2D" uid="uid://q7nej7b2ut37" path="res://assets/art/levels/DoorFrame.png" id="10_anvao"]
+[ext_resource type="Texture2D" uid="uid://c4nb31wevqlq6" path="res://assets/art/levels/RoomBackground.png" id="8_j70fs"]
+[ext_resource type="Texture2D" uid="uid://beh6hujmh8t0a" path="res://assets/art/levels/DoorEntrance.png" id="9_4l374"]
+[ext_resource type="Texture2D" uid="uid://cwlwrv0wd5yaa" path="res://assets/art/levels/DoorFrame.png" id="10_anvao"]
 [ext_resource type="Shader" path="res://assets/shaders/doubt.gdshader" id="11_pipvk"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1r277"]
@@ -42,6 +42,7 @@ width = 1920
 height = 1080
 
 [node name="Level1" type="Node2D"]
+y_sort_enabled = true
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("cultist_spawner", "doubt_shader", "ball", "paranoia_effect_layer")]
 script = ExtResource("1_cdty0")
@@ -56,6 +57,7 @@ minigame_ui_scene = ExtResource("3_tn6vq")
 paddle = NodePath("../Paddle")
 
 [node name="CultistSpawner" type="Node2D" parent="."]
+y_sort_enabled = true
 script = ExtResource("4_awgd2")
 cultist_scene = ExtResource("5_ut8ot")
 debug = false
