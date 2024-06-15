@@ -26,7 +26,7 @@ func _on_restart_button_pressed():
 	
 func _on_menu_button_pressed():
 	_fade_panels()
-	LevelManager.change_level("LVL1") # ??
+	LevelManager.change_scene("LVL1") # ??
 	
 func _on_retry_button_pressed():
 	LevelManager.reload_scene()
