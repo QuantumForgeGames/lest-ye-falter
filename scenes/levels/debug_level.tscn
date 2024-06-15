@@ -152,3 +152,4 @@ value = 1.0
 fill_mode = 4
 texture_under = ExtResource("12_nqqfn")
 texture_progress = ExtResource("13_w0fmq")
+metadata/_edit_use_anchors_ = true
