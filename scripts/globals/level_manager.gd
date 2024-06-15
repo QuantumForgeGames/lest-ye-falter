@@ -8,12 +8,18 @@ var scenes = {
 	"INSTRUCTIONS1": "res://scenes/menus/instructions1.tscn",
 	"INSTRUCTIONS2": "res://scenes/menus/instructions2.tscn",
 	"LVL1": level_path_template % 1,
-	"LVL2": level_path_template % 1, 
-	"LVL3": level_path_template % 1,
-	"GOOD_ENDING": null,
-	"BAD_ENDING": null
+	"LVL2": level_path_template % 2, 
+	"LVL3": level_path_template % 3,
+	"LVL4": level_path_template % 4,
+	"LVL5": level_path_template % 5,
+	"WIN_SCREEN": null
 }
 
+var LAST_LVL: int = 5
+
+func change_to_next_level(current: int) -> void:
+	change_scene("LVL%s" % (current + 1))
+	
 func change_scene(target: String) -> void:
 	_change_scene(scenes[target])
 
