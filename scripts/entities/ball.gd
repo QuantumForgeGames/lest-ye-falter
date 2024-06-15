@@ -62,3 +62,7 @@ func _on_kick() -> void:
 	match int(signf(velocity.x)):
 		0, 1: velocity = velocity.orthogonal()
 		-1: velocity = velocity.orthogonal() * -1
+
+func set_max_hits (val :int) -> void:
+	$HitHandlerSystem/OnInput.MAX_HIT_COUNT = val
+	$HitHandlerSystem/OnInput.hits_remaining = val
