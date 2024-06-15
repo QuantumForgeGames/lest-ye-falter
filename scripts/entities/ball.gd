@@ -41,13 +41,7 @@ func _bounce (collision_ :KinematicCollision2D) -> void:
 		trajectory.x *= sign(velocity.x)
 		velocity = trajectory * velocity.length() + collider.velocity 
 		velocity = velocity.normalized() * clampf(MIN_SPEED, MAX_SPEED, velocity.length())
-	else:
-		var dir := int(signf(velocity.y))
-		if abs(velocity.y) < 0.1:
-			match dir:
-				0, 1: velocity.y += 0.1
-				-1: velocity.y -= 0.1
-			velocity.normalized()
+		collider.shift_paddle(signf(collision_.get_normal().x) *-5.)
 
 	$HitHandlerSystem.on_collision(collider)
 		
@@ -66,13 +60,5 @@ func _on_kick() -> void:
 	tween.tween_property(self, "scale", Vector2(1., 1.), 0.25)
 	
 	match int(signf(velocity.x)):
-		0, 1: 
-			print("right")
-			velocity = velocity.orthogonal()
-		-1: 
-			print("left")
-			velocity = velocity.orthogonal() * -1
-
-func set_max_hits(val: int):
-	$HitHandlerSystem/OnInput.MAX_HIT_COUNT = val
-	$HitHandlerSystem/OnInput.hits_remaining = val
+		0, 1: velocity = velocity.orthogonal()
+		-1: velocity = velocity.orthogonal() * -1
