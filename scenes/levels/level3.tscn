@@ -7,13 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://daniimopijcej" path="res://scenes/entities/cultist.tscn" id="5_gx5s6"]
 [ext_resource type="PackedScene" uid="uid://cmif6nw1snsxa" path="res://scenes/entities/paddle.tscn" id="6_74ccc"]
 [ext_resource type="PackedScene" uid="uid://cye2n4fdkf6ou" path="res://scenes/entities/ball.tscn" id="7_hb0aj"]
-[ext_resource type="Texture2D" uid="uid://c4nb31wevqlq6" path="res://assets/art/levels/RoomBackground.png" id="8_v01s0"]
-[ext_resource type="Texture2D" uid="uid://beh6hujmh8t0a" path="res://assets/art/levels/DoorEntrance.png" id="9_gmacc"]
-[ext_resource type="Texture2D" uid="uid://cwlwrv0wd5yaa" path="res://assets/art/levels/DoorFrame.png" id="10_d1s8g"]
+[ext_resource type="Texture2D" uid="uid://e37ckt6x80ls" path="res://assets/art/levels/RoomBackground.png" id="8_v01s0"]
+[ext_resource type="Texture2D" uid="uid://cx7wt1771l6r3" path="res://assets/art/levels/DoorEntrance.png" id="9_gmacc"]
+[ext_resource type="Texture2D" uid="uid://q7nej7b2ut37" path="res://assets/art/levels/DoorFrame.png" id="10_d1s8g"]
 [ext_resource type="Shader" path="res://assets/shaders/doubt.gdshader" id="11_wpv68"]
 [ext_resource type="Script" path="res://scripts/ui/kick_ui.gd" id="12_ccj8j"]
-[ext_resource type="Texture2D" uid="uid://catss2ds8j6my" path="res://assets/art/ui/bar_empty.png" id="13_48rlq"]
-[ext_resource type="Texture2D" uid="uid://ceqltw84qudwc" path="res://assets/art/ui/bar_filled.png" id="14_k6d1w"]
+[ext_resource type="Texture2D" uid="uid://bacq46flfig26" path="res://assets/art/ui/bar_empty.png" id="13_48rlq"]
+[ext_resource type="Texture2D" uid="uid://bvss2w0see6q1" path="res://assets/art/ui/bar_filled.png" id="14_k6d1w"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1r277"]
 normal = Vector2(0, 1)
@@ -44,7 +44,7 @@ shader_parameter/dithering = 1.95
 width = 1920
 height = 1080
 
-[node name="LVL1" type="Node2D"]
+[node name="LVL3" type="Node2D"]
 y_sort_enabled = true
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("cultist_spawner", "doubt_shader", "ball", "paranoia_effect_layer")]
