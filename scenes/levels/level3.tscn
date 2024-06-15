@@ -42,6 +42,7 @@ width = 1920
 height = 1080
 
 [node name="Level1" type="Node2D"]
+y_sort_enabled = true
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("cultist_spawner", "doubt_shader", "ball", "paranoia_effect_layer")]
 script = ExtResource("1_c0ay1")
@@ -56,6 +57,7 @@ minigame_ui_scene = ExtResource("3_xsdv2")
 paddle = NodePath("../Paddle")
 
 [node name="CultistSpawner" type="Node2D" parent="."]
+y_sort_enabled = true
 script = ExtResource("4_oo4on")
 cultist_scene = ExtResource("5_gx5s6")
 debug = false
