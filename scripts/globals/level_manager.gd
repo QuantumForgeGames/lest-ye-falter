@@ -12,10 +12,13 @@ var scenes = {
 	"LVL3": level_path_template % 3,
 	"LVL4": level_path_template % 4,
 	"LVL5": level_path_template % 5,
+	"LVL6": level_path_template % 6,
+	"LVL7": level_path_template % 7,
+	"LVL8": level_path_template % 8,
 	"WIN_SCREEN": null
 }
 
-var LAST_LVL: int = 5
+var LAST_LVL: int = 8
 
 func change_to_next_level(current: int) -> void:
 	change_scene("LVL%s" % (current + 1))
