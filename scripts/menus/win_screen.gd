@@ -4,6 +4,6 @@ extends Control
 
 
 func _ready () -> void:
-    _BackButton.mouse_entered.connect(func(): _BackButton.scale = Vector2(1.1, 1.1))
-    _BackButton.mouse_exited.connect(func(): _BackButton.scale = Vector2(1., 1.))
-    _BackButton.pressed.connect(func(): LevelManager.change_scene("MAIN_MENU"))
+	_BackButton.mouse_entered.connect(func(): _BackButton.scale = Vector2(1.1, 1.1))
+	_BackButton.mouse_exited.connect(func(): _BackButton.scale = Vector2(1., 1.))
+	_BackButton.pressed.connect(func(): LevelManager.change_scene("MAIN_MENU"))
