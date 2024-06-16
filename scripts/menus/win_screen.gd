@@ -26,3 +26,8 @@ func _ready () -> void:
 		AudioManager.play_stream_oneshot(AudioManager.audio_misc_press)
 		LevelManager.change_scene("LVL5")
 	)
+	
+	var tween = self.create_tween()
+	for label in $Dialogue.get_children():
+		tween.tween_property(label, "modulate:a", 1, 1.0).set_delay(1.5)
+		
