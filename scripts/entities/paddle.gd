@@ -5,6 +5,7 @@ extends CharacterBody2D
 
 @export var speed = 700
 @export var camera: Camera2D # Camera used to determine the bounds of movement
+@export var _Ball: Ball
 
 var direction = Vector2.ZERO
 var camera_rect: Rect2
@@ -20,10 +21,12 @@ var camera_end_x :float
 
 @onready var kick_emote: Sprite2D = $KickEmote
 @onready var serve_emote: Sprite2D = $ServeEmote
+@onready var unable_emote: Node2D = $Unable
 var kick_tween: Tween = null
 var serve_tween: Tween = null
 
 func _ready () -> void:
+	_draw_unable_emote()
 	EventManager.cultist_convinced.connect(_on_minigame_ended)
 	EventManager.cultist_escaped.connect(_on_minigame_ended)
 
@@ -77,10 +80,14 @@ func _on_minigame_ended(_cultist: Cultist) -> void:
 
 
 func show_kick_emote():
+	unable_emote.visible = !_Ball.can_kick
 	if kick_tween: kick_tween.kill()
 	kick_tween = get_tree().create_tween()
 	kick_tween.tween_property(kick_emote, "modulate:a", 1., 0.25)
-	kick_tween.tween_property(kick_emote, "modulate:a", 0., 0.25).set_delay(0.25)
+	kick_tween.parallel().tween_property(unable_emote, "modulate:a", 1., 0.25)
+	kick_tween.tween_interval(0.25)
+	kick_tween.tween_property(kick_emote, "modulate:a", 0., 0.25)
+	kick_tween.parallel().tween_property(unable_emote, "modulate:a", 0., 0.25)
 
 func show_serve_emote():
 	if serve_tween: serve_tween.kill()
@@ -92,3 +99,10 @@ func hide_serve_emote():
 	serve_tween = get_tree().create_tween()
 	serve_tween.tween_property(serve_emote, "modulate:a", 0., 0.25)
 
+
+func _draw_unable_emote () -> void:
+	unable_emote.draw.connect(func():
+		unable_emote.draw_arc(Vector2.ZERO, 30., 0., TAU, 32, Color.RED, 4.)
+		unable_emote.draw_line(Vector2(-20., -20.), Vector2(20., 20.), Color.RED, 4.)
+	)
+	unable_emote.queue_redraw()

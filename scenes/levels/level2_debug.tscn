@@ -151,9 +151,10 @@ position = Vector2(339, 414)
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
 
-[node name="Paddle" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("6_37hn0")]
+[node name="Paddle" parent="." node_paths=PackedStringArray("camera", "_Ball") instance=ExtResource("6_37hn0")]
 position = Vector2(960, 1000)
 camera = NodePath("../Camera2D")
+_Ball = NodePath("../Ball")
 
 [node name="Ball" parent="." instance=ExtResource("7_l8jin")]
 position = Vector2(959, 796)
