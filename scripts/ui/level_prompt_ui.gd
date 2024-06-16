@@ -66,7 +66,7 @@ func _on_next_button_pressed():
 	else:
 		print("Non level script opened level UI.")
 		
-
+ 
 func _fade_panels() -> void:
 	var tween := get_tree().create_tween()
 	tween.set_parallel()

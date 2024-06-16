@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://cmif6nw1snsxa"]
 
 [ext_resource type="Script" path="res://scripts/entities/paddle.gd" id="1_bel6m"]
-[ext_resource type="Texture2D" uid="uid://bf4yo6t2v66d3" path="res://assets/art/cultist/Leader.png" id="2_bnyew"]
-[ext_resource type="Texture2D" uid="uid://doaijiqaig77a" path="res://assets/art/ui/speech_bubble.png" id="3_bmw5s"]
-[ext_resource type="Texture2D" uid="uid://cuvsv78140n3d" path="res://assets/art/ui/KickEmote.png" id="4_r34v8"]
-[ext_resource type="Texture2D" uid="uid://bdhdoueshj3g4" path="res://assets/art/ui/ServeEmote.png" id="5_nywmh"]
+[ext_resource type="Texture2D" uid="uid://dyhqc45txgui3" path="res://assets/art/cultist/Leader.png" id="2_bnyew"]
+[ext_resource type="Texture2D" uid="uid://dehud7gi67vkv" path="res://assets/art/ui/speech_bubble.png" id="3_bmw5s"]
+[ext_resource type="Texture2D" uid="uid://ckpfai353odov" path="res://assets/art/ui/KickEmote.png" id="4_r34v8"]
+[ext_resource type="Texture2D" uid="uid://c2g06bkqcg8ci" path="res://assets/art/ui/ServeEmote.png" id="5_nywmh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3e2np"]
 size = Vector2(123, 104)

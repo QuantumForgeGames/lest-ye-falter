@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://bnpcxbmw6v6mx"]
 
 [ext_resource type="Script" path="res://scripts/globals/audio_manager.gd" id="1_65yjc"]
-[ext_resource type="AudioStream" uid="uid://cycko6blmfk80" path="res://assets/audio/sfx/Dissenter_Active_1_V1.wav" id="2_e2in6"]
-[ext_resource type="AudioStream" uid="uid://cmkwtj1gx77mf" path="res://assets/audio/sfx/Dissenter_Active_2_V1.wav" id="3_dn4wx"]
-[ext_resource type="AudioStream" uid="uid://dqxbfajsc807i" path="res://assets/audio/sfx/Doubter_Active_1_V1.wav" id="4_g6wp3"]
-[ext_resource type="AudioStream" uid="uid://cwb56vfgl4opu" path="res://assets/audio/sfx/Doubter_Active_2_V1.wav" id="5_3ic8t"]
-[ext_resource type="AudioStream" uid="uid://uvbrkg2h35un" path="res://assets/audio/240615_GodotGameJam2_Music.wav" id="6_dska7"]
+[ext_resource type="AudioStream" uid="uid://dlvtqlh5r1u2j" path="res://assets/audio/sfx/Dissenter_Active_1_V1.wav" id="2_e2in6"]
+[ext_resource type="AudioStream" uid="uid://dsxkyfp200n77" path="res://assets/audio/sfx/Dissenter_Active_2_V1.wav" id="3_dn4wx"]
+[ext_resource type="AudioStream" uid="uid://bpoxuyvm0m8nn" path="res://assets/audio/sfx/Doubter_Active_1_V1.wav" id="4_g6wp3"]
+[ext_resource type="AudioStream" uid="uid://cmj5gqrvja1nj" path="res://assets/audio/sfx/Doubter_Active_2_V1.wav" id="5_3ic8t"]
+[ext_resource type="AudioStream" uid="uid://fjw3gdqgupp2" path="res://assets/audio/240615_GodotGameJam2_Music.wav" id="6_dska7"]
 
 [node name="AudioManager" type="Node2D" node_paths=PackedStringArray("_AudioSpawner", "_BackgroundMusic")]
 script = ExtResource("1_65yjc")
