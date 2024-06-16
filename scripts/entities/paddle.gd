@@ -81,30 +81,6 @@ func _on_minigame_ended(_cultist: Cultist) -> void:
 	set_deferred("process_mode", Node.PROCESS_MODE_ALWAYS)
 	$CaptureArea.set_deferred("monitoring", true)
 
-func exit_scene() -> Tween:
-	$CaptureArea/CollisionShape2D.set_deferred("disabled", true)
-	$Collision.set_deferred("disabled", true)
-	$Collision2.set_deferred("disabled", true)
-	is_disabled = true
-	var ytarget := 525.
-	var dir := int(global_position.x > get_viewport_rect().size.x / 2)
-	var xtarget := dir * get_viewport_rect().size.x + (2 * dir - 1) * 150.
-	
-	return move_to_position(xtarget, ytarget)
-	
-func move_to_position(xtarget: float, ytarget: float) -> Tween:
-	$AnimationPlayer.play("wobble")	
-	var tween := get_tree().create_tween()
-	#process_mode = Node.PROCESS_MODE_DISABLED
-	
-	tween.tween_property(self, "scale", Vector2(1.25, 1.25), 0.25)
-	tween.parallel().tween_property(self, "scale", Vector2(0.7, 0.7), 1.5)
-	tween.parallel().tween_property(self, "position:y", ytarget, abs(global_position.y - ytarget)/350)
-	
-	tween.tween_property(self, "position:x", xtarget, abs(global_position.x - xtarget)/350)
-	tween.tween_callback(func(): $AnimationPlayer.stop())
-	return tween
-
 func show_kick_emote():
 	unable_emote.visible = !_Ball.can_kick
 	if kick_tween: kick_tween.kill()
@@ -132,3 +108,29 @@ func _draw_unable_emote () -> void:
 		unable_emote.draw_line(Vector2(-20., -20.), Vector2(20., 20.), Color.RED, 4.)
 	)
 	unable_emote.queue_redraw()
+
+# jank code ahead 
+func exit_scene() -> Tween:
+	get_parent().get_node("MinigameManager")._terminate_minigame()
+	$CaptureArea/CollisionShape2D.set_deferred("disabled", true)
+	$Collision.set_deferred("disabled", true)
+	$Collision2.set_deferred("disabled", true)
+	is_disabled = true
+	var ytarget := 525.
+	var dir := int(global_position.x > get_viewport_rect().size.x / 2)
+	var xtarget := dir * get_viewport_rect().size.x + (2 * dir - 1) * 150.
+	
+	return move_to_position(xtarget, ytarget)
+	
+func move_to_position(xtarget: float, ytarget: float) -> Tween:
+	$AnimationPlayer.play("wobble")	
+	var tween := get_tree().create_tween()
+	#process_mode = Node.PROCESS_MODE_DISABLED
+	
+	tween.tween_property(self, "scale", Vector2(1.25, 1.25), 0.25)
+	tween.parallel().tween_property(self, "scale", Vector2(0.7, 0.7), 1.5)
+	tween.parallel().tween_property(self, "position:y", ytarget, abs(global_position.y - ytarget)/350)
+	
+	tween.tween_property(self, "position:x", xtarget, abs(global_position.x - xtarget)/350)
+	tween.tween_callback(func(): $AnimationPlayer.stop())
+	return tween
