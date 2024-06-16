@@ -68,7 +68,6 @@ _data = {
 
 [node name="Cultist" type="CharacterBody2D"]
 z_index = 1
-y_sort_enabled = true
 collision_layer = 7
 script = ExtResource("1_tynvq")
 
@@ -79,24 +78,20 @@ scale = Vector2(1.09375, 1.05078)
 texture = SubResource("GradientTexture2D_dtroh")
 
 [node name="Sprites" type="Node2D" parent="."]
-y_sort_enabled = true
 position = Vector2(-2, 0)
 scale = Vector2(0.8, 0.8)
 
 [node name="Base" type="Sprite2D" parent="Sprites"]
-y_sort_enabled = true
 position = Vector2(0, -45)
 texture = ExtResource("2_c7eqh")
 
 [node name="Doubt" type="Sprite2D" parent="Sprites"]
 visible = false
-y_sort_enabled = true
 position = Vector2(0, -45)
 texture = ExtResource("3_dbwxu")
 
 [node name="Dissent" type="Sprite2D" parent="Sprites"]
 visible = false
-y_sort_enabled = true
 position = Vector2(0, -45)
 texture = ExtResource("4_2fl15")
 

@@ -85,8 +85,9 @@ func _check_game_status():
 	if doubt < 0.15:
 		EventManager.level_lost.emit()
 	if num_dissent == 0:
+		LevelPrompt._handle_scoring(num_base_killed, num_doubt_killed)
 		EventManager.level_won.emit()
-
+ 
 func _tween_doubt_shader (doubt :float) -> void:
 	var cur_doubt = doubt_shader.material.get_shader_parameter("transparency")
 	var tween = self.create_tween()

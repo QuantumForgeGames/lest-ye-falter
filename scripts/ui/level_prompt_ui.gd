@@ -2,6 +2,12 @@ extends CanvasLayer
 
 @onready var game_over_container = %GameOverContainer
 @onready var level_complete_container = %LevelCompleteContainer
+@onready var innocents_value_label: Label = %InnocentsValueLabel
+@onready var doubters_value_label: Label = %DoubtersValueLabel
+@onready var total_value_label: Label = %TotalValueLabel
+@onready var star_progress = %StarProgress
+@onready var darken_rect = %DarkenRect
+
 
 func _ready() -> void:
 	EventManager.level_won.connect(_on_level_won)
@@ -11,6 +17,7 @@ func _on_level_lost():
 	game_over_container.show()
 	var tween := get_tree().create_tween()
 	tween.tween_property(game_over_container, "modulate:a", 1., 1.)
+	tween.tween_property(darken_rect, "modulate:a", 1., 1.)
 	tween.tween_callback(func(): get_tree().root.get_child(-1).process_mode = Node.PROCESS_MODE_DISABLED)
 	
 func _on_level_won():
@@ -19,9 +26,20 @@ func _on_level_won():
 		level_complete_container.show()
 		var tween := get_tree().create_tween()
 		tween.tween_property(level_complete_container, "modulate:a", 1., 1.)
+		tween.tween_property(darken_rect, "modulate:a", 1., 1.)
 		tween.tween_callback(func(): get_tree().root.get_child(-1).process_mode = Node.PROCESS_MODE_DISABLED)
 	else:
 		print("Non level script calling _on_level_won.")
+
+# SCORING
+func _handle_scoring(innocents_number, doubters_number):
+	var innocents_penalty: float = -100.0 * innocents_number
+	var doubter_penalty: float = -50.0 * doubters_number
+	var total: float = -1 * (innocents_penalty + doubter_penalty)
+	star_progress.value = (1 - (total / 1000)) * 100
+	innocents_value_label.text = "-100pts x " + str(innocents_number) + " = " + str(innocents_penalty) + "pts"
+	doubters_value_label.text = "-50pts x " + str(doubters_number) + " = " + str(doubter_penalty) + "pts"
+	total_value_label.text = "-" + str(total)
 
 # BUTTONS
 func _on_restart_button_pressed():
@@ -54,6 +72,7 @@ func _fade_panels() -> void:
 	tween.set_parallel()
 	tween.tween_property(level_complete_container, "modulate:a", 0., 1.)
 	tween.tween_property(game_over_container, "modulate:a", 0., 1.)
+	tween.tween_property(darken_rect, "modulate:a", 0., 1.)
 
 func _hide_panels() -> void:
 	game_over_container.hide()
