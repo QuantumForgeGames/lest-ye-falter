@@ -54,6 +54,7 @@ cultist_spawner = NodePath("../CultistSpawner")
 doubt_shader = NodePath("../ParanoiaEffectLayer/TextureRect")
 ball = NodePath("../Ball")
 paranoia_effect_layer = NodePath("../ParanoiaEffectLayer")
+MAX_HITS_PER_PADDLE_BOUNCE = 3
 
 [node name="MinigameManager" type="Node2D" parent="." node_paths=PackedStringArray("paddle")]
 script = ExtResource("3_5foru")

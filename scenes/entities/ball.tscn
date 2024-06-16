@@ -67,8 +67,8 @@ script = ExtResource("1_u8675")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(0.999999, 8.375)
-scale = Vector2(1.09375, 1.05078)
+position = Vector2(0.999999, 13.875)
+scale = Vector2(1.09375, 1.22266)
 texture = SubResource("GradientTexture2D_mup6d")
 
 [node name="Sprites" type="Node2D" parent="."]
