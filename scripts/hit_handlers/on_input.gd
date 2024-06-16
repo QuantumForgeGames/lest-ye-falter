@@ -8,10 +8,13 @@ var can_serve: bool = false
 func on_collision(body: PhysicsBody2D) -> void:
 	if body is Paddle:
 		if hits_remaining == 0: entity.change_sprite()
+		if hits_remaining < MAX_HIT_COUNT: 
+			AudioManager.play_stream_oneshot(AudioManager.audio_punchbowl_fill)
 		hits_remaining = MAX_HIT_COUNT
 		entity.on_paddle_bounce()
 	elif body is Cultist and hits_remaining > 0 and can_serve:
 		hits_remaining -= 1
+		AudioManager.play_stream_oneshot(AudioManager.audio_punchbowl_drink.pick_random())
 		body.on_hit()
 		if hits_remaining == 0: entity.change_sprite()
 

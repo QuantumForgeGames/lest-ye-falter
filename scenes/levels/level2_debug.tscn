@@ -83,6 +83,7 @@ position = Vector2(332, 250)
 
 [node name="Cultist5" parent="CultistSpawner" instance=ExtResource("5_1vv0e")]
 position = Vector2(437, 535)
+initial_state = 2
 
 [node name="Cultist9" parent="CultistSpawner" instance=ExtResource("5_1vv0e")]
 position = Vector2(365, 671)
@@ -98,6 +99,7 @@ position = Vector2(707, 364)
 
 [node name="Cultist4" parent="CultistSpawner" instance=ExtResource("5_1vv0e")]
 position = Vector2(1501, 535)
+initial_state = 2
 
 [node name="Cultist13" parent="CultistSpawner" instance=ExtResource("5_1vv0e")]
 position = Vector2(1588, 406)
@@ -137,7 +139,7 @@ position = Vector2(1246, 609)
 position = Vector2(852, 334)
 
 [node name="Cultist29" parent="CultistSpawner" instance=ExtResource("5_1vv0e")]
-position = Vector2(1072, 316)
+position = Vector2(1060, 334)
 
 [node name="Cultist20" parent="CultistSpawner" instance=ExtResource("5_1vv0e")]
 position = Vector2(1653, 531)
