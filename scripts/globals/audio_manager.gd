@@ -2,11 +2,17 @@ extends Node2D
 
 
 @export var _AudioSpawner :Node
+@export_group("background")
 @export var _BackgroundMusic :AudioStreamPlayer
 @export var BackgroundChanting :AudioStreamPlayer
 
+@export_group("cultists")
 @export var audio_dissenter_active :Array[AudioStreamWAV] = []
-@export var audio_doubter_active :Array [AudioStreamWAV] = []
+@export var audio_doubter_active :Array[AudioStreamWAV] = []
+
+@export_group("minigame")
+@export var audio_minigame_notes :Array[AudioStreamWAV] = []
+@export var audio_minigame_win :AudioStreamWAV
 
 
 func _ready () -> void:

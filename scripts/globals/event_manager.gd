@@ -15,9 +15,15 @@ signal level_won()
 var minigame_active: bool = false
 var delay: float = 6.
 
+
+func _ready () -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
+
 func on_minigame_started(timeout_duration: float) -> void:
 	minigame_active = true
 	delay = timeout_duration
+
 
 func on_minigame_completed() -> void:
 	if minigame_active:
