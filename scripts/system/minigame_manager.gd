@@ -30,6 +30,7 @@ func _process(_delta: float) -> void:
 			combination.remove_at(0)
 		else:
 			EventManager.cultist_escaped.emit(target_cultist)
+			target_cultist.exit_scene()
 			_highlight_glyph(4 - combination.size(), 0)
 			_terminate_minigame()
 
