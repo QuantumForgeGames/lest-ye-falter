@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bem6dpa0hwhhi"]
+[gd_scene load_steps=30 format=3 uid="uid://bem6dpa0hwhhi"]
 
 [ext_resource type="Script" path="res://scripts/system/game_manager.gd" id="1_ajuh0"]
 [ext_resource type="Script" path="res://scripts/system/minigame_manager.gd" id="2_g8yad"]
@@ -7,15 +7,18 @@
 [ext_resource type="PackedScene" uid="uid://daniimopijcej" path="res://scenes/entities/cultist.tscn" id="5_8rhki"]
 [ext_resource type="PackedScene" uid="uid://cmif6nw1snsxa" path="res://scenes/entities/paddle.tscn" id="6_p3w07"]
 [ext_resource type="PackedScene" uid="uid://cye2n4fdkf6ou" path="res://scenes/entities/ball.tscn" id="7_y7yya"]
-[ext_resource type="Texture2D" uid="uid://e37ckt6x80ls" path="res://assets/art/levels/RoomBackground.png" id="8_38wpb"]
-[ext_resource type="Texture2D" uid="uid://cx7wt1771l6r3" path="res://assets/art/levels/DoorEntrance.png" id="9_045l0"]
-[ext_resource type="Texture2D" uid="uid://q7nej7b2ut37" path="res://assets/art/levels/DoorFrame.png" id="10_jcb30"]
+[ext_resource type="Texture2D" uid="uid://c4nb31wevqlq6" path="res://assets/art/levels/RoomBackground.png" id="8_38wpb"]
+[ext_resource type="Texture2D" uid="uid://beh6hujmh8t0a" path="res://assets/art/levels/DoorEntrance.png" id="9_045l0"]
+[ext_resource type="Texture2D" uid="uid://cwlwrv0wd5yaa" path="res://assets/art/levels/DoorFrame.png" id="10_jcb30"]
 [ext_resource type="Shader" path="res://assets/shaders/doubt.gdshader" id="11_uxor3"]
 [ext_resource type="Script" path="res://scripts/ui/kick_ui.gd" id="12_2dpw0"]
-[ext_resource type="Texture2D" uid="uid://bacq46flfig26" path="res://assets/art/ui/bar_empty.png" id="13_475e3"]
-[ext_resource type="Texture2D" uid="uid://bvss2w0see6q1" path="res://assets/art/ui/bar_filled.png" id="14_r3hht"]
-[ext_resource type="Texture2D" uid="uid://cuvsv78140n3d" path="res://assets/art/ui/KickEmote.png" id="15_gircm"]
-[ext_resource type="FontFile" uid="uid://cqnxrg3bj1fb1" path="res://assets/font/FrederickatheGreat-Regular.ttf" id="16_18gt2"]
+[ext_resource type="Texture2D" uid="uid://catss2ds8j6my" path="res://assets/art/ui/bar_empty.png" id="13_475e3"]
+[ext_resource type="Texture2D" uid="uid://ceqltw84qudwc" path="res://assets/art/ui/bar_filled.png" id="14_r3hht"]
+[ext_resource type="Texture2D" uid="uid://c5hnu3th8n756" path="res://assets/art/ui/KickEmote.png" id="15_gircm"]
+[ext_resource type="FontFile" uid="uid://b504hwwsl4c7q" path="res://assets/font/FrederickatheGreat-Regular.ttf" id="16_18gt2"]
+[ext_resource type="Script" path="res://scripts/system/lighting.gd" id="17_6sccd"]
+[ext_resource type="Texture2D" uid="uid://b3ca5hy35al34" path="res://assets/art/levels/WallLampFront.png" id="18_8tvo6"]
+[ext_resource type="Texture2D" uid="uid://dquve7yynqjm0" path="res://assets/art/levels/WallLampSide.png" id="19_lgrnk"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1r277"]
 normal = Vector2(0, 1)
@@ -45,6 +48,24 @@ shader_parameter/dithering = 1.95
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5n221"]
 width = 1920
 height = 1080
+
+[sub_resource type="Gradient" id="Gradient_gr4eo"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ksjj5"]
+gradient = SubResource("Gradient_gr4eo")
+fill = 1
+fill_from = Vector2(0.491453, 0.478632)
+fill_to = Vector2(0.884615, 0.162393)
+
+[sub_resource type="Gradient" id="Gradient_v3msn"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_urv0x"]
+gradient = SubResource("Gradient_v3msn")
+fill = 1
+fill_from = Vector2(0.491453, 0.478632)
+fill_to = Vector2(0.884615, 0.162393)
 
 [node name="LVL6" type="Node2D"]
 y_sort_enabled = true
@@ -229,6 +250,12 @@ position = Vector2(960, 1000)
 camera = NodePath("../Camera2D")
 _Ball = NodePath("../Ball")
 
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Paddle"]
+position = Vector2(0, 77.41)
+remote_path = NodePath("../../Lighting/PointLight2D2")
+update_rotation = false
+update_scale = false
+
 [node name="Ball" parent="." instance=ExtResource("7_y7yya")]
 position = Vector2(959, 796)
 
@@ -337,3 +364,71 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("16_18gt2")
 theme_override_font_sizes/font_size = 50
 text = "LVL 2+"
+
+[node name="LightingDarkness" type="CanvasModulate" parent="."]
+color = Color(0.625, 0.625, 0.625, 1)
+
+[node name="Lighting" type="Node2D" parent="."]
+script = ExtResource("17_6sccd")
+
+[node name="PointLight2D" type="PointLight2D" parent="Lighting"]
+position = Vector2(160, 252)
+scale = Vector2(13, 13)
+texture = SubResource("GradientTexture2D_ksjj5")
+
+[node name="PointLight2D3" type="PointLight2D" parent="Lighting"]
+position = Vector2(698, 195)
+scale = Vector2(13, 13)
+texture = SubResource("GradientTexture2D_ksjj5")
+
+[node name="PointLight2D7" type="PointLight2D" parent="Lighting"]
+position = Vector2(1231, 181)
+scale = Vector2(13, 13)
+texture = SubResource("GradientTexture2D_ksjj5")
+
+[node name="PointLight2D4" type="PointLight2D" parent="Lighting"]
+position = Vector2(1750, 281)
+scale = Vector2(16.306, 13)
+texture = SubResource("GradientTexture2D_ksjj5")
+
+[node name="PointLight2D5" type="PointLight2D" parent="Lighting"]
+position = Vector2(1801, 944)
+scale = Vector2(16.306, 13)
+texture = SubResource("GradientTexture2D_ksjj5")
+
+[node name="PointLight2D6" type="PointLight2D" parent="Lighting"]
+position = Vector2(85, 1002)
+scale = Vector2(16.306, 13)
+texture = SubResource("GradientTexture2D_ksjj5")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Lighting"]
+position = Vector2(960, 1077.41)
+scale = Vector2(10, 10)
+texture = SubResource("GradientTexture2D_urv0x")
+
+[node name="Lamps" type="Node2D" parent="."]
+
+[node name="WallLampFront" type="Sprite2D" parent="Lamps"]
+position = Vector2(1793, 223)
+texture = ExtResource("18_8tvo6")
+
+[node name="WallLampFront2" type="Sprite2D" parent="Lamps"]
+position = Vector2(1215, 102)
+texture = ExtResource("18_8tvo6")
+
+[node name="WallLampFront3" type="Sprite2D" parent="Lamps"]
+position = Vector2(721, 98)
+texture = ExtResource("18_8tvo6")
+
+[node name="WallLampFront4" type="Sprite2D" parent="Lamps"]
+position = Vector2(124, 199)
+texture = ExtResource("18_8tvo6")
+
+[node name="WallLampSide" type="Sprite2D" parent="Lamps"]
+position = Vector2(143, 842)
+texture = ExtResource("19_lgrnk")
+
+[node name="WallLampSide2" type="Sprite2D" parent="Lamps"]
+position = Vector2(1781, 824)
+texture = ExtResource("19_lgrnk")
+flip_h = true
