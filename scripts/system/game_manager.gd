@@ -65,7 +65,7 @@ func _on_cultist_killed(cultist: Cultist) -> void:
 func _on_cultist_escaped(cultist: Cultist) -> void:
 	num_escaped += 1
 	cultist.reparent(get_parent())
-	_check_game_status()
+	if level_active: _check_game_status()
 
 func _recompute_stats(_cultist: Cultist) -> void:
 	num_base = 0
@@ -91,12 +91,15 @@ func _check_game_status():
 	if num_escaped >= MAX_ESCAPED:
 		LevelPrompt.set_lose_text("ESCAPE")
 		EventManager.level_lost.emit()
-	if doubt < 0.15:
+		level_active = false
+	elif doubt < 0.15:
 		LevelPrompt.set_lose_text("DOUBT")
 		EventManager.level_lost.emit()
-	if num_dissent == 0:
+		level_active = false
+	elif num_dissent == 0:
 		LevelPrompt._handle_scoring(num_base_killed, num_doubt_killed)
 		EventManager.level_won.emit()
+		level_active = false
 
 
 func _tween_doubt_shader (doubt :float) -> void:
@@ -104,7 +107,7 @@ func _tween_doubt_shader (doubt :float) -> void:
 	doubt_tween = get_tree().create_tween()
 	var cur_doubt = doubt_shader.material.get_shader_parameter("transparency")
 	doubt_tween.tween_method(func(d):
-		AudioManager._BackgroundMusic.set_volume_db(remap(d, 0.0, 1.0, -40.0, 0.0))
+		AudioManager.BackgroundChanting.set_volume_db(remap(d, 0.0, 1.0, -40.0, 0.0))
 		doubt_shader.material.set_shader_parameter("transparency", d)
 		doubt_shader.material.set_shader_parameter("thresholds", PackedFloat32Array(
 			[0.6, 0.67, 0.75].map(func(x): return x *d)

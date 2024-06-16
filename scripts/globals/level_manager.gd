@@ -32,6 +32,7 @@ func change_scene(target: String) -> void:
 
 
 func _change_scene(target: String) -> void:
+	AudioManager.reset_chanting()
 	$ColorRect.mouse_filter = Control.MOUSE_FILTER_STOP
 	animation_player.play("fade")
 	await animation_player.animation_finished

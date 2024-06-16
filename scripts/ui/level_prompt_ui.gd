@@ -45,7 +45,6 @@ func _on_level_won():
 		tween.tween_property(doubters_value_label, "self_modulate:a", 1.0, 1.)
 		tween.tween_property(total_value_label, "self_modulate:a", 1.0, 1.)
 		var percent = (level_max_count *100. + level_total) / (level_max_count *100.)
-		print(percent)
 		tween.tween_property(star_progress, "value", abs(percent), 1.5) # progress bar
 	else:
 		print("Non level script calling _on_level_won.")
