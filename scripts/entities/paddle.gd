@@ -31,7 +31,6 @@ func _ready () -> void:
 	# Calculate half the width of the paddle for boundary checks
 	half_paddle_width = _Collision.shape.get_rect().size.x / 2 * scale.x
 	half_arm_width = _Collision2.shape.get_height() / 2 * scale.x
-	print(half_arm_width)
 
 	# Calculate the left and right bounds of the camera view
 	camera_start_x = camera.position.x - camera_rect.size.x / 2
