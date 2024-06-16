@@ -64,6 +64,7 @@ func _get_input () -> void:
 
 func _on_capture_area_body_entered(body: Node2D) -> void:
 	if process_mode != Node.PROCESS_MODE_DISABLED: # if mini game is not already active
+		hide_serve_emote()
 		set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 		$CaptureArea.set_deferred("monitoring", false)	
 		body.on_captured()
