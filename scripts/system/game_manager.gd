@@ -29,6 +29,8 @@ var level_active: bool = false
 var doubt_tween :Tween = null
 
 func _ready() -> void:
+	LevelPrompt.level_max_count = cultist_spawner.get_child_count() -3
+
 	_tween_doubt_shader(0.0)
 	paranoia_effect_layer.show()
 	ball.set_max_hits(MAX_HITS_PER_PADDLE_BOUNCE)
