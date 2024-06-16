@@ -29,7 +29,7 @@ func _ready() -> void:
 	paranoia_effect_layer.show()
 	ball.set_max_hits(MAX_HITS_PER_PADDLE_BOUNCE)
 	LevelPrompt._hide_panels()
-	
+	EventManager.minigame_active = false
 	EventManager.cultist_convinced.connect(_on_cultist_convinced)
 	EventManager.cultist_killed.connect(_on_cultist_killed)
 	EventManager.cultist_escaped.connect(_on_cultist_escaped)

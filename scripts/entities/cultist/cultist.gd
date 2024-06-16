@@ -11,6 +11,9 @@ var MINIGAME_TIMEOUT_DURATION_ON_ESCAPE: float = 2.
 
 var spawn_position: Vector2
 
+@onready var sick_emote: Sprite2D = $SickEmote
+var sick_tween: Tween = null
+
 enum STATES {BASE, DOUBT, DISSENT}
 
 func _ready() -> void:
@@ -67,6 +70,12 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 		EventManager.delay = MINIGAME_TIMEOUT_DURATION_ON_ESCAPE
 		EventManager.on_minigame_completed()
 	queue_free()
+	
+func show_sick_emote():
+	if sick_tween: sick_tween.kill()
+	sick_tween = get_tree().create_tween()
+	sick_tween.tween_property(sick_emote, "modulate:a", 1., 0.25)
+	sick_tween.tween_property(sick_emote, "modulate:a", 0., 0.25).set_delay(0.25)
 
 func set_infection_parameters(
 	conversion_delay: float, 

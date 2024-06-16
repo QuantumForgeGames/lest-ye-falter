@@ -31,6 +31,7 @@ func on_hit() -> void:
 		transitioned.emit("Server")
 	else:
 		EventManager.cultist_killed.emit(entity)
+		entity.show_sick_emote()
 
 func _on_doubt_timer_timeout() -> void:
 	var prob :=  randf()

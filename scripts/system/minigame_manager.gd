@@ -39,7 +39,7 @@ func _on_cultist_captured(cultist: Cultist):
 	
 	minigame_ui = minigame_ui_scene.instantiate()
 	minigame_ui.z_index = 2
-	minigame_ui.position = paddle.global_position + Vector2(0, -100)
+	minigame_ui.position = paddle.global_position + Vector2(160, -100)
 	
 	for idx in combination.size():
 		minigame_ui.get_node("Glyphs").get_child(idx).texture = glyph_textures[combination[idx]]
@@ -76,6 +76,8 @@ func _highlight_glyph(idx: int, code: int):
 		tween.tween_property(glyph, "scale", Vector2(0.34, 0.34), 0.2)
 		
 		if code == 1: 
-			glyph.modulate = Color8(112, 180, 71)
+			#glyph.modulate = Color8(112, 180, 71)
+			glyph.modulate = Color8(85, 131, 0)
 		else:
-			glyph.modulate = Color8(232, 63, 54)
+			#glyph.modulate = Color8(232, 63, 54)
+			glyph.modulate = Color8(175, 0, 0)

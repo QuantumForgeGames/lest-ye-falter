@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ql2p5ryljsxu"]
+[gd_scene load_steps=22 format=3 uid="uid://ql2p5ryljsxu"]
 
 [ext_resource type="Script" path="res://scripts/system/game_manager.gd" id="1_5rr6u"]
 [ext_resource type="Script" path="res://scripts/system/minigame_manager.gd" id="2_uh77b"]
@@ -7,13 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://daniimopijcej" path="res://scenes/entities/cultist.tscn" id="5_kmsj8"]
 [ext_resource type="PackedScene" uid="uid://cmif6nw1snsxa" path="res://scenes/entities/paddle.tscn" id="6_nkpei"]
 [ext_resource type="PackedScene" uid="uid://cye2n4fdkf6ou" path="res://scenes/entities/ball.tscn" id="7_bbbxi"]
-[ext_resource type="Texture2D" uid="uid://e37ckt6x80ls" path="res://assets/art/levels/RoomBackground.png" id="8_vtgnn"]
-[ext_resource type="Texture2D" uid="uid://cx7wt1771l6r3" path="res://assets/art/levels/DoorEntrance.png" id="9_dhcd2"]
-[ext_resource type="Texture2D" uid="uid://q7nej7b2ut37" path="res://assets/art/levels/DoorFrame.png" id="10_mt7hp"]
+[ext_resource type="Texture2D" uid="uid://c4nb31wevqlq6" path="res://assets/art/levels/RoomBackground.png" id="8_vtgnn"]
+[ext_resource type="Texture2D" uid="uid://beh6hujmh8t0a" path="res://assets/art/levels/DoorEntrance.png" id="9_dhcd2"]
+[ext_resource type="Texture2D" uid="uid://cwlwrv0wd5yaa" path="res://assets/art/levels/DoorFrame.png" id="10_mt7hp"]
 [ext_resource type="Shader" path="res://assets/shaders/doubt.gdshader" id="11_p7bvd"]
 [ext_resource type="Script" path="res://scripts/ui/kick_ui.gd" id="12_2oxvv"]
-[ext_resource type="Texture2D" uid="uid://bacq46flfig26" path="res://assets/art/ui/bar_empty.png" id="13_71a58"]
-[ext_resource type="Texture2D" uid="uid://bvss2w0see6q1" path="res://assets/art/ui/bar_filled.png" id="14_fi1m4"]
+[ext_resource type="Texture2D" uid="uid://catss2ds8j6my" path="res://assets/art/ui/bar_empty.png" id="13_71a58"]
+[ext_resource type="Texture2D" uid="uid://ceqltw84qudwc" path="res://assets/art/ui/bar_filled.png" id="14_fi1m4"]
+[ext_resource type="Texture2D" uid="uid://c5hnu3th8n756" path="res://assets/art/ui/KickEmote.png" id="15_hce6x"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1r277"]
 normal = Vector2(0, 1)
@@ -53,6 +54,7 @@ cultist_spawner = NodePath("../CultistSpawner")
 doubt_shader = NodePath("../ParanoiaEffectLayer/TextureRect")
 ball = NodePath("../Ball")
 paranoia_effect_layer = NodePath("../ParanoiaEffectLayer")
+MAX_HITS_PER_PADDLE_BOUNCE = 4
 
 [node name="MinigameManager" type="Node2D" parent="." node_paths=PackedStringArray("paddle")]
 script = ExtResource("2_uh77b")
@@ -157,7 +159,7 @@ position = Vector2(963, 390)
 position = Vector2(1437, 399)
 
 [node name="Cultist12" parent="CultistSpawner" instance=ExtResource("5_kmsj8")]
-position = Vector2(1437, 241)
+position = Vector2(1435, 246)
 initial_state = 2
 
 [node name="Cultist13" parent="CultistSpawner" instance=ExtResource("5_kmsj8")]
@@ -282,3 +284,13 @@ fill_mode = 4
 texture_under = ExtResource("13_71a58")
 texture_progress = ExtResource("14_fi1m4")
 metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="UI"]
+anchors_preset = -1
+anchor_right = 0.123
+anchor_bottom = 0.078
+offset_left = 1781.0
+offset_top = 954.0
+offset_right = 1659.84
+offset_bottom = 984.76
+texture = ExtResource("15_hce6x")

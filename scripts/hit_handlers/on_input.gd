@@ -15,7 +15,7 @@ func on_collision(body: PhysicsBody2D) -> void:
 		body.on_hit()
 		if hits_remaining == 0: entity.change_sprite()
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("serve_punch"):
 		can_serve = true
 	elif event.is_action_released("serve_punch"):
