@@ -20,8 +20,6 @@ func _ready() -> void:
 	spawn_position = position
 	set_state(initial_state)
 
-func _process(delta: float) -> void:
-	print(EventManager.minigame_active)
 func on_hit():
 	$StateMachine.on_hit()
 
