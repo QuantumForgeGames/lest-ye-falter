@@ -27,14 +27,16 @@ func _process(_delta: float) -> void:
 		or Input.is_action_just_pressed("move_right") and combination[0] == GLYPHS.RIGHT
 		or Input.is_action_just_pressed("move_up") and combination[0] == GLYPHS.UP
 		or Input.is_action_just_pressed("move_down") and combination[0] == GLYPHS.DOWN):
-			if (4 -combination.size()) != 3: AudioManager.play_stream_oneshot(AudioManager.audio_minigame_notes.pick_random())
-			_highlight_glyph(4 - combination.size(), 1)
+			var idx = 4 - combination.size()
+			_highlight_glyph(idx, 1)
+			if idx < 3: AudioManager.play_stream_oneshot(AudioManager.audio_minigame_notes.pick_random())
+			else: AudioManager.play_stream_oneshot(AudioManager.audio_minigame_win)
 			combination.remove_at(0)
 		else:
 			EventManager.cultist_escaped.emit(target_cultist)
 			target_cultist.exit_scene()
-			AudioManager.play_stream_oneshot(AudioManager.audio_minigame_notes.pick_random())
 			_highlight_glyph(4 - combination.size(), 0)
+			AudioManager.play_stream_oneshot(AudioManager.audio_minigame_lose)
 			_terminate_minigame()
 
 func _on_cultist_captured(cultist: Cultist):
