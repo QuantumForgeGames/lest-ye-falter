@@ -29,7 +29,7 @@ func _process(_delta: float) -> void:
 			_highlight_glyph(4 - combination.size(), 1)
 			combination.remove_at(0)
 		else:
-			EventManager.cultist_killed.emit(target_cultist)
+			EventManager.cultist_escaped.emit(target_cultist)
 			_highlight_glyph(4 - combination.size(), 0)
 			_terminate_minigame()
 
