@@ -29,13 +29,14 @@ anchor_left = 0.932
 anchor_top = 0.888
 anchor_right = 0.984
 anchor_bottom = 0.969
-offset_left = 99.5598
-offset_top = -0.0401611
-offset_right = 87.72
-offset_bottom = 12.48
+offset_left = 14.7135
+offset_top = -0.705139
+offset_right = 2.87366
+offset_bottom = 11.8151
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 1.5708
+pivot_offset = Vector2(42.0906, 42.7555)
 texture_normal = ExtResource("3_t8wxe")
 
 [connection signal="mouse_entered" from="PageTwoButton" to="." method="_on_page_two_button_mouse_entered"]

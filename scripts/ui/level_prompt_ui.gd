@@ -58,7 +58,7 @@ func _handle_scoring(innocents_number, doubters_number):
 	game_total += level_total
 	innocents_value_label.text = "-100pts x " + str(innocents_number) + " = " + str(innocents_penalty) + "pts"
 	doubters_value_label.text = "-50pts x " + str(doubters_number) + " = " + str(doubter_penalty) + "pts"
-	total_value_label.text = "-" + str(level_total)
+	total_value_label.text = str(level_total)
 
 
 # BUTTONS
@@ -83,7 +83,7 @@ func _on_next_button_pressed():
 		if current_level < LevelManager.LAST_LVL:
 			LevelManager.change_to_next_level(current_level)
 		else:
-			LevelManager.change_scene("END_SCREEN")
+			LevelManager.change_scene("WIN_SCREEN")
 	
 		_fade_panels()
 	else:
