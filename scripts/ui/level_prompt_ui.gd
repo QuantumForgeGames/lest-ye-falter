@@ -14,6 +14,7 @@ var lose_options := {
 }
 
 func _ready() -> void:
+	_hide_panels()
 	EventManager.level_won.connect(_on_level_won)
 	EventManager.level_lost.connect(_on_level_lost)
 

@@ -1,11 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnpcxbmw6v6mx"]
+[gd_scene load_steps=12 format=3 uid="uid://bnpcxbmw6v6mx"]
 
 [ext_resource type="Script" path="res://scripts/globals/audio_manager.gd" id="1_65yjc"]
-[ext_resource type="AudioStream" uid="uid://cycko6blmfk80" path="res://assets/audio/sfx/Dissenter_Active_1_V1.wav" id="2_e2in6"]
-[ext_resource type="AudioStream" uid="uid://cmkwtj1gx77mf" path="res://assets/audio/sfx/Dissenter_Active_2_V1.wav" id="3_dn4wx"]
-[ext_resource type="AudioStream" uid="uid://dqxbfajsc807i" path="res://assets/audio/sfx/Doubter_Active_1_V1.wav" id="4_g6wp3"]
-[ext_resource type="AudioStream" uid="uid://cwb56vfgl4opu" path="res://assets/audio/sfx/Doubter_Active_2_V1.wav" id="5_3ic8t"]
+[ext_resource type="AudioStream" uid="uid://cycko6blmfk80" path="res://assets/audio/sfx/cultist_active/Dissenter_Active_1_V1.wav" id="2_e2in6"]
+[ext_resource type="AudioStream" uid="uid://cmkwtj1gx77mf" path="res://assets/audio/sfx/cultist_active/Dissenter_Active_2_V1.wav" id="3_dn4wx"]
+[ext_resource type="AudioStream" uid="uid://dqxbfajsc807i" path="res://assets/audio/sfx/cultist_active/Doubter_Active_1_V1.wav" id="4_g6wp3"]
+[ext_resource type="AudioStream" uid="uid://cwb56vfgl4opu" path="res://assets/audio/sfx/cultist_active/Doubter_Active_2_V1.wav" id="5_3ic8t"]
 [ext_resource type="AudioStream" uid="uid://uvbrkg2h35un" path="res://assets/audio/240615_GodotGameJam2_Music.wav" id="6_dska7"]
+[ext_resource type="AudioStream" uid="uid://dk4i17uvrs5ta" path="res://assets/audio/sfx/mingame/MinigameArrowNote_1_V3.wav" id="6_lbuid"]
+[ext_resource type="AudioStream" uid="uid://db1y7t64dakkj" path="res://assets/audio/sfx/mingame/MinigameArrowNote_2_V3.wav" id="7_wlo4n"]
+[ext_resource type="AudioStream" uid="uid://mbsgaf2hy86e" path="res://assets/audio/sfx/mingame/MinigameArrowNote_3_V3.wav" id="8_71uys"]
+[ext_resource type="AudioStream" uid="uid://btbo3rmnq31d7" path="res://assets/audio/sfx/mingame/MinigameArrowNote_4_V3.wav" id="9_y63iv"]
+[ext_resource type="AudioStream" uid="uid://dbijl8aqs66en" path="res://assets/audio/sfx/mingame/MinigameWin_1_V2.wav" id="10_gnqja"]
 
 [node name="AudioManager" type="Node2D" node_paths=PackedStringArray("_AudioSpawner", "_BackgroundMusic")]
 script = ExtResource("1_65yjc")
@@ -13,6 +18,8 @@ _AudioSpawner = NodePath("AudioSpawner")
 _BackgroundMusic = NodePath("BackgroundMusic")
 audio_dissenter_active = Array[AudioStreamWAV]([ExtResource("2_e2in6"), ExtResource("3_dn4wx")])
 audio_doubter_active = Array[AudioStreamWAV]([ExtResource("4_g6wp3"), ExtResource("5_3ic8t")])
+audio_minigame_notes = Array[AudioStreamWAV]([ExtResource("6_lbuid"), ExtResource("7_wlo4n"), ExtResource("8_71uys"), ExtResource("9_y63iv")])
+audio_minigame_win = ExtResource("10_gnqja")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_dska7")

@@ -19,6 +19,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if combination.size() == 0:
 		EventManager.cultist_convinced.emit(target_cultist)
+		AudioManager.play_stream_oneshot(AudioManager.audio_minigame_win)
 		_terminate_minigame()
 		
 	if Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right") or Input.is_action_just_pressed("move_up") or Input.is_action_just_pressed("move_down"):
@@ -26,11 +27,13 @@ func _process(_delta: float) -> void:
 		or Input.is_action_just_pressed("move_right") and combination[0] == GLYPHS.RIGHT
 		or Input.is_action_just_pressed("move_up") and combination[0] == GLYPHS.UP
 		or Input.is_action_just_pressed("move_down") and combination[0] == GLYPHS.DOWN):
+			if (4 -combination.size()) != 3: AudioManager.play_stream_oneshot(AudioManager.audio_minigame_notes.pick_random())
 			_highlight_glyph(4 - combination.size(), 1)
 			combination.remove_at(0)
 		else:
 			EventManager.cultist_escaped.emit(target_cultist)
 			target_cultist.exit_scene()
+			AudioManager.play_stream_oneshot(AudioManager.audio_minigame_notes.pick_random())
 			_highlight_glyph(4 - combination.size(), 0)
 			_terminate_minigame()
 
