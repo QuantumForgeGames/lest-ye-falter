@@ -67,11 +67,12 @@ func _start_minigame():
 func _terminate_minigame():
 	target_cultist = null
 	process_mode = PROCESS_MODE_DISABLED
-	await tween.finished
-	tween = get_tree().create_tween()
-	tween.tween_property(minigame_ui, "modulate:a", 0., 0.5)
-	tween.tween_callback(minigame_ui.queue_free)
-	EventManager.on_minigame_completed()
+	if tween: await tween.finished
+	if minigame_ui:
+		tween = get_tree().create_tween()
+		tween.tween_property(minigame_ui, "modulate:a", 0., 0.5)
+		tween.tween_callback(minigame_ui.queue_free)
+		EventManager.on_minigame_completed()
 
 func _highlight_glyph(idx: int, code: int):
 	if is_instance_valid(minigame_ui):
