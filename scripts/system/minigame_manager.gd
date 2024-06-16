@@ -60,7 +60,7 @@ func _on_cultist_captured(cultist: Cultist):
 	tween.tween_callback(_start_minigame)
 
 func _start_minigame():
-	process_mode = Node.PROCESS_MODE_ALWAYS
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 
 func _terminate_minigame():
 	target_cultist = null

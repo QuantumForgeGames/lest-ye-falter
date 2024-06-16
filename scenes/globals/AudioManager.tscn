@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://dbijl8aqs66en" path="res://assets/audio/sfx/mingame/MinigameWin_1_V2.wav" id="10_gnqja"]
 
 [node name="AudioManager" type="Node2D" node_paths=PackedStringArray("_AudioSpawner", "_BackgroundMusic")]
+process_mode = 3
 script = ExtResource("1_65yjc")
 _AudioSpawner = NodePath("AudioSpawner")
 _BackgroundMusic = NodePath("BackgroundMusic")
