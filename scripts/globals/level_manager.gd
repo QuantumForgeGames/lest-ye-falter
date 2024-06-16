@@ -15,7 +15,9 @@ var scenes = {
 	"WIN_SCREEN": "res://scenes/menus/win_screen.tscn",
 }
 
-var LAST_LVL: int = 8
+var LAST_LVL: int = 4
+var LAST_LVL_PLUS :int = 8
+var is_new_game_plus :bool = false
 
 
 func _ready () -> void:
@@ -29,6 +31,10 @@ func change_to_next_level(current: int) -> void:
 
 func change_scene(target: String) -> void:
 	_change_scene(scenes[target])
+	match target:
+		"LVL4": is_new_game_plus = false
+		"LVL7": is_new_game_plus = true
+		"MAIN_MENU": is_new_game_plus = false
 
 
 func _change_scene(target: String) -> void:

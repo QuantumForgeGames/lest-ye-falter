@@ -80,11 +80,11 @@ func _on_retry_button_pressed():
 func _on_next_button_pressed():
 	var current_level = _get_current_level()
 	if current_level > 0:
-		if current_level < LevelManager.LAST_LVL:
-			LevelManager.change_to_next_level(current_level)
-		else:
-			LevelManager.change_scene("WIN_SCREEN")
-	
+		match current_level:
+			1, 2, 3, 5, 6, 7:
+				LevelManager.change_to_next_level(current_level)
+			_:
+				LevelManager.change_scene("WIN_SCREEN")
 		_fade_panels()
 	else:
 		print("Non level script opened level UI.")
