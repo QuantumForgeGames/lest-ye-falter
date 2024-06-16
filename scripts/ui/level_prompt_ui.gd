@@ -90,9 +90,12 @@ func _on_next_button_pressed():
 		match current_level:
 			1, 2, 3, 5, 6, 7:
 				LevelManager.change_to_next_level(current_level)
+				_fade_panels()
 			_:
+				_fade_panels()
+				var tween: Tween = get_tree().root.get_child(-1).get_node("Paddle").exit_scene()
+				await tween.finished
 				LevelManager.change_scene("WIN_SCREEN")
-		_fade_panels()
 	else:
 		print("Non level script opened level UI.")
 

@@ -25,6 +25,8 @@ var camera_end_x :float
 var kick_tween: Tween = null
 var serve_tween: Tween = null
 
+var is_disabled: bool = false
+
 func _ready () -> void:
 	_draw_unable_emote()
 	EventManager.cultist_convinced.connect(_on_minigame_ended)
@@ -45,10 +47,11 @@ func _process (_delta :float) -> void:
 	_get_input()
 	
 	# Prevent the paddle from moving outside the camera bounds
-	if global_position.x - half_arm_width < camera_start_x:
-		global_position.x = camera_start_x + half_arm_width
-	elif global_position.x + half_arm_width > camera_end_x:
-		global_position.x = camera_end_x - half_arm_width
+	if not is_disabled:
+		if global_position.x - half_arm_width < camera_start_x:
+			global_position.x = camera_start_x + half_arm_width
+		elif global_position.x + half_arm_width > camera_end_x:
+			global_position.x = camera_end_x - half_arm_width
 
 	# Update the paddle's velocity based on the current direction
 	velocity = speed * direction
@@ -78,6 +81,29 @@ func _on_minigame_ended(_cultist: Cultist) -> void:
 	set_deferred("process_mode", Node.PROCESS_MODE_ALWAYS)
 	$CaptureArea.set_deferred("monitoring", true)
 
+func exit_scene() -> Tween:
+	$CaptureArea/CollisionShape2D.set_deferred("disabled", true)
+	$Collision.set_deferred("disabled", true)
+	$Collision2.set_deferred("disabled", true)
+	is_disabled = true
+	var ytarget := 525.
+	var dir := int(global_position.x > get_viewport_rect().size.x / 2)
+	var xtarget := dir * get_viewport_rect().size.x + (2 * dir - 1) * 150.
+	
+	return move_to_position(xtarget, ytarget)
+	
+func move_to_position(xtarget: float, ytarget: float) -> Tween:
+	$AnimationPlayer.play("wobble")	
+	var tween := get_tree().create_tween()
+	#process_mode = Node.PROCESS_MODE_DISABLED
+	
+	tween.tween_property(self, "scale", Vector2(1.25, 1.25), 0.25)
+	tween.parallel().tween_property(self, "scale", Vector2(0.7, 0.7), 1.5)
+	tween.parallel().tween_property(self, "position:y", ytarget, abs(global_position.y - ytarget)/350)
+	
+	tween.tween_property(self, "position:x", xtarget, abs(global_position.x - xtarget)/350)
+	tween.tween_callback(func(): $AnimationPlayer.stop())
+	return tween
 
 func show_kick_emote():
 	unable_emote.visible = !_Ball.can_kick
