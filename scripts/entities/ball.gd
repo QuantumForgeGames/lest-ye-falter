@@ -11,11 +11,18 @@ var KICK_TIMEOUT_DURATION := 5.
 @export var MAX_SPEED :float = 600
 @export var MIN_SPEED :float = 400
 
+var check_count :int = 0
 var can_kick: bool = true
 @onready var kick_timer := $KickTimer
+@onready var paddle_timer := $PaddleTimer
+
 
 func _ready () -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
+	paddle_timer.timeout.connect(func(): 
+		check_count += 1
+		if check_count == 2: paddle_timer.stop()
+	)
 
 	randomize()
 	var trajectory := Vector2(randf_range(-1., 1.), [randf_range(-1., -0.25), randf_range(0.25, 1.)].pick_random()).normalized()
@@ -75,3 +82,10 @@ func _on_kick_timer_timeout() -> void:
 func on_paddle_bounce() -> void:
 	can_kick = true
 	EventManager.kick_state_changed.emit(1., -1.)
+
+func check_paddle_timer () -> bool:
+	check_count = 0
+	if paddle_timer.is_stopped():
+		paddle_timer.start()
+		return true
+	else: return false
