@@ -1,6 +1,8 @@
 extends Node
 class_name GameManager
 
+const MAX_ESCAPED :int = 4
+
 @export var cultist_spawner: CultistSpawner
 @export var doubt_shader :TextureRect
 @export var ball: Ball
@@ -24,8 +26,10 @@ var num_doubt: int = 0
 var num_dissent: int = 0
 
 var level_active: bool = false
+var doubt_tween :Tween = null
 
 func _ready() -> void:
+	_tween_doubt_shader(0.0)
 	paranoia_effect_layer.show()
 	ball.set_max_hits(MAX_HITS_PER_PADDLE_BOUNCE)
 	LevelPrompt._hide_panels()
@@ -60,6 +64,7 @@ func _on_cultist_killed(cultist: Cultist) -> void:
 func _on_cultist_escaped(cultist: Cultist) -> void:
 	num_escaped += 1
 	cultist.reparent(get_parent())
+	if num_escaped >= MAX_ESCAPED: EventManager.level_lost.emit()
 
 func _recompute_stats(_cultist: Cultist) -> void:
 	num_base = 0
@@ -81,20 +86,24 @@ func _recompute_stats(_cultist: Cultist) -> void:
 
 func _check_game_status():
 	var doubt = float(num_base)/(num_base + num_doubt + num_dissent)
-	_tween_doubt_shader(doubt)
+	_tween_doubt_shader(1.0 -doubt)
 	if doubt < 0.15:
 		EventManager.level_lost.emit()
 	if num_dissent == 0:
 		LevelPrompt._handle_scoring(num_base_killed, num_doubt_killed)
 		EventManager.level_won.emit()
- 
+
+
 func _tween_doubt_shader (doubt :float) -> void:
+	if doubt_tween: doubt_tween.kill()
+	doubt_tween = get_tree().create_tween()
 	var cur_doubt = doubt_shader.material.get_shader_parameter("transparency")
-	var tween = self.create_tween()
-	tween.tween_method(func(d):
+	printt("------", cur_doubt, )
+	doubt_tween.tween_method(func(d):
 		AudioManager._BackgroundMusic.set_volume_db(remap(d, 0.0, 1.0, -40.0, 0.0))
 		doubt_shader.material.set_shader_parameter("transparency", d)
 		doubt_shader.material.set_shader_parameter("thresholds", PackedFloat32Array(
-			[0.6, 0.67, 0.75].map(func(x): return clampf(0.0, x, x *d *2))
+			[0.6, 0.67, 0.75].map(func(x): return x *d)
 		))
-	, cur_doubt, 1. -doubt, 0.25)
+		printt(d, 0.6*d*1.5, 0.15*num_escaped)
+	, cur_doubt, remap(doubt, 0.0, 1.0, 0.0 +(0.2*num_escaped), 1.0), 0.25)
