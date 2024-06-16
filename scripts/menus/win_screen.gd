@@ -1,7 +1,7 @@
 extends Control
 
 @onready var _BackButton :TextureButton = $BackButton
-@onready var _NewGamePlusButton :Button = $NewGamePlusButton
+@onready var _NewGamePlusButton :TextureButton = $NewGamePlusButton
 
 
 func _ready () -> void:

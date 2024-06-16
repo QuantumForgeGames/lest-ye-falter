@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bnpcxbmw6v6mx"]
+[gd_scene load_steps=21 format=3 uid="uid://bnpcxbmw6v6mx"]
 
 [ext_resource type="Script" path="res://scripts/globals/audio_manager.gd" id="1_65yjc"]
 [ext_resource type="AudioStream" uid="uid://byxk2v5rqldu1" path="res://assets/audio/Dissenter_Active_1_V2.wav" id="2_7dvnx"]
@@ -17,7 +17,9 @@
 [ext_resource type="AudioStream" uid="uid://b6uu1y14a0wp2" path="res://assets/audio/GameWin_V1.wav" id="15_qii5t"]
 [ext_resource type="AudioStream" uid="uid://d1a54xq7pip87" path="res://assets/audio/GameLose_V1.wav" id="16_eqm3m"]
 [ext_resource type="AudioStream" uid="uid://jxki7s3b4ul3" path="res://assets/audio/MUSIC_Main_V3.wav" id="17_3ta26"]
+[ext_resource type="AudioStream" uid="uid://dr5868ya0qa2o" path="res://assets/audio/Play_Click_V1.wav" id="17_g1r0v"]
 [ext_resource type="AudioStream" uid="uid://co2mhux3k3xjm" path="res://assets/audio/MUSIC_Dissent_Layer_V1.wav" id="18_0hu4k"]
+[ext_resource type="AudioStream" uid="uid://bi2ob222lif8g" path="res://assets/audio/Play_Hover_V1.wav" id="18_t8bwr"]
 
 [node name="AudioManager" type="Node2D" node_paths=PackedStringArray("_AudioSpawner", "_BackgroundMusic", "BackgroundChanting")]
 process_mode = 3
@@ -34,6 +36,8 @@ audio_punchbowl_drink = Array[AudioStreamWAV]([ExtResource("12_rfbs4"), ExtResou
 audio_punchbowl_fill = ExtResource("14_uuy28")
 audio_game_win = ExtResource("15_qii5t")
 audio_game_lose = ExtResource("16_eqm3m")
+audio_play_press = ExtResource("17_g1r0v")
+audio_play_hover = ExtResource("18_t8bwr")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_3ta26")
