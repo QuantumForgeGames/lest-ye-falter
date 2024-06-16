@@ -65,6 +65,7 @@ paddle = NodePath("../Paddle")
 y_sort_enabled = true
 script = ExtResource("5_540rp")
 cultist_scene = ExtResource("6_afek4")
+debug = false
 
 [node name="Cultist" parent="CultistSpawner" instance=ExtResource("6_afek4")]
 position = Vector2(411, 408)

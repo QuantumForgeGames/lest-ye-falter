@@ -25,7 +25,7 @@ var serve_tween: Tween = null
 
 func _ready () -> void:
 	EventManager.cultist_convinced.connect(_on_minigame_ended)
-	EventManager.cultist_killed.connect(_on_minigame_ended)
+	EventManager.cultist_escaped.connect(_on_minigame_ended)
 
 	camera_rect = camera.get_viewport_rect()
 	# Calculate half the width of the paddle for boundary checks
