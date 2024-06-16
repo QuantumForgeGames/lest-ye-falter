@@ -28,8 +28,8 @@ func _ready() -> void:
 func _on_level_lost():
 	game_over_container.show()
 	var tween := self.create_tween()
-	tween.tween_property(game_over_container, "modulate:a", 1., 1.)
 	tween.tween_property(darken_rect, "modulate:a", 1., 1.)
+	tween.tween_property(game_over_container, "modulate:a", 1., 1.)
 	tween.tween_callback(func(): get_tree().paused = true)
 
 
@@ -38,8 +38,8 @@ func _on_level_won():
 	if current_level > 0:
 		level_complete_container.show()
 		var tween := self.create_tween()
-		tween.tween_property(level_complete_container, "modulate:a", 1., 1.)
 		tween.tween_property(darken_rect, "modulate:a", 1., 1.)
+		tween.tween_property(level_complete_container, "modulate:a", 1., 1.)
 		tween.tween_callback(func(): get_tree().paused = true)
 		tween.tween_property(innocents_value_label, "self_modulate:a", 1.0, 1.)
 		tween.tween_property(doubters_value_label, "self_modulate:a", 1.0, 1.)
