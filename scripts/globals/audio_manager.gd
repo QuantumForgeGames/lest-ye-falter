@@ -23,6 +23,10 @@ extends Node2D
 @export var audio_game_win :AudioStreamWAV
 @export var audio_game_lose :AudioStreamWAV
 
+@export_group("ui")
+@export var audio_play_press :AudioStreamWAV
+@export var audio_play_hover :AudioStreamWAV
+
 
 func _ready () -> void:
 	_BackgroundMusic.play()
@@ -45,9 +49,19 @@ func reset_chanting () -> void:
 	self.create_tween().tween_property(BackgroundChanting, "volume_db", -40., 1.5)
 
 
-func play_stream_oneshot (stream :AudioStream) -> void:
+func play_stream_oneshot (stream :AudioStream) -> AudioStreamPlayer:
 	var audio_player = AudioStreamPlayer.new()
 	_AudioSpawner.add_child(audio_player)
 	audio_player.stream = stream
 	audio_player.finished.connect(func(): audio_player.queue_free())
 	audio_player.play()
+	return audio_player
+
+
+# func get_play_stream_reference (stream :AudioStream) -> AudioStreamPlayer:
+# 	var audio_player = AudioStreamPlayer.new()
+# 	_AudioSpawner.add_child(audio_player)
+# 	audio_player.stream = stream
+# 	audio_player.finished.connect(func(): audio_player.queue_free())
+# 	audio_player.play()
+# 	return audio_player
