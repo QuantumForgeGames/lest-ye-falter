@@ -10,6 +10,11 @@ extends Node2D
 @export var audio_dissenter_active :Array[AudioStreamWAV] = []
 @export var audio_doubter_active :Array[AudioStreamWAV] = []
 
+@export_group("server")
+@export var audio_reflect_leader :AudioStreamWAV
+@export var audio_reflect_cultist :AudioStreamWAV
+@export var audio_reflect_wall :AudioStreamWAV
+
 @export_group("minigame")
 @export var audio_minigame_notes :Array[AudioStreamWAV] = []
 @export var audio_minigame_win :AudioStreamWAV
@@ -26,7 +31,8 @@ extends Node2D
 @export_group("ui")
 @export var audio_play_press :AudioStreamWAV
 @export var audio_play_hover :AudioStreamWAV
-
+@export var audio_misc_press :AudioStreamWAV
+@export var audio_misc_hover :AudioStreamWAV
 
 func _ready () -> void:
 	_BackgroundMusic.play()

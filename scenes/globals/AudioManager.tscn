@@ -1,13 +1,16 @@
-[gd_scene load_steps=21 format=3 uid="uid://bnpcxbmw6v6mx"]
+[gd_scene load_steps=26 format=3 uid="uid://bnpcxbmw6v6mx"]
 
 [ext_resource type="Script" path="res://scripts/globals/audio_manager.gd" id="1_65yjc"]
 [ext_resource type="AudioStream" uid="uid://byxk2v5rqldu1" path="res://assets/audio/Dissenter_Active_1_V2.wav" id="2_7dvnx"]
 [ext_resource type="AudioStream" uid="uid://b7hwxml686udt" path="res://assets/audio/Dissenter_Active_2_V2.wav" id="3_e1o4j"]
 [ext_resource type="AudioStream" uid="uid://d0s2rkapm2cpl" path="res://assets/audio/Doubter_Active_1_V2.wav" id="4_asa8q"]
 [ext_resource type="AudioStream" uid="uid://wt7eanymw5jg" path="res://assets/audio/Doubter_Active_2_V2.wav" id="5_b1w0b"]
+[ext_resource type="AudioStream" uid="uid://bf6hx1uq4x7y2" path="res://assets/audio/Server_Reflect_Leader_V1.wav" id="6_ri5sf"]
 [ext_resource type="AudioStream" uid="uid://bb7pvob1auedb" path="res://assets/audio/MiniGameArrow_1_V2.wav" id="6_w57nw"]
+[ext_resource type="AudioStream" uid="uid://b2dy8bim0sngd" path="res://assets/audio/Server_Reflect_Cultist_V1.wav" id="7_ajleh"]
 [ext_resource type="AudioStream" uid="uid://gv3dg8ntp4ag" path="res://assets/audio/MiniGameArrow_2_V2.wav" id="7_j1488"]
 [ext_resource type="AudioStream" uid="uid://dxkjayhhkcx14" path="res://assets/audio/MiniGameArrow_3_V2.wav" id="8_52vj3"]
+[ext_resource type="AudioStream" uid="uid://bh1p31o186aoo" path="res://assets/audio/Server_Reflect_Wall_V1.wav" id="8_mmbd3"]
 [ext_resource type="AudioStream" uid="uid://bod3sl5jm4nt" path="res://assets/audio/MiniGameArrow_4_V2.wav" id="9_mox5n"]
 [ext_resource type="AudioStream" uid="uid://cbd4t3a5ut5q8" path="res://assets/audio/MiniGameWin_V2.wav" id="10_wcxx1"]
 [ext_resource type="AudioStream" uid="uid://cwmas5882y5wh" path="res://assets/audio/MiniGameLose_V2.wav" id="11_gnt1e"]
@@ -20,6 +23,8 @@
 [ext_resource type="AudioStream" uid="uid://dr5868ya0qa2o" path="res://assets/audio/Play_Click_V1.wav" id="17_g1r0v"]
 [ext_resource type="AudioStream" uid="uid://co2mhux3k3xjm" path="res://assets/audio/MUSIC_Dissent_Layer_V1.wav" id="18_0hu4k"]
 [ext_resource type="AudioStream" uid="uid://bi2ob222lif8g" path="res://assets/audio/Play_Hover_V1.wav" id="18_t8bwr"]
+[ext_resource type="AudioStream" uid="uid://bqy4if8hoefp2" path="res://assets/audio/UI_Misc_Press.wav" id="22_sy3go"]
+[ext_resource type="AudioStream" uid="uid://du67hmdtu7xee" path="res://assets/audio/UI_Misc_Hover.wav" id="23_lcdi1"]
 
 [node name="AudioManager" type="Node2D" node_paths=PackedStringArray("_AudioSpawner", "_BackgroundMusic", "BackgroundChanting")]
 process_mode = 3
@@ -29,6 +34,9 @@ _BackgroundMusic = NodePath("BackgroundMusic")
 BackgroundChanting = NodePath("BackgroundChanting")
 audio_dissenter_active = Array[AudioStreamWAV]([ExtResource("2_7dvnx"), ExtResource("3_e1o4j")])
 audio_doubter_active = Array[AudioStreamWAV]([ExtResource("4_asa8q"), ExtResource("5_b1w0b")])
+audio_reflect_leader = ExtResource("6_ri5sf")
+audio_reflect_cultist = ExtResource("7_ajleh")
+audio_reflect_wall = ExtResource("8_mmbd3")
 audio_minigame_notes = Array[AudioStreamWAV]([ExtResource("6_w57nw"), ExtResource("7_j1488"), ExtResource("8_52vj3"), ExtResource("9_mox5n")])
 audio_minigame_win = ExtResource("10_wcxx1")
 audio_minigame_lose = ExtResource("11_gnt1e")
@@ -38,6 +46,8 @@ audio_game_win = ExtResource("15_qii5t")
 audio_game_lose = ExtResource("16_eqm3m")
 audio_play_press = ExtResource("17_g1r0v")
 audio_play_hover = ExtResource("18_t8bwr")
+audio_misc_press = ExtResource("22_sy3go")
+audio_misc_hover = ExtResource("23_lcdi1")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_3ta26")

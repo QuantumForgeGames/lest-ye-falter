@@ -62,22 +62,29 @@ func _handle_scoring(innocents_number, doubters_number):
 
 
 # BUTTONS
+func _on_hover() -> void:
+	AudioManager.play_stream_oneshot(AudioManager.audio_misc_hover)
+
 func _on_restart_button_pressed():
+	AudioManager.play_stream_oneshot(AudioManager.audio_misc_press)
 	_fade_panels()
 	LevelManager.reload_scene()
 
 
 func _on_menu_button_pressed():
+	AudioManager.play_stream_oneshot(AudioManager.audio_misc_press)
 	_fade_panels()
 	LevelManager.change_scene("MAIN_MENU")
 
 
 func _on_retry_button_pressed():
+	AudioManager.play_stream_oneshot(AudioManager.audio_misc_press)
 	_fade_panels()
 	LevelManager.reload_scene()
 
 
 func _on_next_button_pressed():
+	AudioManager.play_stream_oneshot(AudioManager.audio_misc_press)
 	var current_level = _get_current_level()
 	if current_level > 0:
 		match current_level:
