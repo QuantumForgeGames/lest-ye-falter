@@ -1,23 +1,39 @@
-[gd_scene load_steps=5 format=3 uid="uid://ck5n1t8ru2p8w"]
+[gd_scene load_steps=10 format=3 uid="uid://ck5n1t8ru2p8w"]
 
-[ext_resource type="Script" path="res://scripts/ui/ui.gd" id="1_715gh"]
+[ext_resource type="Script" path="res://scripts/ui/level_prompt_ui.gd" id="1_715gh"]
+[ext_resource type="Texture2D" uid="uid://cj2c5o8yqg5nx" path="res://assets/art/ui/Background.png" id="2_v72tu"]
+[ext_resource type="FontFile" uid="uid://bngp7yjblapgx" path="res://assets/font/FrederickatheGreat-Regular.ttf" id="3_us4ms"]
+[ext_resource type="Texture2D" uid="uid://c8s886hegfpwb" path="res://assets/art/ui/Star_Blank.png" id="4_xvptr"]
+[ext_resource type="Texture2D" uid="uid://ifd30gbptrjs" path="res://assets/art/ui/Star_Normal.png" id="5_vmr44"]
+[ext_resource type="Texture2D" uid="uid://by1rm5rfsbi5" path="res://assets/art/ui/Button_Normal.png" id="6_2o6am"]
+[ext_resource type="Texture2D" uid="uid://v5ej71abah7x" path="res://assets/art/ui/Button_Pressed.png" id="7_5l0tn"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqwjt"]
-bg_color = Color(0.648624, 0.15717, 0.179527, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ku2h"]
+texture = ExtResource("4_xvptr")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k7kgb"]
-bg_color = Color(0.0541508, 0.435279, 0.865707, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_edf8o"]
-bg_color = Color(0.632931, 0.661748, 0, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2b0yb"]
+texture = ExtResource("5_vmr44")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [node name="LevelPromptUI" type="CanvasLayer"]
 layer = 2
 script = ExtResource("1_715gh")
 
+[node name="DarkenRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.737255)
+
 [node name="GameOverContainer" type="CenterContainer" parent="."]
 unique_name_in_owner = true
-visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,108 +42,246 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 
-[node name="Panel" type="Panel" parent="GameOverContainer"]
+[node name="Background" type="TextureRect" parent="GameOverContainer"]
 custom_minimum_size = Vector2(640, 320)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_yqwjt")
+texture = ExtResource("2_v72tu")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GameOverContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="GameOverContainer/Background"]
 layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -246.0
-offset_right = 246.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_top = 125
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverContainer/Background/MarginContainer"]
+layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="TopLabel" type="Label" parent="GameOverContainer/Panel/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="GameOverContainer/Background/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "YOU HAVE LOST"
+theme_override_fonts/font = ExtResource("3_us4ms")
+theme_override_font_sizes/font_size = 24
+text = "The wolves descend upon you-- 
+You close you eyes and wish to rewind."
+horizontal_alignment = 1
+uppercase = true
+
+[node name="ButtonContainer" type="HBoxContainer" parent="GameOverContainer/Background/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 32
+
+[node name="RestartButton" type="TextureButton" parent="GameOverContainer/Background/MarginContainer/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+texture_normal = ExtResource("6_2o6am")
+texture_pressed = ExtResource("7_5l0tn")
+texture_hover = ExtResource("7_5l0tn")
+
+[node name="NextLabel" type="Label" parent="GameOverContainer/Background/MarginContainer/VBoxContainer/ButtonContainer/RestartButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.5
+offset_top = -15.0
+offset_right = 24.5
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_us4ms")
+theme_override_font_sizes/font_size = 24
+text = "Rewind"
 horizontal_alignment = 1
 
-[node name="RestartButton" type="Button" parent="GameOverContainer/Panel/VBoxContainer"]
+[node name="MenuButton" type="TextureButton" parent="GameOverContainer/Background/MarginContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "RESTART GAME"
+texture_normal = ExtResource("6_2o6am")
+texture_pressed = ExtResource("7_5l0tn")
+texture_hover = ExtResource("7_5l0tn")
 
-[node name="MenuButton" type="Button" parent="GameOverContainer/Panel/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "GO TO MENU"
+[node name="NextLabel" type="Label" parent="GameOverContainer/Background/MarginContainer/VBoxContainer/ButtonContainer/MenuButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.5
+offset_top = -15.0
+offset_right = 24.5
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_us4ms")
+theme_override_font_sizes/font_size = 24
+text = "Menu"
+horizontal_alignment = 1
 
 [node name="LevelCompleteContainer" type="CenterContainer" parent="."]
 unique_name_in_owner = true
-visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="Panel" type="Panel" parent="LevelCompleteContainer"]
+[node name="Background" type="TextureRect" parent="LevelCompleteContainer"]
 custom_minimum_size = Vector2(640, 320)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_k7kgb")
+texture = ExtResource("2_v72tu")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LevelCompleteContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="LevelCompleteContainer/Background"]
 layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -274.5
-offset_right = 274.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 32
+theme_override_constants/margin_top = 46
 
-[node name="LevelCompleteLabel" type="Label" parent="LevelCompleteContainer/Panel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelCompleteContainer/Background/MarginContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "RESULTS"
+theme_override_constants/separation = 8
+
+[node name="LevelCompleteLabel" type="Label" parent="LevelCompleteContainer/Background/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_us4ms")
+theme_override_font_sizes/font_size = 24
+text = "Dissent is no more-- 
+but at what price?"
 horizontal_alignment = 1
+uppercase = true
 
-[node name="ProgressBar" type="ProgressBar" parent="LevelCompleteContainer/Panel/VBoxContainer"]
+[node name="StarProgress" type="ProgressBar" parent="LevelCompleteContainer/Background/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 75)
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-theme_override_styles/fill = SubResource("StyleBoxFlat_edf8o")
-value = 67.72
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxTexture_5ku2h")
+theme_override_styles/fill = SubResource("StyleBoxTexture_2b0yb")
+value = 41.34
+show_percentage = false
 
-[node name="RatingLabel" type="Label" parent="LevelCompleteContainer/Panel/VBoxContainer/ProgressBar"]
-layout_mode = 2
-offset_top = -27.0
-offset_right = 549.0
-offset_bottom = -4.0
-text = "Rating:"
-
-[node name="Label" type="Label" parent="LevelCompleteContainer/Panel/VBoxContainer"]
-visible = false
-layout_mode = 2
-text = "Innocents Killed Penalty:  -25pts"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="LevelCompleteContainer/Panel/VBoxContainer"]
+[node name="ScoresContainer" type="HBoxContainer" parent="LevelCompleteContainer/Background/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 32
 
-[node name="NextButton" type="Button" parent="LevelCompleteContainer/Panel/VBoxContainer/HBoxContainer"]
+[node name="ScoreTitleContainer" type="VBoxContainer" parent="LevelCompleteContainer/Background/MarginContainer/VBoxContainer/ScoresContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "NEXT LEVEL"
 
-[node name="RetryButton" type="Button" parent="LevelCompleteContainer/Panel/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="LevelCompleteContainer/Background/MarginContainer/VBoxContainer/ScoresContainer/ScoreTitleContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "RETRY LEVEL"
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_us4ms")
+text = "Innocents Killed Penalty:"
+horizontal_alignment = 1
 
-[connection signal="pressed" from="GameOverContainer/Panel/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="GameOverContainer/Panel/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="LevelCompleteContainer/Panel/VBoxContainer/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
-[connection signal="pressed" from="LevelCompleteContainer/Panel/VBoxContainer/HBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[node name="Label2" type="Label" parent="LevelCompleteContainer/Background/MarginContainer/VBoxContainer/ScoresContainer/ScoreTitleContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("3_us4ms")
+text = "Doubters Killed Penalty:"
+
+[node name="Label3" type="Label" parent="LevelCompleteContainer/Background/MarginContainer/VBoxContainer/ScoresContainer/ScoreTitleContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("3_us4ms")
+text = "Total Penalty:"
+horizontal_alignment = 1
+
+[node name="ScoreValueContainer" type="VBoxContainer" parent="LevelCompleteContainer/Background/MarginContainer/VBoxContainer/ScoresContainer"]
+layout_mode = 2
+
+[node name="InnocentsValueLabel" type="Label" parent="LevelCompleteContainer/Background/MarginContainer/VBoxContainer/ScoresContainer/ScoreValueContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_us4ms")
+text = "-100pts x 10 = -1000pts"
+horizontal_alignment = 1
+
+[node name="DoubtersValueLabel" type="Label" parent="LevelCompleteContainer/Background/MarginContainer/VBoxContainer/ScoresContainer/ScoreValueContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_us4ms")
+text = "-100pts x 10 = -1000pts"
+horizontal_alignment = 2
+
+[node name="TotalValueLabel" type="Label" parent="LevelCompleteContainer/Background/MarginContainer/VBoxContainer/ScoresContainer/ScoreValueContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_us4ms")
+text = "-100pts x 10 = -1000pts"
+horizontal_alignment = 1
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="LevelCompleteContainer/Background/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 32
+
+[node name="NextButton" type="TextureButton" parent="LevelCompleteContainer/Background/MarginContainer/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+texture_normal = ExtResource("6_2o6am")
+texture_pressed = ExtResource("7_5l0tn")
+texture_hover = ExtResource("7_5l0tn")
+
+[node name="NextLabel" type="Label" parent="LevelCompleteContainer/Background/MarginContainer/VBoxContainer/ButtonsContainer/NextButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.5
+offset_top = -15.0
+offset_right = 24.5
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_us4ms")
+theme_override_font_sizes/font_size = 24
+text = "Next"
+horizontal_alignment = 1
+
+[node name="RetryButton" type="TextureButton" parent="LevelCompleteContainer/Background/MarginContainer/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+texture_normal = ExtResource("6_2o6am")
+texture_pressed = ExtResource("7_5l0tn")
+texture_hover = ExtResource("7_5l0tn")
+
+[node name="RetryLabel" type="Label" parent="LevelCompleteContainer/Background/MarginContainer/VBoxContainer/ButtonsContainer/RetryButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.5
+offset_top = -15.0
+offset_right = 24.5
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_us4ms")
+theme_override_font_sizes/font_size = 24
+text = "Retry"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="GameOverContainer/Background/MarginContainer/VBoxContainer/ButtonContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="GameOverContainer/Background/MarginContainer/VBoxContainer/ButtonContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="LevelCompleteContainer/Background/MarginContainer/VBoxContainer/ButtonsContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="LevelCompleteContainer/Background/MarginContainer/VBoxContainer/ButtonsContainer/RetryButton" to="." method="_on_retry_button_pressed"]

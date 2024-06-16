@@ -1,0 +1,23 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnpcxbmw6v6mx"]
+
+[ext_resource type="Script" path="res://scripts/globals/audio_manager.gd" id="1_65yjc"]
+[ext_resource type="AudioStream" uid="uid://cycko6blmfk80" path="res://assets/audio/sfx/Dissenter_Active_1_V1.wav" id="2_e2in6"]
+[ext_resource type="AudioStream" uid="uid://cmkwtj1gx77mf" path="res://assets/audio/sfx/Dissenter_Active_2_V1.wav" id="3_dn4wx"]
+[ext_resource type="AudioStream" uid="uid://dqxbfajsc807i" path="res://assets/audio/sfx/Doubter_Active_1_V1.wav" id="4_g6wp3"]
+[ext_resource type="AudioStream" uid="uid://cwb56vfgl4opu" path="res://assets/audio/sfx/Doubter_Active_2_V1.wav" id="5_3ic8t"]
+[ext_resource type="AudioStream" uid="uid://uvbrkg2h35un" path="res://assets/audio/240615_GodotGameJam2_Music.wav" id="6_dska7"]
+
+[node name="AudioManager" type="Node2D" node_paths=PackedStringArray("_AudioSpawner", "_BackgroundMusic")]
+script = ExtResource("1_65yjc")
+_AudioSpawner = NodePath("AudioSpawner")
+_BackgroundMusic = NodePath("BackgroundMusic")
+audio_dissenter_active = Array[AudioStreamWAV]([ExtResource("2_e2in6"), ExtResource("3_dn4wx")])
+audio_doubter_active = Array[AudioStreamWAV]([ExtResource("4_g6wp3"), ExtResource("5_3ic8t")])
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_dska7")
+volume_db = -40.0
+
+[node name="BackgroundChanting" type="AudioStreamPlayer" parent="."]
+
+[node name="AudioSpawner" type="Node" parent="."]

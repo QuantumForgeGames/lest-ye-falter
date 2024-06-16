@@ -1,0 +1,296 @@
+[gd_scene load_steps=21 format=3 uid="uid://b0whgv6uo0hj7"]
+
+[ext_resource type="Script" path="res://scripts/system/game_manager.gd" id="1_aag4f"]
+[ext_resource type="Script" path="res://scripts/system/minigame_manager.gd" id="2_5ax8i"]
+[ext_resource type="PackedScene" uid="uid://3k871n56u0us" path="res://scenes/ui/minigame_ui.tscn" id="3_5bi28"]
+[ext_resource type="Script" path="res://scripts/system/cultist_spawner.gd" id="4_o2hkg"]
+[ext_resource type="PackedScene" uid="uid://daniimopijcej" path="res://scenes/entities/cultist.tscn" id="5_6qi7q"]
+[ext_resource type="PackedScene" uid="uid://cmif6nw1snsxa" path="res://scenes/entities/paddle.tscn" id="6_g7r4m"]
+[ext_resource type="PackedScene" uid="uid://cye2n4fdkf6ou" path="res://scenes/entities/ball.tscn" id="7_pxai2"]
+[ext_resource type="Texture2D" uid="uid://e37ckt6x80ls" path="res://assets/art/levels/RoomBackground.png" id="8_rp0th"]
+[ext_resource type="Texture2D" uid="uid://cx7wt1771l6r3" path="res://assets/art/levels/DoorEntrance.png" id="9_b3uiy"]
+[ext_resource type="Texture2D" uid="uid://q7nej7b2ut37" path="res://assets/art/levels/DoorFrame.png" id="10_b3hp6"]
+[ext_resource type="Shader" path="res://assets/shaders/doubt.gdshader" id="11_hdcwo"]
+[ext_resource type="Script" path="res://scripts/ui/kick_ui.gd" id="12_mqc6i"]
+[ext_resource type="Texture2D" uid="uid://bacq46flfig26" path="res://assets/art/ui/bar_empty.png" id="13_066m8"]
+[ext_resource type="Texture2D" uid="uid://bvss2w0see6q1" path="res://assets/art/ui/bar_filled.png" id="14_riuoi"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1r277"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_181mj"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0wjqd"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_86jtt"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j0vaq"]
+shader = ExtResource("11_hdcwo")
+shader_parameter/transparency = 0.0
+shader_parameter/color0 = Color(0.0117647, 0, 1, 0.207843)
+shader_parameter/color1 = Color(0.321569, 0.2, 1, 0.247059)
+shader_parameter/color2 = Color(0.341176, 0.411765, 1, 0.2)
+shader_parameter/color3 = Color(0.388235, 0.521569, 1, 0.262745)
+shader_parameter/Direction = Vector2(1, 1)
+shader_parameter/Speed = 1.0
+shader_parameter/thresholds = PackedFloat32Array(0, 0, 0)
+shader_parameter/OCTAVE = 6
+shader_parameter/pixel_size = 1200
+shader_parameter/dithering = 1.95
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5n221"]
+width = 1920
+height = 1080
+
+[node name="LVL7" type="Node2D"]
+y_sort_enabled = true
+
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("cultist_spawner", "doubt_shader", "ball", "paranoia_effect_layer")]
+script = ExtResource("1_aag4f")
+cultist_spawner = NodePath("../CultistSpawner")
+doubt_shader = NodePath("../ParanoiaEffectLayer/TextureRect")
+ball = NodePath("../Ball")
+paranoia_effect_layer = NodePath("../ParanoiaEffectLayer")
+
+[node name="MinigameManager" type="Node2D" parent="." node_paths=PackedStringArray("paddle")]
+script = ExtResource("2_5ax8i")
+minigame_ui_scene = ExtResource("3_5bi28")
+paddle = NodePath("../Paddle")
+
+[node name="CultistSpawner" type="Node2D" parent="."]
+y_sort_enabled = true
+script = ExtResource("4_o2hkg")
+cultist_scene = ExtResource("5_6qi7q")
+debug = false
+
+[node name="Cultist" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(578, 428)
+
+[node name="Cultist5" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(647, 371)
+
+[node name="Cultist2" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(702, 523)
+initial_state = 2
+
+[node name="Cultist3" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(714, 337)
+
+[node name="Cultist39" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(776, 386)
+
+[node name="Cultist40" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(502, 510)
+
+[node name="Cultist41" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(1462, 510)
+
+[node name="Cultist6" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(706, 707)
+
+[node name="Cultist38" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(645, 667)
+
+[node name="Cultist37" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(775, 659)
+
+[node name="Cultist7" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(431, 506)
+
+[node name="Cultist9" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(1536, 509)
+
+[node name="Cultist10" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(1606, 420)
+
+[node name="Cultist11" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(1604, 605)
+
+[node name="Cultist23" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(339, 397)
+
+[node name="Cultist24" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(335, 593)
+
+[node name="Cultist25" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(429, 673)
+
+[node name="Cultist45" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(501, 673)
+
+[node name="Cultist26" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(1465, 690)
+
+[node name="Cultist42" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(1536, 693)
+
+[node name="Cultist29" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(1323, 638)
+
+[node name="Cultist30" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(1182, 640)
+
+[node name="Cultist27" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(1456, 325)
+
+[node name="Cultist43" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(1532, 323)
+
+[node name="Cultist28" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(427, 313)
+
+[node name="Cultist44" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(496, 316)
+
+[node name="Cultist8" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(578, 588)
+
+[node name="Cultist4" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(1376, 427)
+
+[node name="Cultist12" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(1249, 516)
+initial_state = 2
+
+[node name="Cultist13" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(1395, 583)
+
+[node name="Cultist14" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(1253, 706)
+
+[node name="Cultist15" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(973, 700)
+
+[node name="Cultist32" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(902, 656)
+
+[node name="Cultist31" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(1040, 675)
+
+[node name="Cultist16" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(1246, 309)
+
+[node name="Cultist36" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(1301, 368)
+
+[node name="Cultist17" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(984, 309)
+
+[node name="Cultist34" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(1036, 346)
+
+[node name="Cultist18" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(980, 518)
+initial_state = 2
+
+[node name="Cultist19" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(1105, 443)
+
+[node name="Cultist35" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(1167, 384)
+
+[node name="Cultist20" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(1108, 613)
+
+[node name="Cultist21" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(839, 610)
+
+[node name="Cultist22" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(844, 450)
+
+[node name="Cultist33" parent="CultistSpawner" instance=ExtResource("5_6qi7q")]
+position = Vector2(908, 374)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="Paddle" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("6_g7r4m")]
+position = Vector2(960, 1000)
+camera = NodePath("../Camera2D")
+
+[node name="Ball" parent="." instance=ExtResource("7_pxai2")]
+position = Vector2(974, 828)
+
+[node name="Environment" type="Node2D" parent="."]
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Background" type="Sprite2D" parent="Environment"]
+position = Vector2(960, 540)
+texture = ExtResource("8_rp0th")
+
+[node name="DoorEntrance" type="Sprite2D" parent="Environment"]
+position = Vector2(960, 540)
+texture = ExtResource("9_b3uiy")
+
+[node name="DoorFrame" type="Sprite2D" parent="Environment"]
+z_index = 4
+position = Vector2(960, 540)
+texture = ExtResource("10_b3hp6")
+
+[node name="Wall_TOP" type="StaticBody2D" parent="Environment"]
+position = Vector2(960, 182)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall_TOP"]
+shape = SubResource("WorldBoundaryShape2D_1r277")
+
+[node name="Wall_BOTTOM" type="StaticBody2D" parent="Environment"]
+position = Vector2(961, 1085)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall_BOTTOM"]
+shape = SubResource("WorldBoundaryShape2D_181mj")
+
+[node name="Wall_LEFT" type="StaticBody2D" parent="Environment"]
+position = Vector2(148, 540)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall_LEFT"]
+shape = SubResource("WorldBoundaryShape2D_0wjqd")
+
+[node name="Wall_RIGHT" type="StaticBody2D" parent="Environment"]
+position = Vector2(1772, 540)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall_RIGHT"]
+shape = SubResource("WorldBoundaryShape2D_86jtt")
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment"]
+
+[node name="ParanoiaEffectLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="ParanoiaEffectLayer"]
+material = SubResource("ShaderMaterial_j0vaq")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("NoiseTexture2D_5n221")
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("12_mqc6i")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1785.0
+offset_top = 945.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+max_value = 1.0
+step = 0.005
+value = 1.0
+fill_mode = 4
+texture_under = ExtResource("13_066m8")
+texture_progress = ExtResource("14_riuoi")
+metadata/_edit_use_anchors_ = true

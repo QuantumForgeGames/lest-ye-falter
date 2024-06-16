@@ -85,12 +85,14 @@ func _check_game_status():
 	if doubt < 0.15:
 		EventManager.level_lost.emit()
 	if num_dissent == 0:
+		LevelPrompt._handle_scoring(num_base_killed, num_doubt_killed)
 		EventManager.level_won.emit()
-
+ 
 func _tween_doubt_shader (doubt :float) -> void:
 	var cur_doubt = doubt_shader.material.get_shader_parameter("transparency")
 	var tween = self.create_tween()
 	tween.tween_method(func(d):
+		AudioManager._BackgroundMusic.set_volume_db(remap(d, 0.0, 1.0, -40.0, 0.0))
 		doubt_shader.material.set_shader_parameter("transparency", d)
 		doubt_shader.material.set_shader_parameter("thresholds", PackedFloat32Array(
 			[0.6, 0.67, 0.75].map(func(x): return clampf(0.0, x, x *d *2))

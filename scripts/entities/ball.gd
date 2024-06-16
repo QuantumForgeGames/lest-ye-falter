@@ -5,13 +5,14 @@ extends CharacterBody2D
 
 var NARROW_BOUNCE = (Vector2.UP * 8 + Vector2.RIGHT).normalized()
 var WIDE_BOUNCE = (Vector2.UP + Vector2.RIGHT * 5).normalized()
-var KICK_TIMEOUT_DURATION := 10.
+var KICK_TIMEOUT_DURATION := 5.
 
 @export var speed :float = 500
 @export var MAX_SPEED :float = 600
 @export var MIN_SPEED :float = 400
 
 var can_kick: bool = true
+@onready var kick_timer := $KickTimer
 
 func _ready () -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
@@ -53,15 +54,24 @@ func change_sprite() -> void:
 
 func _on_kick() -> void:
 	can_kick = false
+	kick_timer.start(KICK_TIMEOUT_DURATION)
+	EventManager.kick_state_changed.emit(0., KICK_TIMEOUT_DURATION)
 	
 	var tween := get_tree().create_tween()
 	tween.tween_property(self, "scale", Vector2(1.2, 1.2), 0.25)
 	tween.tween_property(self, "scale", Vector2(1., 1.), 0.25)
 	
 	match int(signf(velocity.x)):
-		0, 1: velocity = velocity.orthogonal()
-		-1: velocity = velocity.orthogonal() * -1
+		0, 1: velocity = 1.2 * velocity.orthogonal()
+		-1: velocity = 1.2 * velocity.orthogonal() * -1
 
 func set_max_hits (val :int) -> void:
 	$HitHandlerSystem/OnInput.MAX_HIT_COUNT = val
 	$HitHandlerSystem/OnInput.hits_remaining = val
+
+func _on_kick_timer_timeout() -> void:
+	can_kick = true
+
+func on_paddle_bounce() -> void:
+	can_kick = true
+	EventManager.kick_state_changed.emit(1., -1.)

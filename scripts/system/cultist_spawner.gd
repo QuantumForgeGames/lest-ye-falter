@@ -22,6 +22,14 @@ class_name CultistSpawner
 ## Probability of infecting a new neighbour upon randomly chosen time-out duration
 @export_range (0., 1.) var NEIGHBOUR_CONVERSION_CHANCE: float = 0.1
 
+@export_category("Minigame parameters")
+## Timeout duration to initiate a new mini-game when doubter escapes
+@export var MINIGAME_TIMEOUT_DURATION_ON_ESCAPE: float = 1.
+## Timeout duration to initiate a new mini-game when doubter is served punch
+@export var MINIGAME_TIMEOUT_DURATION_ON_HIT: float = 3.
+## Timeout duration to initiate a new mini-game when doubter randomly drops
+@export var MINIGAME_TIMEOUT_DURATION_ON_RANDOM: float = 6.
+
 func _ready() -> void:
 	if debug:
 		for cultist in get_children():
@@ -45,3 +53,4 @@ func _ready() -> void:
 	else:
 		for cultist in get_children():
 			cultist.set_infection_parameters(CONVERSION_DELAY, DISSENT_CONVERSION_CHANCE, SERVER_CONVERSION_CHANCE, SERVER_CONVERSION_CHANCE_ON_HIT, INFECTION_DELAY_MIN, INFECTION_DELAY_MAX, NEIGHBOUR_CONVERSION_CHANCE)
+			cultist.set_minigame_parameters(MINIGAME_TIMEOUT_DURATION_ON_ESCAPE, MINIGAME_TIMEOUT_DURATION_ON_RANDOM, MINIGAME_TIMEOUT_DURATION_ON_HIT)

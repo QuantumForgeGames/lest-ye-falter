@@ -10,17 +10,18 @@ config_version=5
 
 [application]
 
-config/name="Don't drink the Kool-Aid!"
-run/main_scene="res://scenes/levels/level1.tscn"
+config/name="Lest Ye Falter"
+run/main_scene="res://scenes/levels/level4.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 boot_splash/image="res://assets/art/menus/traditional-dark.png"
-config/icon="res://icon.svg"
+config/icon="res://assets/art/menus/LYF_Thumbnail.png"
 
 [autoload]
 
 EventManager="*res://scripts/globals/event_manager.gd"
 LevelManager="*res://scenes/globals/level_manager.tscn"
 LevelPrompt="*res://scenes/ui/level_prompt_ui.tscn"
+AudioManager="*res://scenes/globals/AudioManager.tscn"
 
 [display]
 

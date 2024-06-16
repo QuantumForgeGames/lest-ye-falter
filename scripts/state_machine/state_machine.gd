@@ -28,9 +28,9 @@ func on_child_transitioned(new_state_name: StringName) -> void:
 	var new_state = states.get(new_state_name)
 	if new_state != null:
 		if new_state != current_state:
-			EventManager.cultist_state_changed.emit(get_parent())
 			current_state.exit()
 			new_state.enter()
 			current_state = new_state
+			EventManager.cultist_state_changed.emit(get_parent())
 	else:
 		push_warning("Called transition on a state that does not exist")

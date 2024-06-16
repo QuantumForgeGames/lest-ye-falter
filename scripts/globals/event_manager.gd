@@ -7,6 +7,8 @@ signal cultist_escaped(cultist: Cultist)
 
 signal cultist_state_changed(cultist: Cultist)
 
+signal kick_state_changed(val: float, duration: float)
+
 signal level_lost()
 signal level_won()
 
