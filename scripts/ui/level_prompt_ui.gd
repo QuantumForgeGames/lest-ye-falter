@@ -8,6 +8,10 @@ extends CanvasLayer
 @onready var star_progress = %StarProgress
 @onready var darken_rect = %DarkenRect
 
+var lose_options := {
+	"DOUBT": "Faith falters and dissenters \n thrive; your reign ends.",
+	"ESCAPE": "Too many have abandoned you. \n Your cult dwindles."
+}
 
 func _ready() -> void:
 	EventManager.level_won.connect(_on_level_won)
@@ -87,3 +91,6 @@ func _get_current_level() -> int:
 		return int(result.get_string("digit"))
 	else:
 		return -1
+
+func set_lose_text(state: String):
+	$GameOverContainer/Background/MarginContainer/VBoxContainer/TitleLabel.text = lose_options[state]

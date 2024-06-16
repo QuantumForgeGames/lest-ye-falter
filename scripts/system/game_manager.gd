@@ -87,8 +87,10 @@ func _check_game_status():
 	var doubt = float(num_base)/(num_base + num_doubt + num_dissent)
 	_tween_doubt_shader(1.0 -doubt)
 	if num_escaped >= MAX_ESCAPED:
+		LevelPrompt.set_lose_text("ESCAPE")
 		EventManager.level_lost.emit()
 	if doubt < 0.15:
+		LevelPrompt.set_lose_text("DOUBT")
 		EventManager.level_lost.emit()
 	if num_dissent == 0:
 		LevelPrompt._handle_scoring(num_base_killed, num_doubt_killed)

@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://ck5n1t8ru2p8w"]
 
 [ext_resource type="Script" path="res://scripts/ui/level_prompt_ui.gd" id="1_715gh"]
-[ext_resource type="Texture2D" uid="uid://cj2c5o8yqg5nx" path="res://assets/art/ui/Background.png" id="2_v72tu"]
-[ext_resource type="FontFile" uid="uid://bngp7yjblapgx" path="res://assets/font/FrederickatheGreat-Regular.ttf" id="3_us4ms"]
-[ext_resource type="Texture2D" uid="uid://c8s886hegfpwb" path="res://assets/art/ui/Star_Blank.png" id="4_xvptr"]
-[ext_resource type="Texture2D" uid="uid://ifd30gbptrjs" path="res://assets/art/ui/Star_Normal.png" id="5_vmr44"]
-[ext_resource type="Texture2D" uid="uid://by1rm5rfsbi5" path="res://assets/art/ui/Button_Normal.png" id="6_2o6am"]
-[ext_resource type="Texture2D" uid="uid://v5ej71abah7x" path="res://assets/art/ui/Button_Pressed.png" id="7_5l0tn"]
+[ext_resource type="Texture2D" uid="uid://dexf1yf65dbcw" path="res://assets/art/ui/Background.png" id="2_v72tu"]
+[ext_resource type="FontFile" uid="uid://cqnxrg3bj1fb1" path="res://assets/font/FrederickatheGreat-Regular.ttf" id="3_us4ms"]
+[ext_resource type="Texture2D" uid="uid://dgn1ph8f6lqar" path="res://assets/art/ui/Star_Blank.png" id="4_xvptr"]
+[ext_resource type="Texture2D" uid="uid://bmq40h8pkj7ot" path="res://assets/art/ui/Star_Normal.png" id="5_vmr44"]
+[ext_resource type="Texture2D" uid="uid://luyg0f0xf2ii" path="res://assets/art/ui/Button_Normal.png" id="6_2o6am"]
+[ext_resource type="Texture2D" uid="uid://bfbshdptqf380" path="res://assets/art/ui/Button_Pressed.png" id="7_5l0tn"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ku2h"]
 texture = ExtResource("4_xvptr")
@@ -60,14 +60,14 @@ theme_override_constants/margin_top = 125
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameOverContainer/Background/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 50
 
 [node name="TitleLabel" type="Label" parent="GameOverContainer/Background/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_us4ms")
 theme_override_font_sizes/font_size = 24
-text = "The wolves descend upon you-- 
-You close you eyes and wish to rewind."
+text = "Faith falters and dissenters thrive.
+Your reign ends."
 horizontal_alignment = 1
 uppercase = true
 
@@ -127,7 +127,6 @@ horizontal_alignment = 1
 
 [node name="LevelCompleteContainer" type="CenterContainer" parent="."]
 unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
